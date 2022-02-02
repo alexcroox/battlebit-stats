@@ -1,23 +1,19 @@
 <script setup lang="ts">
-import { useUserStore } from '~/stores/user'
-
-const user = useUserStore()
-const name = ref(user.savedName)
-
-const router = useRouter()
-const go = () => {
-  if (name.value) router.push(`/hi/${encodeURIComponent(name.value)}`)
-}
-
 const { t } = useI18n()
+
+/*
+Known issues:
+
+Wakistan map not as high res as others
+Hot Land map not as high res as others
+Dusty Dew map not available as raw map was tiny
+Eduardovo map not available as raw map was tiny
+WineParadise map not available as raw map was tiny
+*/
 </script>
 
 <template>
-  <div>
-    <h1>{{ t('missionList') }}</h1>
-
-    <Button is-loading> Hi there </Button>
-  </div>
+  <div></div>
 </template>
 
 <route lang="yaml">

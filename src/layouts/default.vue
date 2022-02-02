@@ -1,6 +1,9 @@
 <template>
-  <Header />
-  <main class="">
-    <router-view />
-  </main>
+  <div class="flex h-full flex-col">
+    <Header />
+
+    <main class="flex-auto">
+      <router-view />
+    </main>
+  </div>
 </template>

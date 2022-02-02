@@ -12,7 +12,7 @@
 
 html,
 body {
-  @apply font-sans bg-gray-900 text-white font-medium;
+  @apply font-sans bg-gray-900 text-gray-50 font-medium;
   height: 100%;
 
   @media only screen and (max-width: 480px) {
@@ -96,4 +96,8 @@ strong {
 .position-center-x {
   left: 50%;
   transform: translateX(-50%);
+}
+
+.container-padding-x {
+  @apply px-4;
 }

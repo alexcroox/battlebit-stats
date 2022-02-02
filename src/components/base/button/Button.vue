@@ -65,7 +65,7 @@ const props = withDefaults(defineProps<Props>(), {
   size: 'md',
   to: undefined,
   isLoading: false,
-  isDisabled: false,
+  isDisabled: false
 })
 
 const hasPrefix = computed(() => !!props.prefixIcon || !!props.prefixText || !!slots.prefix)
@@ -77,23 +77,22 @@ const computedClass = computed(() => {
       [props.priority]: true,
       [props.size]: true,
       loading: props.isLoading,
-      disabled: props.isDisabled || props.isLoading,
+      disabled: props.isDisabled || props.isLoading
     },
-    'text-white',
+    'text-white'
   ]
 })
 
 function onButtonClick() {
   emit('click')
 
-  if (props.to)
-    router.push(props.to)
+  if (props.to) router.push(props.to)
 }
 </script>
 
 <style lang="scss" scoped>
 .button {
-  @apply items-center justify-center font-medium border border-transparent shadow-sm select-none focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500;
+  @apply select-none items-center justify-center border border-transparent font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2;
   transition: filter 0.2s linear, background-color 0.2s linear;
   &:not(.xs) {
     @apply rounded;
@@ -101,7 +100,7 @@ function onButtonClick() {
 }
 
 .button.xs {
-  @apply px-2 py-1 text-xs leading-3 rounded-md;
+  @apply rounded-md px-2 py-1 text-xs leading-3;
 
   & .icon-prefix {
     @apply -ml-0.5 mr-1;
@@ -169,7 +168,7 @@ function onButtonClick() {
 }
 
 .button.default {
-  @apply text-gray-700 bg-white border-gray-300 hover:bg-gray-50;
+  @apply border-gray-300 bg-white text-gray-700 hover:bg-gray-50;
 }
 
 .button.default .suffix-icon {
@@ -177,7 +176,7 @@ function onButtonClick() {
 }
 
 .button.important {
-  @apply text-white bg-gray-800 hover:bg-gray-900 focus:ring-gray-900;
+  @apply bg-gray-800 text-white hover:bg-gray-900 focus:ring-gray-900;
 }
 
 .button.important .suffix-icon {
@@ -185,7 +184,7 @@ function onButtonClick() {
 }
 
 .button.caution {
-  @apply text-red-600 shadow-none bg-none hover:bg-red-100 focus:ring-red-200;
+  @apply bg-none text-red-600 shadow-none hover:bg-red-100 focus:ring-red-200;
 }
 
 .button.caution .suffix-icon {
@@ -193,7 +192,7 @@ function onButtonClick() {
 }
 
 .button.caution-solid {
-  @apply text-white bg-red-600 hover:bg-red-100 focus:ring-red-200;
+  @apply bg-red-600 text-white hover:bg-red-100 focus:ring-red-200;
 }
 
 .button.caution-solid .suffix-icon {
@@ -201,7 +200,7 @@ function onButtonClick() {
 }
 
 .button.selected {
-  @apply text-white bg-green-600 hover:bg-green-700 focus:ring-green-700;
+  @apply bg-green-600 text-white hover:bg-green-700 focus:ring-green-700;
 }
 
 .button.selected .suffix-icon {
@@ -209,7 +208,7 @@ function onButtonClick() {
 }
 
 .button.disabled {
-  @apply text-gray-400 border-gray-400 cursor-default #{!important};
+  @apply cursor-default border-gray-400 text-gray-400 #{!important};
   background-color: #f8fafc !important;
 }
 
@@ -224,6 +223,6 @@ function onButtonClick() {
 }
 
 .button.transparent {
-  @apply border-transparent shadow-none bg-none;
+  @apply border-transparent bg-none shadow-none;
 }
 </style>
