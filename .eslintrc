@@ -1,3 +1,9 @@
 {
-  "extends": "@antfu"
+  "extends": ["@antfu", "prettier", "plugin:prettier/recommended"],
+
+  "plugins": ["prettier"],
+
+  "rules": {
+    "eslint-comments/no-unlimited-disable": "off"
+  }
 }

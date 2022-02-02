@@ -4,9 +4,7 @@
 // they will be rendered correctly in the html results with vite-ssg
 useHead({
   title: 'BattleBit Stats',
-  meta: [
-    { name: 'description', content: 'Stats, maps and information about the BattleBit Remastered game' },
-  ],
+  meta: [{ name: 'description', content: 'Stats, maps and information about the BattleBit Remastered game' }]
 })
 </script>
 

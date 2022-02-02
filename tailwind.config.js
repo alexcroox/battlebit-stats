@@ -1,10 +1,12 @@
 module.exports = {
-  content: [
-    './index.html',
-    './src/**/*.{vue,js,ts,jsx,tsx}',
-  ],
+  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'darkest-gray': '#14141A',
+        'darker-gray': '#1E1E27'
+      }
+    }
   },
-  plugins: [],
+  plugins: []
 }

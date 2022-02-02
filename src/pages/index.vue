@@ -6,8 +6,7 @@ const name = ref(user.savedName)
 
 const router = useRouter()
 const go = () => {
-  if (name.value)
-    router.push(`/hi/${encodeURIComponent(name.value)}`)
+  if (name.value) router.push(`/hi/${encodeURIComponent(name.value)}`)
 }
 
 const { t } = useI18n()
@@ -17,13 +16,11 @@ const { t } = useI18n()
   <div>
     <h1>{{ t('missionList') }}</h1>
 
-    <Button is-loading>
-      Hi there
-    </Button>
+    <Button is-loading> Hi there </Button>
   </div>
 </template>
 
 <route lang="yaml">
 meta:
-  layout: home
+  layout: default
 </route>

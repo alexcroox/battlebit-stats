@@ -13,17 +13,17 @@ import VueI18n from '@intlify/vite-plugin-vue-i18n'
 export default defineConfig({
   resolve: {
     alias: {
-      '~/': `${path.resolve(__dirname, 'src')}/`,
-    },
+      '~/': `${path.resolve(__dirname, 'src')}/`
+    }
   },
   plugins: [
     Vue({
-      include: [/\.vue$/],
+      include: [/\.vue$/]
     }),
 
     // https://github.com/hannoeru/vite-plugin-pages
     Pages({
-      extensions: ['vue'],
+      extensions: ['vue']
     }),
 
     // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
@@ -31,15 +31,8 @@ export default defineConfig({
 
     // https://github.com/antfu/unplugin-auto-import
     AutoImport({
-      imports: [
-        'vue',
-        'vue-router',
-        'vue-i18n',
-        '@vueuse/head',
-        '@vueuse/core',
-        'vitest',
-      ],
-      dts: 'src/auto-imports.d.ts',
+      imports: ['vue', 'vue-router', 'vue-i18n', '@vueuse/head', '@vueuse/core', 'vitest'],
+      dts: 'src/auto-imports.d.ts'
     }),
 
     // https://github.com/antfu/unplugin-vue-components
@@ -55,17 +48,17 @@ export default defineConfig({
         // auto import icons
         // https://github.com/antfu/unplugin-icons
         IconsResolver({
-          prefix: false,
+          prefix: false
           // enabledCollections: ['carbon']
-        }),
+        })
       ],
 
-      dts: 'src/components.d.ts',
+      dts: 'src/components.d.ts'
     }),
 
     // https://github.com/antfu/unplugin-icons
     Icons({
-      autoInstall: true,
+      autoInstall: true
     }),
 
     // https://github.com/antfu/vite-plugin-pwa
@@ -80,54 +73,46 @@ export default defineConfig({
           {
             src: '/pwa-192x192.png',
             sizes: '192x192',
-            type: 'image/png',
+            type: 'image/png'
+          },
+          {
+            src: '/pwa-512x512.png',
+            sizes: '512x512',
+            type: 'image/png'
           },
           {
             src: '/pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png',
-          },
-          {
-            src: '/pwa-512x512.png',
-            sizes: '512x512',
-            type: 'image/png',
-            purpose: 'any maskable',
-          },
-        ],
-      },
+            purpose: 'any maskable'
+          }
+        ]
+      }
     }),
 
     // https://github.com/intlify/bundle-tools/tree/main/packages/vite-plugin-vue-i18n
     VueI18n({
       runtimeOnly: true,
       compositionOnly: true,
-      include: [path.resolve(__dirname, 'locales/**')],
-    }),
-
+      include: [path.resolve(__dirname, 'locales/**')]
+    })
   ],
 
   server: {
     fs: {
-      strict: true,
-    },
+      strict: true
+    }
   },
 
   // https://github.com/antfu/vite-ssg
   ssgOptions: {
     script: 'async',
-    formatting: 'minify',
+    formatting: 'minify'
   },
 
   optimizeDeps: {
-    include: [
-      'vue',
-      'vue-router',
-      '@vueuse/core',
-      '@vueuse/head',
-    ],
-    exclude: [
-      'vue-demi',
-    ],
+    include: ['vue', 'vue-router', '@vueuse/core', '@vueuse/head'],
+    exclude: ['vue-demi']
   },
 
   // https://github.com/vitest-dev/vitest
@@ -136,7 +121,7 @@ export default defineConfig({
     environment: 'jsdom',
     globals: true,
     deps: {
-      inline: ['@vue', '@vueuse', 'vue-demi'],
-    },
-  },
+      inline: ['@vue', '@vueuse', 'vue-demi']
+    }
+  }
 })

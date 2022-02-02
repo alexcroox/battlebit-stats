@@ -1,15 +1,10 @@
-button:
-  about: About
-  back: Back
-  go: GO
-  home: Home
-  toggle_dark: Toggle dark mode
-  toggle_langs: Change languages
-intro:
-  aka: Also known as
-  desc: Opinionated Vite Starter Template
-  dynamic-route: Demo of dynamic route
-  hi: Hi, {name}!
-  whats-your-name: What's your name?
-missionList: Mission list
-not-found: Not found
+home: Home
+stats: Stats
+maps: Maps
+weapons: Weapons
+notFound: Not found
+back: Back
+goBack: Go back
+pageNotFound: Page not found
+nothingHereSoldier: There's nothing here solider, turn back while you can
+returnToCombatArea: Return to the combat area

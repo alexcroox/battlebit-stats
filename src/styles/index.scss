@@ -12,7 +12,7 @@
 
 html,
 body {
-  @apply font-sans;
+  @apply font-sans bg-gray-900 text-white font-medium;
   height: 100%;
 
   @media only screen and (max-width: 480px) {
@@ -28,8 +28,7 @@ body {
   width: 100%;
 }
 
-#__nuxt,
-#__layout {
+#app {
   height: 100%;
 }
 
