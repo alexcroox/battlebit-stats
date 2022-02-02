@@ -4,15 +4,18 @@ import { getMapConfig, maps } from '~/lib/map-config'
 const props = defineProps<{ mapName: string }>()
 const { t } = useI18n()
 
-let currentMapConfig
-let hasMapError = false
+let currentMapConfig = $ref({})
+let hasMapError = $ref(false)
 
-try {
-  currentMapConfig = getMapConfig(props.mapName)
-} catch (e) {
-  console.error(e)
-  hasMapError = true
-}
+watchEffect(() => {
+  try {
+    currentMapConfig = getMapConfig(props.mapName)
+    hasMapError = false
+  } catch (e) {
+    console.error(e)
+    hasMapError = true
+  }
+})
 </script>
 
 <template>
@@ -35,15 +38,20 @@ try {
     </div>
 
     <div class="relative h-full w-full flex-auto">
-      <h1
-        class="container-padding-x absolute left-4 top-4 z-20 rounded bg-gray-800 py-2 text-xl font-bold uppercase tracking-wide text-yellow-200"
-      >
-        {{ props.mapName }}
-      </h1>
+      <div v-if="hasMapError" class="position-center absolute rounded bg-gray-800 px-8 py-6 text-center">
+        <h1 class="text-2xl">{{ t('mapNotFound') }}</h1>
+      </div>
 
-      <client-only>
-        <Map :map-name="props.mapName" class="absolute top-0 right-0 bottom-0 left-0 z-10" />
-      </client-only>
+      <template v-else>
+        <h1
+          class="container-padding-x absolute left-4 top-4 z-20 rounded bg-gray-800 py-2 text-xl font-bold uppercase tracking-wide text-yellow-200"
+        >
+          {{ props.mapName }}
+        </h1>
+
+        <client-only>
+          <Map :map-name="props.mapName" class="absolute top-0 right-0 bottom-0 left-0 z-10" /> </client-only
+      ></template>
     </div>
   </div>
 </template>

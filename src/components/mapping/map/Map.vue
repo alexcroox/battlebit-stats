@@ -1,18 +1,15 @@
 <script setup lang="ts">
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
-import { getMapConfig, maps } from '~/lib/map-config'
+import { getMapConfig } from '~/lib/map-config'
 
 const props = defineProps<{ mapName: string }>()
 const { t } = useI18n()
 
 let currentMapConfig = $ref({})
-const currentMapBgColor = $ref('#000')
 
 watchEffect(() => {
   currentMapConfig = getMapConfig(props.mapName)
-
-  console.log({ currentMapConfig })
 })
 
 const mapElement = $ref(null)
