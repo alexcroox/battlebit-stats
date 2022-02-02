@@ -1,0 +1,18 @@
+// Vitest Snapshot v1
+
+exports[`Button.vue > should render 1`] = `
+"<button class=\\"button inline-flex default md text-white\\" type=\\"button\\" data-v-4cf7dfa1=\\"\\">
+  <!-- @slot Custom loading content, otherwise a spinner. Loading replaces prefix -->
+  <!--v-if-->
+  <!-- @slot Used for the button label --><span class=\\"capitalize-first-letter\\" data-v-4cf7dfa1=\\"\\">click me</span>
+  <!--v-if-->
+</button>"
+`;
+
+exports[`Button.vue > should show loading spinner 1`] = `
+"<button class=\\"button inline-flex default md loading disabled text-white\\" type=\\"button\\" disabled=\\"\\" data-v-4cf7dfa1=\\"\\">
+  <!-- @slot Custom loading content, otherwise a spinner. Loading replaces prefix -->
+  <fontawesomeicon icon=\\"[object Object]\\" spin=\\"\\" fixed-width=\\"\\" data-testid=\\"loadingSpinner\\" class=\\"mr-1\\" data-v-4cf7dfa1=\\"\\"></fontawesomeicon><!-- @slot Used for the button label --><span class=\\"capitalize-first-letter\\" data-v-4cf7dfa1=\\"\\">click me</span>
+  <!--v-if-->
+</button>"
+`;

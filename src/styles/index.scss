@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  @apply font-sans;
+  height: 100%;
+
+  @media only screen and (max-width: 480px) {
+    height: 100vh;
+  }
+}
+
+body {
+  // iOS notch safe zones https://css-tricks.com/the-notch-and-css/
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-right);
+
+  width: 100%;
+}
+
+#__nuxt,
+#__layout {
+  height: 100%;
+}
+
+// Stop wide debug from horizontally overflowing the page
+pre {
+  @apply text-xs;
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 1rem 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  text-align: justify;
+}
+
+.image-cover {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  z-index: -1;
+}
+
+// Disable text selection in the native app
+#app.ios *:not(input):not(textarea),
+#app.android *:not(input):not(textarea) {
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+strong {
+  @apply font-medium;
+}
+
+// We use these in javascript to determine iOS safe area values
+:root {
+  --safe-area-inset-top: env(safe-area-inset-top);
+  --safe-area-inset-right: env(safe-area-inset-right);
+  --safe-area-inset-bottom: env(safe-area-inset-bottom);
+  --safe-area-inset-left: env(safe-area-inset-left);
+}
+
+.ios-safe-padding-top {
+  padding-top: var(--safe-area-inset-top);
+}
+
+.ios-safe-margin-top {
+  margin-top: var(--safe-area-inset-top);
+}
+
+.ios-safe-padding-bottom {
+  padding-bottom: var(--safe-area-inset-bottom);
+}
+
+.position-center {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.position-center-y {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.position-center-x {
+  left: 50%;
+  transform: translateX(-50%);
+}
