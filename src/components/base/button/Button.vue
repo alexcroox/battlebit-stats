@@ -86,13 +86,17 @@ const computedClass = computed(() => {
 function onButtonClick() {
   emit('click')
 
-  if (props.to) router.push(props.to)
+  if (props.to.includes('http')) {
+    window.open(props.to, '_blank')
+  } else {
+    router.push(props.to)
+  }
 }
 </script>
 
 <style lang="scss" scoped>
 .button {
-  @apply select-none items-center justify-center border border-transparent font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2;
+  @apply select-none items-center justify-center border border-transparent font-medium shadow-sm;
   transition: filter 0.2s linear, background-color 0.2s linear;
   &:not(.xs) {
     @apply rounded;
@@ -168,7 +172,7 @@ function onButtonClick() {
 }
 
 .button.default {
-  @apply border-gray-300 bg-white text-gray-700 hover:bg-gray-50;
+  @apply bg-gray-600 text-white hover:bg-gray-700 hover:text-yellow-100;
 }
 
 .button.default .suffix-icon {

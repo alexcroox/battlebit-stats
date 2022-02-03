@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import 'leaflet/dist/leaflet.css'
-import L from 'leaflet'
+import Leaflet from 'leaflet'
 import { getMapConfig } from '~/lib/map-config'
 
 const props = defineProps<{ mapName: string }>()
@@ -24,11 +24,11 @@ const mapMaxResolution = 0.25
 const mapMinResolution = Math.pow(2, maxZoom) * mapMaxResolution
 const mapExtent = [0, -mapWidth, mapHeight, 0]
 const tileExtent = [0, 0, 16384, 16384]
-const crs = L.CRS.Simple
+const crs = Leaflet.CRS.Simple
 
-crs.projection.bounds = new L.Bounds([tileExtent[0], tileExtent[1]], [tileExtent[2], tileExtent[3]])
+crs.projection.bounds = new Leaflet.Bounds([tileExtent[0], tileExtent[1]], [tileExtent[2], tileExtent[3]])
 crs.infinite = false
-crs.transformation = new L.Transformation(1, -tileExtent[0], -1, tileExtent[3])
+crs.transformation = new Leaflet.Transformation(1, -tileExtent[0], -1, tileExtent[3])
 
 crs.scale = function (zoom) {
   return Math.pow(2, zoom) / mapMinResolution
@@ -50,7 +50,7 @@ function switchTileLayer(mapName) {
 }
 
 onMounted(() => {
-  map = new L.Map(mapElement, {
+  map = new Leaflet.Map(mapElement, {
     minZoom,
     maxZoom,
     attributionControl: false,
@@ -60,13 +60,13 @@ onMounted(() => {
     crs
   })
 
-  L.control
+  Leaflet.control
     .zoom({
       position: 'topright'
     })
     .addTo(map)
 
-  tileLayer = L.tileLayer(`/maps/${props.mapName}/tiles/{z}/{x}/{y}.jpg`, {
+  tileLayer = Leaflet.tileLayer(`/maps/${props.mapName}/tiles/{z}/{x}/{y}.jpg`, {
     noWrap: true,
     tms: true,
     minZoom,
@@ -74,8 +74,8 @@ onMounted(() => {
   }).addTo(map)
 
   map.fitBounds([
-    crs.unproject(L.point(mapExtent[2], mapExtent[3])),
-    crs.unproject(L.point(mapExtent[0], mapExtent[1]))
+    crs.unproject(Leaflet.point(mapExtent[2], mapExtent[3])),
+    crs.unproject(Leaflet.point(mapExtent[0], mapExtent[1]))
   ])
 
   map.setView([mapWidth / 2, mapWidth / 2])

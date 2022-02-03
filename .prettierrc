@@ -3,5 +3,8 @@
   "semi": false,
   "trailingComma": "none",
   "tabWidth": 2,
-  "printWidth": 120
+  "printWidth": 120,
+  "vueIndentScriptAndStyle": false,
+  "bracketSpacing": true,
+  "htmlWhitespaceSensitivity": "strict"
 }

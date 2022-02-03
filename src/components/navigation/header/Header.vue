@@ -1,36 +1,29 @@
 <script setup lang="ts">
+import { faSteamSymbol } from '@fortawesome/free-brands-svg-icons'
+
 const { t } = useI18n()
 </script>
 
 <template>
-  <nav class="container-padding-x flex items-stretch justify-between bg-gray-800 uppercase text-white">
-    <router-link to="/" :title="t('home')" class="py-2 text-xl font-bold tracking-wide"> BattleBit Stats </router-link>
+  <nav class="container-padding-x flex items-center justify-between bg-gray-800 py-2 text-white">
+    <router-link to="/" :title="t('home')" class="hidden text-xl font-bold uppercase tracking-wide sm:block">
+      {{ t('battleBitStats') }}
+    </router-link>
 
-    <div class="flex items-stretch justify-between space-x-12">
-      <router-link to="/" :title="t('home')" class="navigation-item py-2 font-semibold"> {{ t('home') }}</router-link>
+    <div class="flex items-center space-x-8">
+      <div class="flex w-full max-w-xs justify-between sm:w-auto sm:max-w-none sm:space-x-8">
+        <NavItem to="/" :label="t('home')" />
 
-      <router-link to="/stats" :title="t('stats')" class="navigation-item py-2 font-semibold">
-        {{ t('stats') }}
-      </router-link>
+        <NavItem to="/stats" :label="t('stats')" />
 
-      <router-link
-        to="/maps/mutlu-islands"
-        :exact-path="false"
-        :title="t('maps')"
-        class="navigation-item py-2 font-semibold"
-      >
-        {{ t('maps') }}
-      </router-link>
+        <NavItem to="/maps/multu-islands" :exact-path="false" :label="t('maps')" />
 
-      <router-link to="/weapons" :title="t('weapons')" class="navigation-item py-2 font-semibold">
-        {{ t('weapons') }}
-      </router-link>
+        <NavItem to="/weapons" :label="t('weapons')" />
+      </div>
+
+      <Button to="https://store.steampowered.com/app/671860/BattleBit_Remastered/" :prefix-icon="faSteamSymbol">
+        Play the game
+      </Button>
     </div>
   </nav>
 </template>
-
-<style lang="scss" scoped>
-.navigation-item.router-link-active {
-  @apply text-yellow-200;
-}
-</style>

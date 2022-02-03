@@ -5,10 +5,11 @@
 declare module 'vue' {
   export interface GlobalComponents {
     Button: typeof import('./components/base/button/Button.vue')['default']
-    Footer: typeof import('./components/Footer.vue')['default']
+    Footer: typeof import('./components/navigation/footer/Footer.vue')['default']
     Header: typeof import('./components/navigation/header/Header.vue')['default']
     Loader: typeof import('./components/base/loader/Loader.vue')['default']
     Map: typeof import('./components/mapping/map/Map.vue')['default']
+    NavItem: typeof import('./components/navigation/nav-item/NavItem.vue')['default']
     README: typeof import('./components/README.md')['default']
   }
 }
