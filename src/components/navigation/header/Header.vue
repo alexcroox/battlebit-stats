@@ -6,7 +6,12 @@ const { t } = useI18n()
 
 <template>
   <nav class="container-padding-x flex items-center justify-between bg-gray-800 py-2 text-white">
-    <router-link to="/" :title="t('home')" class="hidden text-xl font-bold uppercase tracking-wide sm:block">
+    <router-link
+      to="/"
+      :title="t('home')"
+      class="hidden items-center text-xl font-extrabold uppercase tracking-wide sm:flex"
+    >
+      <img src="/logo-white.png" class="mr-2 h-[20px]" />
       {{ t('battleBitStats') }}
     </router-link>
 
