@@ -21,3 +21,8 @@ zoomAndPan: Zoom and pan your way through the upcoming battlefields
 interactiveMaps: Interactive maps
 nextPublicPlayTest: Next public play test
 knownIssues: Known issues
+playerStats: Player stats
+comingSoonIfStats: Coming soon if/when BattleBit exposes stats API
+dataMinedSources: Data is mined from various sources, so likely to be inaccurate in areas
+exploreCurrentWeapons: Explore current weapons, stats and attachments
+pageWorkingInProgress: This page is a work in progress pending more data collection

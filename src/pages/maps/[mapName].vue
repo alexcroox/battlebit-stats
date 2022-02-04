@@ -27,7 +27,10 @@ watchEffect(() => {
         :to="`/maps/${mapSlug}`"
         class="map-link relative my-2 block h-24 w-32 shrink-0 overflow-hidden rounded border-2 border-transparent"
       >
-        <img :src="`/maps/${mapSlug}/thumbnail.jpg`" class="image-cover z-20 rounded" />
+        <img
+          :src="`https://assets.battlebitstats.com/maps/${mapSlug}/thumbnail.jpg`"
+          class="image-cover z-20 rounded"
+        />
 
         <span
           class="map-link-name absolute left-0 right-0 top-0 z-10 rounded-t bg-gray-800 bg-opacity-70 px-1 py-1 text-center text-xs"

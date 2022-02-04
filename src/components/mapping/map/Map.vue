@@ -25,6 +25,7 @@ watch(
 function switchTileLayer(mapName) {
   tileLayer.setUrl(`/maps/${mapName}/tiles/{z}/{x}/{y}.jpg`).redraw()
   map.invalidateSize()
+  map.setZoom(2)
 }
 
 onMounted(async () => {
@@ -68,7 +69,7 @@ onMounted(async () => {
     })
     .addTo(map)
 
-  tileLayer = Leaflet.tileLayer(`/maps/${props.mapName}/tiles/{z}/{x}/{y}.jpg`, {
+  tileLayer = Leaflet.tileLayer(`https://assets.battlebitstats.com/maps/${props.mapName}/tiles/{z}/{x}/{y}.jpg`, {
     noWrap: true,
     tms: true,
     minZoom,

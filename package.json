@@ -10,7 +10,8 @@
     "test:coverage": "vitest --coverage",
     "test:e2e": "cypress open",
     "test:unit": "vitest",
-    "typecheck": "vue-tsc --noEmit"
+    "typecheck": "vue-tsc --noEmit",
+    "sync:maps": "aws s3 sync ./maps s3://assets.battlebitstats.com/maps --profile personal"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "1.2.36",
@@ -19,6 +20,7 @@
     "@fortawesome/vue-fontawesome": "3.0.0-5",
     "@vueuse/core": "7.5.5",
     "@vueuse/head": "0.7.5",
+    "dayjs": "1.10.7",
     "leaflet": "1.7.1",
     "nprogress": "0.2.0",
     "pinia": "2.0.11",

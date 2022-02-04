@@ -20,6 +20,13 @@ body {
   }
 }
 
+main {
+  background: #1F2A37;
+  background: -webkit-radial-gradient(center, #1F2A37, #111927);
+  background: -moz-radial-gradient(center, #1F2A37, #111927);
+  background: radial-gradient(ellipse at center, #1F2A37, #111927);
+}
+
 body {
   // iOS notch safe zones https://css-tricks.com/the-notch-and-css/
   padding-top: env(safe-area-inset-top);

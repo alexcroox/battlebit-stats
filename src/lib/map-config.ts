@@ -41,7 +41,7 @@ export const maps: Record<string, MapConfig> = {
       'Wakistan is a forest map at 2x2 km. The origins of the map come from the mountain of Tebulosmta in Georgia. It has picturesque mountains, forests, and rivers. Its topography gives players who seize hills an advantage over their enemies.'
   },
   range: {
-    bgColor: '#222812',
+    bgColor: '#9BBAAE',
     name: 'Range',
     description: 'Awaiting description'
   },

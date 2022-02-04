@@ -21,9 +21,10 @@ const { t } = useI18n()
 
         <NavItem to="/maps/multu-islands" :exact-path="false" :label="t('maps')" />
 
-        <NavItem to="/weapons" :label="t('weapons')" />
+        <NavItem to="/weapons/assault/AK47" :label="t('weapons')" />
 
-        <NavItem to="/stats" :label="t('stats')" />
+        <NavItem to="/stats" :label="t('playerStats')" class="hidden md:block" />
+        <NavItem to="/stats" :label="t('stats')" class="md:hidden" />
       </div>
 
       <Button
