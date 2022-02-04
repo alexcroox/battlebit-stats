@@ -25,7 +25,7 @@ const toggleLocales = () => {
       </a>
 
       <a
-        href="https://www.patreon.com/battlebit/posts"
+        href="https://twitter.com/BattleBitGame"
         target="_blank"
         title="Follow BattleBit Twitter"
         rel="noopener noreferrer"

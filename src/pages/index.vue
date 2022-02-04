@@ -103,7 +103,7 @@ const { t } = useI18n()
 
     <div class="mt-12">
       <h2 class="relative z-20 text-2xl font-medium">{{ t('playerStats') }}</h2>
-      <div class="mt-4 inline-flex items-center space-x-2 rounded bg-gray-800 px-4 py-2">
+      <div class="mt-4 inline-flex items-center space-x-4 rounded bg-gray-800 px-4 py-2 sm:space-x-2">
         <FontAwesomeIcon :icon="faInfoCircle" />
         <span>{{ t('comingSoonIfStats') }}</span>
       </div>
