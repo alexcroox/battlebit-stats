@@ -13,16 +13,16 @@ const toggleLocales = () => {
 
 <template>
   <nav class="container-padding-x flex w-full items-center justify-between bg-gray-800 py-2 text-sm">
-    <div class="flex items-center space-x-12">
+    <div class="flex items-stretch space-x-2 md:space-x-6 lg:space-x-12">
       <a
         href="https://discord.com/invite/battlebit"
         target="_blank"
         title="Join the BattleBit discord"
         rel="noopener noreferrer"
-        class="hover:text-yellow-100"
+        class="flex items-center space-x-2 hover:text-yellow-100"
       >
-        <FontAwesomeIcon :icon="faDiscord" class="mr-1" />
-        {{ t('joinTheCommunity') }}
+        <FontAwesomeIcon :icon="faDiscord" />
+        <span class="hidden lg:block">{{ t('joinTheCommunity') }}</span>
       </a>
 
       <a
@@ -30,9 +30,10 @@ const toggleLocales = () => {
         target="_blank"
         title="Follow BattleBit Twitter"
         rel="noopener noreferrer"
+        class="flex items-center space-x-2 hover:text-yellow-100"
       >
-        <FontAwesomeIcon :icon="faTwitter" class="mr-1" />
-        {{ t('followOnTwitter') }}
+        <FontAwesomeIcon :icon="faTwitter" />
+        <span class="hidden lg:block">{{ t('followOnTwitter') }}</span>
       </a>
 
       <a
@@ -40,14 +41,16 @@ const toggleLocales = () => {
         target="_blank"
         title="Become a patron"
         rel="noopener noreferrer"
+        class="flex items-center space-x-2 hover:text-yellow-100"
       >
-        <FontAwesomeIcon :icon="faPatreon" class="mr-1" />
-        {{ t('becomeAPatron') }}
+        <FontAwesomeIcon :icon="faPatreon" />
+        <span class="hidden lg:block">{{ t('becomeAPatron') }}</span>
       </a>
     </div>
 
     <p class="text-xs text-gray-300">
-      <span class="text-gray-50">Site created by Titan#7652</span>. This site is not affiliated with OkiStudio
+      <span class="text-gray-50">Site created by Titan#7652</span
+      ><span class="ml-2 hidden md:inline-block">This site is not affiliated with OkiStudio</span>
     </p>
   </nav>
 </template>

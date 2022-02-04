@@ -5,18 +5,18 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <nav class="container-padding-x flex items-center justify-between bg-gray-800 py-2 text-white">
+  <nav class="flex items-center justify-between bg-gray-800 px-2 py-2 text-white sm:px-4">
     <router-link
       to="/"
       :title="t('home')"
-      class="hidden items-center text-xl font-extrabold uppercase tracking-wide sm:flex"
+      class="hidden items-center text-xl font-extrabold uppercase tracking-wide text-yellow-50 sm:flex"
     >
       <img src="/logo-white.png" class="mr-2 h-[20px]" />
       {{ t('battleBitStats') }}
     </router-link>
 
-    <div class="flex items-center space-x-8">
-      <div class="flex w-full max-w-xs justify-between sm:w-auto sm:max-w-none sm:space-x-8">
+    <div class="flex flex-1 items-center space-x-8 sm:flex-initial">
+      <div class="flex w-full justify-between sm:w-auto sm:max-w-none sm:space-x-4 md:space-x-8">
         <NavItem to="/" :label="t('home')" />
 
         <NavItem to="/stats" :label="t('stats')" />
@@ -26,7 +26,11 @@ const { t } = useI18n()
         <NavItem to="/weapons" :label="t('weapons')" />
       </div>
 
-      <Button to="https://store.steampowered.com/app/671860/BattleBit_Remastered/" :prefix-icon="faSteamSymbol">
+      <Button
+        to="https://store.steampowered.com/app/671860/BattleBit_Remastered/"
+        :prefix-icon="faSteamSymbol"
+        class="hidden lg:block"
+      >
         Play the game
       </Button>
     </div>
