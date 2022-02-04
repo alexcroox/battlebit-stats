@@ -67,9 +67,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.png', 'robots.txt', 'safari-pinned-tab.png'],
       manifest: {
-        name: 'Vitesse',
-        short_name: 'Vitesse',
-        theme_color: '#ffffff',
+        name: 'BattleBit Stats',
+        short_name: 'BB Stats',
+        theme_color: '#17202E',
         icons: [
           {
             src: '/pwa-192x192.png',
