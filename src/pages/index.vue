@@ -3,22 +3,18 @@ import { faSteamSymbol } from '@fortawesome/free-brands-svg-icons'
 import { maps } from '../lib/map-config'
 
 const { t } = useI18n()
-
-/*
-Known issues:
-
-Wakistan map not as high res as others
-Hot Land map not as high res as others
-Dusty Dew map not available as raw map was tiny
-Eduardovo map not available as raw map was tiny
-WineParadise map not available as raw map was tiny
-*/
 </script>
 
 <template>
-  <div class="container-padding-x">
+  <div class="container-padding-x pb-8">
+    <h1 class="mt-2 flex items-center text-xl font-extrabold uppercase tracking-wide text-yellow-50 sm:hidden">
+      <img src="/logo-white.png" class="mr-2 h-[20px]" />
+      {{ t('battleBitStats') }}
+    </h1>
+
     <div class="mt-4">
-      <h2 class="relative z-20 text-2xl font-medium">Next public play test</h2>
+      <h2 class="relative z-20 text-2xl font-medium">{{ t('nextPublicPlayTest') }}</h2>
+
       <div
         class="container-padding-x relative mt-4 max-w-lg rounded bg-gray-700 bg-no-repeat py-4"
         :style="{ backgroundImage: 'url(/public/images/map-bg.png)', backgroundPosition: 'center left' }"
@@ -34,26 +30,26 @@ WineParadise map not available as raw map was tiny
           class="relative z-20 mt-4"
           :prefix-icon="faSteamSymbol"
         >
-          Request access
+          {{ t('requestAccess') }}
         </Button>
       </div>
     </div>
 
     <div class="mt-8">
-      <h2 class="relative z-20 text-2xl font-medium">Interactive maps</h2>
-      <p class="text-gray-400">Zoom and pan your way through the upcoming battlefields</p>
+      <h2 class="relative z-20 text-2xl font-medium">{{ t('interactiveMaps') }}</h2>
+      <p class="text-gray-400">{{ t('zoomAndPan') }}</p>
 
       <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
         <router-link
           v-for="[mapSlug, mapConfig] of Object.entries(maps)"
           :key="mapSlug"
           :to="`/maps/${mapSlug}`"
-          class="flex items-center rounded bg-gray-700 px-2 py-2"
+          class="group flex items-center rounded border-2 border-transparent bg-gray-700 px-2 py-2 transition-all hover:border-yellow-100"
         >
           <img :src="`/maps/${mapSlug}/thumbnail.jpg`" class="h-20 rounded" />
 
           <div class="ml-4">
-            <span class="block text-xl font-medium">
+            <span class="block text-xl font-medium group-hover:text-yellow-100">
               {{ mapConfig.name }}
             </span>
 
@@ -62,6 +58,30 @@ WineParadise map not available as raw map was tiny
           </div>
         </router-link>
       </div>
+    </div>
+
+    <div class="mt-8">
+      <h2 class="relative z-20 text-2xl font-medium">{{ t('weapons') }}</h2>
+      <p class="text-gray-400">Explore current weapons, stats and attachments</p>
+    </div>
+
+    <div class="mt-8">
+      <h2 class="relative z-20 text-2xl font-medium">{{ t('stats') }}</h2>
+      <p class="text-gray-400">Coming soon when BattleBit exposes stats API</p>
+    </div>
+
+    <div class="mt-8">
+      <h2 class="relative z-20 text-2xl font-medium">{{ t('knownIssues') }}</h2>
+      <p class="text-gray-400">Data is mined from game files, so likely to be inaccurate in areas</p>
+      <p class="text-gray-400">Please contact Titan on discord if you have a correction</p>
+
+      <ul class="ml-4 mt-4 list-disc">
+        <li><span>Wakistan map</span> file not as high res as others</li>
+        <li><span>Hot Land map</span> file not as high res as others</li>
+        <li><span>Dusty Dew map</span> not available as source map was tiny</li>
+        <li><span>Eduardovo map</span> not available as source map was tiny</li>
+        <li><span>WineParadise</span> map not available as source map was tiny</li>
+      </ul>
     </div>
   </div>
 </template>

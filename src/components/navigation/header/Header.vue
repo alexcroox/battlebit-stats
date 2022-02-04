@@ -19,11 +19,11 @@ const { t } = useI18n()
       <div class="flex w-full justify-between sm:w-auto sm:max-w-none sm:space-x-4 md:space-x-8">
         <NavItem to="/" :label="t('home')" />
 
-        <NavItem to="/stats" :label="t('stats')" />
-
         <NavItem to="/maps/multu-islands" :exact-path="false" :label="t('maps')" />
 
         <NavItem to="/weapons" :label="t('weapons')" />
+
+        <NavItem to="/stats" :label="t('stats')" />
       </div>
 
       <Button
@@ -31,7 +31,7 @@ const { t } = useI18n()
         :prefix-icon="faSteamSymbol"
         class="hidden lg:block"
       >
-        Play the game
+        {{ t('requestAccess') }}
       </Button>
     </div>
   </nav>
