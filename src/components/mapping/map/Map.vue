@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import 'leaflet/dist/leaflet.css'
-import Leaflet from 'leaflet'
 import { getMapConfig } from '~/lib/map-config'
 
 const props = defineProps<{ mapName: string }>()
@@ -14,28 +13,7 @@ watchEffect(() => {
 
 const mapElement = $ref(null)
 
-let tileLayer, map
-const maxZoom = 6
-const minZoom = 2
-const mapWidth = 4096
-const mapHeight = 4096
-
-const mapMaxResolution = 0.25
-const mapMinResolution = Math.pow(2, maxZoom) * mapMaxResolution
-const mapExtent = [0, -mapWidth, mapHeight, 0]
-const tileExtent = [0, 0, 16384, 16384]
-const crs = Leaflet.CRS.Simple
-
-crs.projection.bounds = new Leaflet.Bounds([tileExtent[0], tileExtent[1]], [tileExtent[2], tileExtent[3]])
-crs.infinite = false
-crs.transformation = new Leaflet.Transformation(1, -tileExtent[0], -1, tileExtent[3])
-
-crs.scale = function (zoom) {
-  return Math.pow(2, zoom) / mapMinResolution
-}
-crs.zoom = function (scale) {
-  return Math.log(scale * mapMinResolution) / Math.LN2
-}
+let Leaflet, tileLayer, map
 
 watch(
   () => props.mapName,
@@ -49,7 +27,31 @@ function switchTileLayer(mapName) {
   map.invalidateSize()
 }
 
-onMounted(() => {
+onMounted(async () => {
+  Leaflet = await import('leaflet')
+
+  const maxZoom = 6
+  const minZoom = 2
+  const mapWidth = 4096
+  const mapHeight = 4096
+
+  const mapMaxResolution = 0.25
+  const mapMinResolution = Math.pow(2, maxZoom) * mapMaxResolution
+  const mapExtent = [0, -mapWidth, mapHeight, 0]
+  const tileExtent = [0, 0, 16384, 16384]
+  const crs = Leaflet.CRS.Simple
+
+  crs.projection.bounds = new Leaflet.Bounds([tileExtent[0], tileExtent[1]], [tileExtent[2], tileExtent[3]])
+  crs.infinite = false
+  crs.transformation = new Leaflet.Transformation(1, -tileExtent[0], -1, tileExtent[3])
+
+  crs.scale = function (zoom) {
+    return Math.pow(2, zoom) / mapMinResolution
+  }
+  crs.zoom = function (scale) {
+    return Math.log(scale * mapMinResolution) / Math.LN2
+  }
+
   map = new Leaflet.Map(mapElement, {
     minZoom,
     maxZoom,
