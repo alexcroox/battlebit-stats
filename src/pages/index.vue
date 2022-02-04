@@ -2,7 +2,7 @@
 import { faSteamSymbol } from '@fortawesome/free-brands-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import dayjs from 'dayjs'
-import relativeTime from 'dayjs/plugin/relativeTime'
+import relativeTime from 'dayjs/plugin/relativeTime.js'
 import { maps } from '../lib/map-config'
 import { classes } from '../lib/weapon-config'
 
