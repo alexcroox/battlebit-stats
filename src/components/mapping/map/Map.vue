@@ -23,7 +23,7 @@ watch(
 )
 
 function switchTileLayer(mapName) {
-  tileLayer.setUrl(`/maps/${mapName}/tiles/{z}/{x}/{y}.jpg`).redraw()
+  tileLayer.setUrl(`https://assets.battlebitstats.com/maps/${mapName}/tiles/{z}/{x}/{y}.jpg`).redraw()
   map.invalidateSize()
   map.setZoom(2)
 }
