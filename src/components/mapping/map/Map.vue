@@ -32,7 +32,7 @@ onMounted(async () => {
   Leaflet = await import('leaflet')
 
   const maxZoom = 6
-  const minZoom = 2
+  const minZoom = window.innerWidth > 1025 ? 2 : 1
   const mapWidth = 4096
   const mapHeight = 4096
 
