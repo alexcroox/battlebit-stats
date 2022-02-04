@@ -49,8 +49,13 @@ const toggleLocales = () => {
     </div>
 
     <p class="text-xs text-gray-300">
-      <span class="text-gray-50">Site created by Titan#7652</span
-      ><span class="ml-2 hidden md:inline-block">This site is not affiliated with OkiStudio</span>
+      <span class="text-gray-50">
+        Site created by
+        <a href="https://discordapp.com/users/Titan#7652" target="_blank" class="hover:text-yellow-100 hover:underline">
+          Titan#7652
+        </a>
+      </span>
+      <span class="ml-1 hidden md:inline-block">This site is not affiliated with OkiStudio</span>
     </p>
   </nav>
 </template>
