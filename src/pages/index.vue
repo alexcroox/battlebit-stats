@@ -26,14 +26,14 @@ const { t } = useI18n()
       <h2 class="relative z-20 text-2xl font-medium">{{ t('nextPublicPlayTest') }}</h2>
 
       <div
-        class="container-padding-x relative mt-4 rounded bg-gray-700 bg-no-repeat py-4 sm:max-w-lg"
-        :style="{ backgroundImage: 'url(/images/map-bg.png)', backgroundPosition: 'center left' }"
+        class="container-padding-x relative mt-4 rounded bg-gray-700 bg-cover bg-no-repeat py-4 sm:max-w-lg"
+        :style="{ backgroundImage: 'url(/images/banner.jpg)', backgroundPosition: 'center left' }"
       >
-        <div class="absolute left-0 right-0 top-0 bottom-0 z-10 bg-gray-900 bg-opacity-50" />
+        <div class="absolute left-0 right-0 top-0 bottom-0 z-10 bg-gray-900 bg-opacity-60" />
 
         <p class="relative z-20 text-2xl font-medium text-yellow-50">20-23 February</p>
 
-        <p class="relative z-20 mt-1 text-lg text-gray-400">
+        <p class="relative z-20 mt-1 text-lg text-gray-300">
           {{ dayjs().to('2022-02-20') }}
         </p>
 
