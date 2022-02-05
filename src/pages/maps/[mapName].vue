@@ -29,12 +29,12 @@ watchEffect(() => {
       >
         <img
           :src="`https://assets.battlebitstats.com/maps/${mapSlug}/thumbnail.jpg`"
-          class="image-cover z-20 rounded"
+          class="image-cover z-10 rounded"
         />
 
-        <span
-          class="map-link-name absolute left-0 right-0 top-0 z-10 rounded-t bg-gray-800 bg-opacity-70 px-1 py-1 text-center text-xs"
-        >
+        <div class="absolute left-0 right-0 top-0 bottom-0 z-20 bg-gray-900 bg-opacity-40" />
+
+        <span class="map-link-name absolute top-1 left-0 right-0 z-30 px-2 text-center">
           {{ mapConfig.name }}
         </span>
       </router-link>
@@ -66,5 +66,9 @@ watchEffect(() => {
   & .map-link-name {
     @apply text-yellow-100;
   }
+}
+
+.map-link-name {
+  text-shadow: 0px 1px 3px #000;
 }
 </style>

@@ -11,7 +11,7 @@
     "test:e2e": "cypress open",
     "test:unit": "vitest",
     "typecheck": "vue-tsc --noEmit",
-    "sync:maps": "aws s3 sync ./maps s3://assets.battlebitstats.com/maps --profile personal"
+    "sync:maps": "aws s3 sync ./map-tiler/maps s3://assets.battlebitstats.com/maps --profile personal"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "1.2.36",
