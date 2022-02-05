@@ -24,6 +24,7 @@ const { t } = useI18n()
 
     <div class="mt-4">
       <h2 class="relative z-20 text-2xl font-medium">{{ t('nextPublicPlayTest') }}</h2>
+      <p class="text-gray-400">This site is not affiliated with OkiStudio</p>
 
       <div
         class="container-padding-x relative mt-4 rounded bg-gray-700 bg-cover bg-no-repeat py-4 sm:max-w-lg"
@@ -121,11 +122,11 @@ const { t } = useI18n()
       </p>
 
       <ul class="ml-4 mt-4 list-disc font-normal">
+        <li><span>Azagor map</span> is missing as no raw map file available</li>
+        <li><span>Namak map</span> is missing as no raw map file available</li>
+        <li><span>Oil Dunes map</span> is missing as no raw map file available</li>
         <li><span>Wakistan map</span> file not as high res as others</li>
         <li><span>Hot Land map</span> file not as high res as others</li>
-        <li><span>Dusty Dew map</span> not available as source map was too small</li>
-        <li><span>Eduardovo map</span> not available as source map was too small</li>
-        <li><span>WineParadise</span> map not available as source map was too small</li>
       </ul>
     </div>
   </div>

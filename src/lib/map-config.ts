@@ -16,12 +16,10 @@ export const maps: Record<string, MapConfig> = {
     name: 'District',
     description: 'Awaiting description'
   },
-  wakistan: {
-    bgColor: '#222812',
-    name: 'Wakistan',
-    descriptionShort: 'Wakistan is a forest map',
-    description:
-      'Wakistan is a forest map at 2x2 km. The origins of the map come from the mountain of Tebulosmta in Georgia. It has picturesque mountains, forests, and rivers. Its topography gives players who seize hills an advantage over their enemies.'
+  eduardovo: {
+    bgColor: '#3B4633',
+    name: 'Eduardovo',
+    description: 'Awaiting description'
   },
   salhan: {
     bgColor: '#855B40',
@@ -30,10 +28,27 @@ export const maps: Record<string, MapConfig> = {
     description:
       'Salhan is an urban-desert map sized at 2x2 km. The origins of the map comes from Iraq. It is more focused on close/medium range combat.'
   },
+  'dusty-dew': {
+    bgColor: '#3F3023',
+    name: 'Dusty Dew',
+    description: 'Awaiting description'
+  },
   'sandy-sunset': {
     bgColor: '#864A28',
     name: 'Sandy Sunset',
     description: 'Awaiting description'
+  },
+  'wine-paradise': {
+    bgColor: '#613A1E',
+    name: 'Wine Paradise',
+    description: 'Awaiting description'
+  },
+  wakistan: {
+    bgColor: '#222812',
+    name: 'Wakistan',
+    descriptionShort: 'Wakistan is a forest map',
+    description:
+      'Wakistan is a forest map at 2x2 km. The origins of the map come from the mountain of Tebulosmta in Georgia. It has picturesque mountains, forests, and rivers. Its topography gives players who seize hills an advantage over their enemies.'
   },
   construction: {
     bgColor: '#653F3D',
