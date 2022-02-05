@@ -11,15 +11,17 @@ export const maps: Record<string, MapConfig> = {
     name: 'Multu Islands',
     description: 'Awaiting description'
   },
-  construction: {
-    bgColor: '#653F3D',
-    name: 'Construction',
-    description: 'Awaiting description'
-  },
   district: {
     bgColor: '#363D2D',
     name: 'District',
     description: 'Awaiting description'
+  },
+  wakistan: {
+    bgColor: '#222812',
+    name: 'Wakistan',
+    descriptionShort: 'Wakistan is a forest map',
+    description:
+      'Wakistan is a forest map at 2x2 km. The origins of the map come from the mountain of Tebulosmta in Georgia. It has picturesque mountains, forests, and rivers. Its topography gives players who seize hills an advantage over their enemies.'
   },
   salhan: {
     bgColor: '#855B40',
@@ -33,12 +35,10 @@ export const maps: Record<string, MapConfig> = {
     name: 'Sandy Sunset',
     description: 'Awaiting description'
   },
-  wakistan: {
-    bgColor: '#222812',
-    name: 'Wakistan',
-    descriptionShort: 'Wakistan is a forest map',
-    description:
-      'Wakistan is a forest map at 2x2 km. The origins of the map come from the mountain of Tebulosmta in Georgia. It has picturesque mountains, forests, and rivers. Its topography gives players who seize hills an advantage over their enemies.'
+  construction: {
+    bgColor: '#653F3D',
+    name: 'Construction',
+    description: 'Awaiting description'
   },
   range: {
     bgColor: '#9BBAAE',
