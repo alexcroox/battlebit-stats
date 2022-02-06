@@ -30,7 +30,7 @@ onMounted(async () => {
   let camera, scene, renderer
 
   let fov = 0.25
-  const planeAspectRatio = 16 / 9
+  const planeAspectRatio = 4 / 3
 
   let mouseDown = false
   let autoRotationLocked = false
