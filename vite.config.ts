@@ -19,7 +19,13 @@ export default defineConfig({
   plugins: [
     Vue({
       include: [/\.vue$/],
-      reactivityTransform: true
+      reactivityTransform: true,
+      template: {
+        compilerOptions: {
+          // treat all tags with a dash as custom elements
+          isCustomElement: (tag) => tag.includes('model-viewer')
+        }
+      }
     }),
 
     // https://github.com/hannoeru/vite-plugin-pages
