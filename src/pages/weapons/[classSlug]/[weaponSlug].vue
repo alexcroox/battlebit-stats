@@ -25,39 +25,17 @@ const currentClassConfig = $computed(() => classes[props.classSlug])
 const activeWeapon = $computed(() => weapons[props.weaponSlug])
 
 onMounted(async () => {
-  // const recaptchaScript = document.createElement('script')
-  // recaptchaScript.setAttribute('src', 'https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js')
-  // document.head.appendChild(recaptchaScript)
-  // modelPlayer = await import('js-3d-model-viewer')
-  // const viewerElement = document.getElementById('viewer')
-  // const scene = modelPlayer.prepareScene(viewerElement)
-  // modelPlayer.loadObject(scene, '/models/truck.obj')
-
-  // if (!Detector.webgl) Detector.addGetWebGLMessage();
-
-  //       var renderer = new THREE.WebGLRenderer();
-
-  //       var camera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 1, 1000);
-  //       var scene = new THREE.Scene();
-
-  //       function init() {
-
-  //           renderer.shadowMap.enabled = true;
-  //           renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-
-  //       }
-
   let container
 
   let camera, scene, renderer
+
+  let fov = 0.25
+  const planeAspectRatio = 16 / 9
 
   let mouseDown = false
   let autoRotationLocked = false
   let mouseX = 0
   let mouseY = 0
-
-  const windowHalfX = window.innerWidth / 2
-  const windowHalfY = window.innerHeight / 2
 
   let object
 
@@ -67,10 +45,10 @@ onMounted(async () => {
   function init() {
     container = document.getElementById('model-viewer')
 
-    camera = new THREE.PerspectiveCamera(35, container.offsetWidth / container.offsetHeight, 1, 2000)
+    camera = new THREE.PerspectiveCamera(35, container.offsetWidth / container.offsetHeight, 1, 5000)
 
     camera.position.y = 30
-    camera.position.x = 5
+    camera.position.x = 10
     camera.position.z = 10
     camera.up = new THREE.Vector3(0, 0, 1)
     camera.lookAt(new THREE.Vector3(0, 0, 0))
@@ -80,14 +58,19 @@ onMounted(async () => {
     // const ambientLight = new THREE.AmbientLight(0xcccccc, 0.2)
     // scene.add(ambientLight)
 
-    const pointLight = new THREE.PointLight(0xffffff, 0.6)
-    pointLight.castShadow = true
-    pointLight.shadow.radius = 2
-    camera.add(pointLight)
+    // const pointLight = new THREE.PointLight(0xffffff, 0.6)
+    // pointLight.castShadow = true
+    // pointLight.shadow.radius = 2
+    // camera.add(pointLight)
+
+    const light = new THREE.SpotLight(0xf9fafb, 0.6)
+    light.position.set(10, 20, 50)
+    scene.add(light)
+
     scene.add(camera)
 
     // manager
-    const manager = new THREE.LoadingManager(loadModel)
+    const manager = new THREE.LoadingManager()
 
     manager.onProgress = function (item, loaded, total) {
       console.log(item, loaded, total)
@@ -98,10 +81,16 @@ onMounted(async () => {
     const textureLoader = new THREE.TextureLoader(manager)
     const texture = textureLoader.load('/models/light.png')
 
-    function loadModel() {
+    manager.onLoad = function () {
       object.traverse(function (child) {
-        if (child.isMesh) child.material.map = texture
+        if (child.isMesh) {
+          child.material.map = texture
+
+          child.geometry.computeVertexNormals()
+        }
       })
+
+      // object.antialias = true
 
       // object.position.y = 0
       // object.rotation.z = (90 * Math.PI) / 180
@@ -119,16 +108,46 @@ onMounted(async () => {
     function onError() {}
 
     const loader = new OBJLoader(manager)
-    loader.load(
-      '/models/AK74.obj',
-      function (obj) {
-        object = obj
-      },
-      onProgress,
-      onError
+
+    function downloadModel() {
+      console.log('Download', activeWeapon.imageName)
+
+      loader.load(
+        `/images/weapons/${activeWeapon.imageName}.obj`,
+        function (obj) {
+          if (object) {
+            scene.remove(object)
+          }
+
+          fov = activeWeapon.modelFov
+
+          object = obj
+
+          onWindowResize()
+        },
+        onProgress,
+        onError
+      )
+    }
+
+    if (activeWeapon.hasModel) {
+      downloadModel()
+    }
+
+    watch(
+      () => activeWeapon.imageName,
+      () => {
+        if (activeWeapon.hasModel) {
+          downloadModel()
+        } else {
+          scene.remove(object)
+        }
+      }
     )
 
     renderer = new THREE.WebGLRenderer({ alpha: true })
+    renderer.shadowMap.enabled = true
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap
     // renderer = new THREE.WebGLRenderer()
     renderer.setPixelRatio(window.devicePixelRatio)
     renderer.setSize(container.offsetWidth, container.offsetHeight)
@@ -149,20 +168,46 @@ onMounted(async () => {
 
     evt.preventDefault()
 
-    const deltaX = evt.clientX - mouseX
-    const deltaY = evt.clientY - mouseY
-    mouseX = evt.clientX
-    mouseY = evt.clientY
+    let eventX
+    let eventY
+
+    if (evt.changedTouches) {
+      const rect = container.getBoundingClientRect()
+
+      eventX = +(evt.changedTouches[0].pageX - rect.left)
+      eventY = evt.changedTouches[0].pageY - rect.top
+    } else {
+      eventX = evt.clientX
+      eventY = evt.clientY
+    }
+
+    const deltaX = eventX - mouseX
+    const deltaY = eventY - mouseY
+    mouseX = eventX
+    mouseY = eventY
     rotateObject(deltaX, deltaY)
   }
 
   function onMouseDown(evt) {
     evt.preventDefault()
 
+    let eventX
+    let eventY
+
+    if (evt.changedTouches) {
+      const rect = container.getBoundingClientRect()
+
+      eventX = +(evt.changedTouches[0].pageX - rect.left)
+      eventY = evt.changedTouches[0].pageY - rect.top
+    } else {
+      eventX = evt.clientX
+      eventY = evt.clientY
+    }
+
     mouseDown = true
     autoRotationLocked = true
-    mouseX = evt.clientX
-    mouseY = evt.clientY
+    mouseX = eventX
+    mouseY = eventY
   }
 
   function onMouseUp(evt) {
@@ -196,16 +241,51 @@ onMounted(async () => {
       },
       false
     )
+    canvas.addEventListener(
+      'touchmove',
+      function (e) {
+        onMouseMove(e)
+      },
+      false
+    )
+    canvas.addEventListener(
+      'touchstart',
+      function (e) {
+        onMouseDown(e)
+      },
+      false
+    )
+    canvas.addEventListener(
+      'touchend',
+      function (e) {
+        onMouseUp(e)
+      },
+      false
+    )
   }
 
   addMouseHandler(container)
 
   function onWindowResize() {
     camera.aspect = container.offsetWidth / container.offsetHeight
+
+    if (camera.aspect > planeAspectRatio) {
+      // window too large
+      camera.fov = fov
+    } else {
+      // window too narrow
+      const cameraHeight = Math.tan(THREE.MathUtils.degToRad(fov / 2))
+      const ratio = camera.aspect / planeAspectRatio
+      const newCameraHeight = cameraHeight / ratio
+      camera.fov = THREE.MathUtils.radToDeg(Math.atan(newCameraHeight)) * 2
+    }
+
     camera.updateProjectionMatrix()
 
     renderer.setSize(container.offsetWidth, container.offsetHeight)
   }
+
+  onWindowResize()
 
   function animate() {
     if (object && !autoRotationLocked) {
@@ -225,9 +305,9 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="arsenal h-full w-full">
-    <div class="arsenal-grid relative flex h-full w-full flex-wrap items-stretch md:flex-nowrap">
-      <div class="order-2 w-full flex-shrink-0 px-4 pb-8 md:order-1 md:w-[230px]">
+  <div class="arsenal md:h-[calc(100vh-90px)] md:overflow-hidden">
+    <div class="arsenal-grid relative flex h-full w-full flex-wrap md:flex-nowrap">
+      <div class="scrollbar-vertical relative z-20 order-2 w-full overflow-y-auto px-4 pb-8 md:order-1 md:w-[230px]">
         <div v-for="[weaponType, weaponTypeWeapons] in Object.entries(currentClassConfig.weapons)" :key="weaponType">
           <h2 class="container-padding-x mt-6 capitalize">{{ weaponType.replace('-', ' ') }}</h2>
 
@@ -239,24 +319,26 @@ onMounted(async () => {
             :class="{ 'border-yellow-100': props.weaponSlug === weaponKey }"
             @click="scrollToTop()"
           >
-            <img :src="`/images/weapons/${weaponType}/${weaponKey}.png`" class="h-8" />
+            <img :src="`/images/weapons/${weaponKey}.png`" class="h-8" />
             <span>{{ weaponKey }}</span>
           </router-link>
         </div>
       </div>
 
       <div
-        class="order-1 w-full items-center overflow-hidden md:order-2 md:flex md:w-auto md:flex-auto md:flex-col md:justify-between"
+        class="relative order-1 w-full items-center md:order-2 md:flex md:w-auto md:flex-auto md:flex-col md:justify-between md:overflow-hidden"
       >
-        <div class="overflow-hidden">
+        <div id="model-viewer" class="absolute left-0 right-0 z-10 h-[60vh] md:bottom-0 md:top-0 md:h-auto" />
+
+        <div class="md:overflow-hidden">
           <div
-            class="flex w-full items-center justify-between space-x-2 overflow-x-auto overflow-y-hidden py-4 px-4 md:w-auto"
+            class="scrollbar-horizontal flex w-full items-center justify-between space-x-2 overflow-x-auto overflow-y-hidden py-4 px-4 md:w-auto"
           >
             <router-link
               v-for="[soldierClass, classConfig] of Object.entries(classes)"
               :key="soldierClass"
               :to="`/weapons/${soldierClass}/${activeWeapon.name}`"
-              class="group flex h-20 w-20 flex-shrink-0 flex-col items-center justify-center rounded border-2 border-transparent bg-gray-700 bg-opacity-60 transition-all hover:border-yellow-100"
+              class="group relative z-20 flex h-20 w-20 flex-shrink-0 flex-col items-center justify-center rounded border-2 border-transparent bg-gray-700 bg-opacity-60 transition-all hover:border-yellow-100"
               :class="{ 'border-yellow-100': props.classSlug === soldierClass }"
             >
               <img :src="`/images/classes/${classConfig.imageName}.png`" class="h-8 rounded" />
@@ -267,18 +349,24 @@ onMounted(async () => {
             </router-link>
           </div>
 
-          <div class="mt-4 flex justify-center">
+          <!-- <div class="mt-4 flex justify-center">
             <div class="flex items-center space-x-4 rounded bg-gray-800 px-4 py-2 text-yellow-100 md:mt-4">
               <FontAwesomeIcon :icon="faExclamationTriangle" />
               <span>{{ t('pageWorkingInProgress') }}</span>
             </div>
-          </div>
+          </div> -->
         </div>
 
-        <div class="mt-12 flex w-1/2 flex-auto flex-col items-center justify-center text-center">
-          <h1 class="text-4xl">{{ props.weaponSlug }}</h1>
-          <!-- <img :src="`/images/weapons/${activeWeapon.weaponType}/${activeWeapon.imageName}.png`" class="mt-4 block" /> -->
-          <div id="model-viewer" class="h-full w-full border border-black"> </div>
+        <div class="mt-6 flex w-full flex-auto flex-col items-center text-center md:mt-12">
+          <div class="relative h-[20vh] w-full md:h-full">
+            <h1 class="position-center-x absolute z-20 text-2xl md:text-4xl">{{ props.weaponSlug }}</h1>
+
+            <img
+              v-if="!activeWeapon.hasModel"
+              :src="`/images/weapons/${activeWeapon.imageName}.png`"
+              class="position-center absolute"
+            />
+          </div>
         </div>
       </div>
     </div>

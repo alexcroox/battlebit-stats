@@ -108,3 +108,19 @@ strong {
 .container-padding-x {
   @apply px-4;
 }
+
+.scrollbar-vertical::-webkit-scrollbar {
+  width: 5px;
+}
+
+.scrollbar-horizontal::-webkit-scrollbar {
+  height: 5px;
+}
+
+.scrollbar-vertical::-webkit-scrollbar-track, .scrollbar-horizontal::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.scrollbar-vertical::-webkit-scrollbar-thumb, .scrollbar-horizontal::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+}

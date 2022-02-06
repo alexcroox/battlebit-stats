@@ -11,27 +11,36 @@ export interface WeaponConfig {
   weaponType: string
   name: string
   imageName: string
+  hasModel?: boolean
+  modelFov?: number
 }
 
 export const weapons: Record<string, WeaponConfig> = {
   ACR: {
     name: 'ACR',
     imageName: 'ACR',
+    hasModel: true,
+    modelFov: 2,
     weaponType: 'automatic-rifles'
   },
   AK15: {
     name: 'AK15',
     imageName: 'AK15',
+    modelFov: 0.25,
     weaponType: 'automatic-rifles'
   },
-  AK47: {
-    name: 'AK47',
-    imageName: 'AK47',
+  AK74: {
+    name: 'AK74',
+    imageName: 'AK74',
+    hasModel: true,
+    modelFov: 40,
     weaponType: 'automatic-rifles'
   },
   AUGA3: {
     name: 'AUGA3',
     imageName: 'AUGA3',
+    hasModel: true,
+    modelFov: 0.3,
     weaponType: 'automatic-rifles'
   },
   FAL: {
@@ -42,16 +51,22 @@ export const weapons: Record<string, WeaponConfig> = {
   G36C: {
     name: 'G36C',
     imageName: 'G36C',
+    hasModel: true,
+    modelFov: 2,
     weaponType: 'automatic-rifles'
   },
   M4A1: {
     name: 'M4A1',
     imageName: 'M4A1',
+    hasModel: true,
+    modelFov: 0.4,
     weaponType: 'automatic-rifles'
   },
   'Scar-H': {
     name: 'Scar-H',
     imageName: 'Scar-H',
+    hasModel: true,
+    modelFov: 0.45,
     weaponType: 'automatic-rifles'
   },
   KrissVector: {
@@ -82,7 +97,7 @@ export const classes: Record<string, ClassConfig> = {
     description: 'Healz',
     imageName: 'assault',
     weapons: {
-      'automatic-rifles': ['ACR', 'AK15', 'AK47', 'AUGA3', 'FAL', 'G36C', 'M4A1', 'Scar-H'],
+      'automatic-rifles': ['ACR', 'AK15', 'AK74', 'AUGA3', 'FAL', 'G36C', 'M4A1', 'Scar-H'],
       'submachine-guns': ['KrissVector', 'Mp7', 'PP2000', 'UMP45']
     }
   },
@@ -91,7 +106,7 @@ export const classes: Record<string, ClassConfig> = {
     description: 'Healz',
     imageName: 'medic',
     weapons: {
-      'automatic-rifles': ['ACR', 'AK15', 'AK47', 'AUGA3', 'FAL', 'G36C', 'M4A1', 'Scar-H'],
+      'automatic-rifles': ['ACR', 'AK15', 'AK74', 'AUGA3', 'FAL', 'G36C', 'M4A1', 'Scar-H'],
       'submachine-guns': ['KrissVector', 'Mp7', 'PP2000', 'UMP45']
     }
   },
@@ -100,7 +115,7 @@ export const classes: Record<string, ClassConfig> = {
     description: 'Healz',
     imageName: 'engineer',
     weapons: {
-      'automatic-rifles': ['ACR', 'AK15', 'AK47', 'AUGA3', 'FAL', 'G36C', 'M4A1', 'Scar-H'],
+      'automatic-rifles': ['ACR', 'AK15', 'AK74', 'AUGA3', 'FAL', 'G36C', 'M4A1', 'Scar-H'],
       'submachine-guns': ['KrissVector', 'Mp7', 'PP2000', 'UMP45']
     }
   },
@@ -109,7 +124,7 @@ export const classes: Record<string, ClassConfig> = {
     description: 'Healz',
     imageName: 'recon',
     weapons: {
-      'automatic-rifles': ['ACR', 'AK15', 'AK47', 'AUGA3', 'FAL', 'G36C', 'M4A1', 'Scar-H'],
+      'automatic-rifles': ['ACR', 'AK15', 'AK74', 'AUGA3', 'FAL', 'G36C', 'M4A1', 'Scar-H'],
       'submachine-guns': ['KrissVector', 'Mp7', 'PP2000', 'UMP45']
     }
   },
@@ -118,7 +133,7 @@ export const classes: Record<string, ClassConfig> = {
     description: 'Healz',
     imageName: 'support',
     weapons: {
-      'automatic-rifles': ['ACR', 'AK15', 'AK47', 'AUGA3', 'FAL', 'G36C', 'M4A1', 'Scar-H'],
+      'automatic-rifles': ['ACR', 'AK15', 'AK74', 'AUGA3', 'FAL', 'G36C', 'M4A1', 'Scar-H'],
       'submachine-guns': ['KrissVector', 'Mp7', 'PP2000', 'UMP45']
     }
   },
@@ -127,7 +142,7 @@ export const classes: Record<string, ClassConfig> = {
     description: 'Healz',
     imageName: 'leader',
     weapons: {
-      'automatic-rifles': ['ACR', 'AK15', 'AK47', 'AUGA3', 'FAL', 'G36C', 'M4A1', 'Scar-H'],
+      'automatic-rifles': ['ACR', 'AK15', 'AK74', 'AUGA3', 'FAL', 'G36C', 'M4A1', 'Scar-H'],
       'submachine-guns': ['KrissVector', 'Mp7', 'PP2000', 'UMP45']
     }
   }

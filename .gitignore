@@ -9,4 +9,5 @@ node_modules
 *.log
 map-tiler/maps/*/tiles/*
 map-tiler/models
+map-tiler/audio
 map-tiler/*.zip
