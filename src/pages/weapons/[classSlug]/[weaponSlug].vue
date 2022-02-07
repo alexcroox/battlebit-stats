@@ -305,9 +305,11 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="arsenal md:h-[calc(100vh-90px)] md:overflow-hidden">
-    <div class="arsenal-grid relative flex h-full w-full flex-wrap md:flex-nowrap">
-      <div class="scrollbar-vertical relative z-20 order-2 w-full overflow-y-auto px-4 pb-8 md:order-1 md:w-[230px]">
+  <div class="arsenal h-[calc(100vh-90px)] overflow-hidden">
+    <div class="arsenal-grid relative flex h-full w-full flex-col md:flex-row">
+      <div
+        class="scrollbar-vertical relative z-20 order-2 h-full w-full overflow-y-auto px-4 pb-8 md:order-1 md:w-[260px]"
+      >
         <div v-for="[weaponType, weaponTypeWeapons] in Object.entries(currentClassConfig.weapons)" :key="weaponType">
           <h2 class="container-padding-x mt-6 capitalize">{{ weaponType.replace('-', ' ') }}</h2>
 
@@ -320,7 +322,7 @@ onMounted(async () => {
             @click="scrollToTop()"
           >
             <img :src="`/images/weapons/${weaponKey}.png`" class="h-8" />
-            <span>{{ weaponKey }}</span>
+            <span v-if="weapons[weaponKey]">{{ weapons[weaponKey].name }}</span>
           </router-link>
         </div>
       </div>
@@ -328,7 +330,7 @@ onMounted(async () => {
       <div
         class="relative order-1 w-full items-center md:order-2 md:flex md:w-auto md:flex-auto md:flex-col md:justify-between md:overflow-hidden"
       >
-        <div id="model-viewer" class="absolute left-0 right-0 z-10 h-[60vh] md:bottom-0 md:top-0 md:h-auto" />
+        <div id="model-viewer" class="absolute left-0 right-0 z-10 h-[65vh] md:bottom-0 md:top-0 md:h-auto" />
 
         <div class="md:overflow-hidden">
           <div
@@ -337,7 +339,7 @@ onMounted(async () => {
             <router-link
               v-for="[soldierClass, classConfig] of Object.entries(classes)"
               :key="soldierClass"
-              :to="`/weapons/${soldierClass}/${activeWeapon.name}`"
+              :to="`/weapons/${soldierClass}/${classes[soldierClass].demoWeapon}`"
               class="group relative z-20 flex h-20 w-20 flex-shrink-0 flex-col items-center justify-center rounded border-2 border-transparent bg-gray-700 bg-opacity-60 transition-all hover:border-yellow-100"
               :class="{ 'border-yellow-100': props.classSlug === soldierClass }"
             >

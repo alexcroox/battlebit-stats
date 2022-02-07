@@ -10,4 +10,5 @@ node_modules
 map-tiler/maps/*/tiles/*
 map-tiler/models
 map-tiler/audio
+map-tiler/2d
 map-tiler/*.zip

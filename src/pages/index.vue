@@ -91,7 +91,7 @@ const { t } = useI18n()
       <router-link
         v-for="[soldierClass, classConfig] of Object.entries(classes)"
         :key="soldierClass"
-        :to="`/weapons/${soldierClass}/AK47`"
+        :to="`/weapons/${soldierClass}/${classes[soldierClass].demoWeapon}`"
         class="group flex flex-col items-center space-y-4 rounded border-2 border-transparent bg-gray-700 py-4 px-4 transition-all hover:border-yellow-100 sm:min-w-[180px]"
       >
         <img :src="`/images/classes/${classConfig.imageName}.png`" class="h-20 rounded" />
@@ -127,6 +127,11 @@ const { t } = useI18n()
         <li><span>Oil Dunes map</span> is missing as no raw map file available</li>
         <li><span>Wakistan map</span> file not as high res as others</li>
         <li><span>Hot Land map</span> file not as high res as others</li>
+        <li><span>AK15</span> model missing</li>
+        <li><span>FAL</span> model missing</li>
+        <li><span>M200</span> model missing</li>
+        <li><span>SV98</span> model missing</li>
+        <li><span>M110</span> model upside down</li>
       </ul>
     </div>
   </div>
