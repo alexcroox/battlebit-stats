@@ -221,7 +221,7 @@ export const weapons: Record<string, WeaponConfig> = {
   },
   UNICA: {
     name: 'UNICA',
-    imageName: 'Unica',
+    imageName: 'UNICA',
     hasModel: true,
     modelFov: 1,
     unlockLevel: 12,
