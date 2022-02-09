@@ -127,11 +127,10 @@ const { t } = useI18n()
         <li><span>Oil Dunes map</span> is missing as no raw map file available</li>
         <li><span>Wakistan map</span> file not as high res as others</li>
         <li><span>Hot Land map</span> file not as high res as others</li>
-        <li><span>AK15</span> model missing</li>
-        <li><span>FAL</span> model missing</li>
-        <li><span>M200</span> model missing</li>
-        <li><span>SV98</span> model missing</li>
+        <li><span>AK15, FAL</span> model missing</li>
+        <li><span>M200, SV98</span> sniper models missing</li>
         <li><span>M110</span> model upside down</li>
+        <li><span>M9, Glock 18, MP443, USP, Desert Eagle</span> pistol models missing</li>
       </ul>
     </div>
   </div>

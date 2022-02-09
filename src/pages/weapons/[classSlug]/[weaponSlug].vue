@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
+import { faExclamationTriangle, faLockOpen } from '@fortawesome/free-solid-svg-icons'
 import * as THREE from 'three'
 import { classes, weapons } from '../../../lib/weapon-config'
 
@@ -308,21 +308,28 @@ onMounted(async () => {
   <div class="arsenal h-[calc(100vh-90px)] overflow-hidden">
     <div class="arsenal-grid relative flex h-full w-full flex-col md:flex-row">
       <div
-        class="scrollbar-vertical relative z-20 order-2 h-full w-full overflow-y-auto px-4 pb-8 md:order-1 md:w-[260px]"
+        class="scrollbar-vertical relative z-20 order-2 h-full w-full overflow-y-auto px-4 pb-8 md:order-1 md:max-w-[320px]"
       >
         <div v-for="[weaponType, weaponTypeWeapons] in Object.entries(currentClassConfig.weapons)" :key="weaponType">
-          <h2 class="container-padding-x mt-6 capitalize">{{ weaponType.replace('-', ' ') }}</h2>
+          <h2 class="container-padding-x mt-6 capitalize">{{ weaponType.replace(/-/g, ' ') }}</h2>
 
           <router-link
             v-for="weaponKey in weaponTypeWeapons"
             :key="weaponKey"
             :to="`/weapons/${props.classSlug}/${weaponKey}`"
-            class="container-padding-x mt-2 flex items-center space-x-4 rounded border-2 border-transparent bg-gray-900 py-1 hover:text-yellow-100"
+            class="container-padding-x mt-2 flex items-center justify-between rounded border-2 border-transparent bg-gray-900 py-1 hover:text-yellow-100"
             :class="{ 'border-yellow-100': props.weaponSlug === weaponKey }"
             @click="scrollToTop()"
           >
-            <img :src="`/images/weapons/${weaponKey}.png`" class="h-8" />
-            <span v-if="weapons[weaponKey]">{{ weapons[weaponKey].name }}</span>
+            <span class="flex items-center space-x-4">
+              <img :src="`/images/weapons/${weapons[weaponKey].imageName}.png`" class="h-8" />
+              <span v-if="weapons[weaponKey]">{{ weapons[weaponKey].name }}</span>
+            </span>
+
+            <span class="flex items-center space-x-2 text-sm text-gray-500">
+              <FontAwesomeIcon :icon="faLockOpen" class="text-gray-700" />
+              <span>{{ weapons[weaponKey].unlockLevel }}</span>
+            </span>
           </router-link>
         </div>
       </div>
@@ -360,14 +367,20 @@ onMounted(async () => {
         </div>
 
         <div class="mt-6 flex w-full flex-auto flex-col items-center text-center md:mt-12">
-          <div class="relative h-[20vh] w-full md:h-full">
+          <div class="relative w-full md:h-full" :class="activeWeapon.hasModel ? 'h-[20vh] ' : 'h-[30vh] '">
             <h1 class="position-center-x absolute z-20 text-2xl md:text-4xl">{{ props.weaponSlug }}</h1>
 
-            <img
+            <div
               v-if="!activeWeapon.hasModel"
-              :src="`/images/weapons/${activeWeapon.imageName}.png`"
-              class="position-center absolute"
-            />
+              class="position-center absolute flex w-full flex-col items-center justify-center"
+            >
+              <img :src="`/images/weapons/${activeWeapon.imageName}.png`" class="" />
+
+              <div class="flex items-center space-x-4 rounded bg-gray-800 px-4 py-2 text-yellow-100 md:mt-4">
+                <FontAwesomeIcon :icon="faExclamationTriangle" />
+                <span class="text-left">{{ t('missingModel') }}</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
