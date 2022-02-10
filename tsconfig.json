@@ -17,12 +17,13 @@
       "vitest",
       "vite/client",
       "vite-plugin-pages/client",
-      "vite-plugin-vue-layouts/client"
+      "vite-plugin-vue-layouts/client",
+      "vue/macros-global"
     ],
     "paths": {
       "~/*": ["./src/*"]
     }
   },
   "include": ["**/*.ts"],
-  "exclude": ["dist", "node_modules"]
+  "exclude": ["dist", "node_modules", "cypress"]
 }
