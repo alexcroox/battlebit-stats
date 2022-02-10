@@ -4,6 +4,8 @@
   "plugins": ["prettier"],
 
   "rules": {
-    "eslint-comments/no-unlimited-disable": "off"
+    "eslint-comments/no-unlimited-disable": "off",
+    "vue/prop-name-casing": ["error", "camelCase"],
+    "vue/attribute-hyphenation": "off"
   }
 }

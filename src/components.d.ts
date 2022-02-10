@@ -9,6 +9,7 @@ declare module 'vue' {
     Header: typeof import('./components/navigation/header/Header.vue')['default']
     Loader: typeof import('./components/base/loader/Loader.vue')['default']
     Map: typeof import('./components/mapping/map/Map.vue')['default']
+    ModelViewer: typeof import('./components/model-viewer/ModelViewer.vue')['default']
     NavItem: typeof import('./components/navigation/nav-item/NavItem.vue')['default']
     README: typeof import('./components/README.md')['default']
   }
