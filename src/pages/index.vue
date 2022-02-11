@@ -3,10 +3,12 @@ import { faSteamSymbol } from '@fortawesome/free-brands-svg-icons'
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime.js'
+import utc from 'dayjs/plugin/utc.js'
 import { maps } from '../lib/map-config'
 import { classes } from '../lib/weapon-config'
 
 dayjs.extend(relativeTime)
+dayjs.extend(utc)
 
 const { t } = useI18n()
 
@@ -32,11 +34,28 @@ const { t } = useI18n()
       >
         <div class="absolute left-0 right-0 top-0 bottom-0 z-10 bg-gray-900 bg-opacity-60" />
 
-        <p class="relative z-20 text-2xl font-medium text-yellow-50">20-23 February</p>
+        <template v-if="dayjs().isAfter(dayjs.utc('2022-02-23 23:59:59'))">
+          <p class="relative z-20 text-2xl font-medium text-yellow-50">{{ t('awaitingAnnouncement') }}</p>
 
-        <p class="relative z-20 mt-1 text-lg text-gray-300">
-          {{ dayjs().to('2022-02-20') }}
-        </p>
+          <p class="relative z-20 mt-1 text-lg text-gray-300">
+            {{ t('checkBackSoon') }}
+          </p>
+        </template>
+
+        <template v-else>
+          <p class="relative z-20 text-2xl font-medium text-yellow-50">20-23 February</p>
+
+          <p
+            v-if="dayjs().isAfter(dayjs.utc('2022-02-20 15:00:00'))"
+            class="relative z-20 mt-1 animate-pulse text-lg text-yellow-100"
+          >
+            {{ t('liveNow') }}
+          </p>
+
+          <p v-else class="relative z-20 mt-1 text-lg text-gray-300">
+            {{ dayjs().to(dayjs.utc('2022-02-20 15:00:00')) }}, {{ t('starts', { startTime: '15:00 UTC' }) }}
+          </p>
+        </template>
 
         <Button
           to="https://store.steampowered.com/app/671860/BattleBit_Remastered/"

@@ -1,7 +1,9 @@
+awaitingAnnouncement: Awaiting announcement
 awaitingDescription: Awaiting description
 back: Back
 battleBitStats: BattleBit Stats
 becomeAPatron: Become a Patron
+checkBackSoon: Check back soon
 comingSoonIfStats: Coming soon if/when BattleBit exposes stats API
 dataMinedSources: Data is mined from various sources, so likely to be inaccurate in areas
 exploreCurrentWeapons: Explore current weapons, stats and attachments
@@ -11,6 +13,7 @@ home: Home
 interactiveMaps: Interactive maps
 joinTheCommunity: Join the community
 knownIssues: Known issues
+liveNow: Live now, go go go!
 mapNotFound: Map not found
 maps: Maps
 missingModel: We were unable to find this weapon model in the game files :(
@@ -24,6 +27,7 @@ requestAccess: Request access
 returnToCombatArea: Return to the combat area
 siteCreatedBy: 'Site created by '
 siteNotAffiliatedWith: This site is not affiliated with OkiStudio
+starts: starts {startTime}
 stats: Stats
 weapons: Weapons
 zoomAndPan: Zoom and pan your way through the upcoming battle fields
