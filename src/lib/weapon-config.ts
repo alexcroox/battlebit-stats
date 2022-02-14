@@ -117,6 +117,12 @@ export const weapons: Record<string, WeaponConfig> = {
     weaponType: 'submachine-guns',
     unlockLevel: 35
   },
+  MP5: {
+    name: 'MP5',
+    imageName: 'MP5',
+    weaponType: 'submachine-guns',
+    unlockLevel: 43
+  },
   MK20: {
     name: 'MK-20',
     imageName: 'MK20',
@@ -260,7 +266,7 @@ export const classes: Record<string, ClassConfig> = {
     demoWeapon: 'M4A1',
     weapons: {
       'automatic-rifles': ['M4A1', 'AK74', 'Scar-H', 'AK15', 'ACR', 'AUGA3', 'FAL', 'G36C', 'FAMAS'],
-      'submachine-guns': ['Mp7', 'UMP45', 'PP2000', 'KrissVector'],
+      'submachine-guns': ['Mp7', 'UMP45', 'PP2000', 'KrissVector', 'MP5'],
       pistols: ['M9', 'MP443', 'USP', 'UNICA', 'GLOCK18', 'DESERT-EAGLE']
     }
   },
@@ -272,7 +278,7 @@ export const classes: Record<string, ClassConfig> = {
     weapons: {
       'personal-defence': ['HoneyBadger'],
       carbines: ['ASVAL'],
-      'submachine-guns': ['Mp7', 'UMP45', 'PP2000', 'KrissVector'],
+      'submachine-guns': ['Mp7', 'UMP45', 'PP2000', 'KrissVector', 'MP5'],
       'automatic-rifles': ['M4A1', 'AK74', 'Scar-H', 'AK15', 'ACR', 'AUGA3', 'FAL', 'G36C', 'FAMAS'],
       pistols: ['M9', 'MP443', 'USP', 'UNICA', 'GLOCK18', 'DESERT-EAGLE']
     }
@@ -283,7 +289,7 @@ export const classes: Record<string, ClassConfig> = {
     imageName: 'engineer',
     demoWeapon: 'UMP45',
     weapons: {
-      'submachine-guns': ['Mp7', 'UMP45', 'PP2000', 'KrissVector'],
+      'submachine-guns': ['Mp7', 'UMP45', 'PP2000', 'KrissVector', 'MP5'],
       'automatic-rifles': ['M4A1', 'AK74', 'Scar-H', 'AK15', 'ACR', 'AUGA3', 'FAL', 'G36C', 'FAMAS'],
       'marksman-rifles': ['MK20', 'M110', 'MK14'],
       'personal-defence': ['HoneyBadger'],
