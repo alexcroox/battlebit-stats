@@ -75,7 +75,7 @@ const xp = {
 </script>
 
 <template>
-  <div class="">
+  <div class="flex h-full flex-col">
     <div class="relative z-10 flex justify-center space-x-16 py-8">
       <div>
         <h1 class="text-5xl">
@@ -150,7 +150,7 @@ const xp = {
       </div>
     </div>
 
-    <div class="relative z-20 flex justify-center space-x-24 border-t border-gray-500 bg-gray-700 py-8">
+    <div class="relative z-20 flex flex-auto justify-center space-x-24 border-t border-gray-700 bg-gray-800 py-8">
       <!-- <div>
         <h4>Longest kill</h4>
         <p>200m</p>
@@ -161,7 +161,7 @@ const xp = {
         <p>156</p>
       </div> -->
 
-      <div class="rounded-md bg-gray-800 py-2">
+      <div class="rounded-md bg-gray-900 py-2">
         <div class="border-b border-gray-700 px-6 pb-2">
           <h3 class="text-2xl">{{ t('topWeapons') }}</h3>
         </div>
@@ -184,7 +184,7 @@ const xp = {
         </ul>
       </div>
 
-      <div class="rounded-md bg-gray-800 py-2">
+      <div class="rounded-md bg-gray-900 py-2">
         <div class="border-b border-gray-700 px-6 pb-2">
           <h3 class="text-2xl">{{ t('classes') }}</h3>
         </div>
