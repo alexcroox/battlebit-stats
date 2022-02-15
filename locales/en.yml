@@ -35,9 +35,11 @@ siteNotAffiliatedWith: This site is not affiliated with OkiStudio
 starts: starts {startTime}
 stats: Stats
 topWeapons: Top weapons
+totalHeadshots: '{total} headshots'
 totalHours: '{total} hours'
 totalKills: '{total} kills'
 totalUntilRankUp: '{total} until rank up'
+totalWins: '{total} wins'
 totalXp: '{total} xp'
 weapons: Weapons
 zoomAndPan: Zoom and pan your way through the upcoming battle fields

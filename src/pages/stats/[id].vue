@@ -76,7 +76,7 @@ const xp = {
 
 <template>
   <div class="">
-    <div class="relative z-10 flex justify-center space-x-24 py-8">
+    <div class="relative z-10 flex justify-center space-x-16 py-8">
       <div>
         <h1 class="text-5xl">
           <span>Titan</span>
@@ -121,21 +121,37 @@ const xp = {
         </ProgressBar>
       </div>
 
-      <img src="/images/classes/medic-body.png" class="-mb-32 block w-48" />
+      <img src="/images/classes/medic-body.png" class="-mb-32 block w-48 flex-shrink-0" />
 
-      <div>
-        <h4>K/D ratio</h4>
+      <div class="grid grid-cols-2 gap-8">
+        <div class="rounded-md bg-gray-800 px-4 py-2 text-center">
+          <h4 class="text-2xl text-gray-300">K/D ratio</h4>
+          <p class="mt-3 mb-2 text-4xl font-semibold">1.4</p>
+          <p class="text-gray-400">{{ t('totalKills', { total: (847).toLocaleString() }) }}</p>
+        </div>
+
+        <div class="rounded-md bg-gray-800 px-4 py-2 text-center">
+          <h4 class="text-2xl text-gray-300">W/L ratio</h4>
+          <p class="mt-3 mb-2 text-4xl font-semibold">2.8</p>
+          <p class="text-gray-400">{{ t('totalWins', { total: (57).toLocaleString() }) }}</p>
+        </div>
+
+        <div class="rounded-md bg-gray-800 px-4 py-2 text-center">
+          <h4 class="text-2xl text-gray-300">Accuracy</h4>
+          <p class="mt-3 mb-2 text-4xl font-semibold">65%</p>
+          <p class="text-gray-400">220m longest</p>
+        </div>
+
+        <div class="rounded-md bg-gray-800 px-4 py-2 text-center">
+          <h4 class="text-2xl text-gray-300">Time played</h4>
+          <p class="mt-3 mb-2 text-4xl font-semibold">8 H</p>
+          <p class="text-gray-400">Recruited Jan 2022</p>
+        </div>
       </div>
     </div>
 
-    <div class="relative z-20 border-t border-gray-500 bg-gray-700">
-      <div>
-        <h4>Accuracy</h4>
-        <p>10%</p>
-        <p>1,463 shots hit</p>
-      </div>
-
-      <div>
+    <div class="relative z-20 flex justify-center space-x-24 border-t border-gray-500 bg-gray-700 py-8">
+      <!-- <div>
         <h4>Longest kill</h4>
         <p>200m</p>
       </div>
@@ -143,15 +159,18 @@ const xp = {
       <div>
         <h4>Headshots</h4>
         <p>156</p>
-      </div>
+      </div> -->
 
-      <div>
-        <h3 class="text-2xl">{{ t('topWeapons') }}</h3>
-        <ul>
+      <div class="rounded-md bg-gray-800 py-2">
+        <div class="border-b border-gray-700 px-6 pb-2">
+          <h3 class="text-2xl">{{ t('topWeapons') }}</h3>
+        </div>
+
+        <ul class="mt-4 px-6">
           <li v-for="(weapon, index) in favouriteWeapons" :key="weapon.key" class="mb-4 flex items-center">
             <span class="mr-8 text-3xl text-gray-500">{{ index + 1 }}</span>
 
-            <router-link :to="`/weapons/medic/${weapon.key}`" class="group flex flex-auto items-center space-x-4">
+            <router-link :to="`/weapons/medic/${weapon.key}`" class="group flex flex-auto items-center space-x-6">
               <img :src="`/images/weapons/${weapons[weapon.key].imageName}.png`" class="h-8" />
 
               <span>
@@ -165,20 +184,29 @@ const xp = {
         </ul>
       </div>
 
-      <div class="max-w-xs">
-        <h3 class="text-2xl">{{ t('classes') }}</h3>
-        <ul>
-          <li v-for="classStats in topClasses" :key="classStats.key" class="mb-4 flex items-center justify-between">
+      <div class="rounded-md bg-gray-800 py-2">
+        <div class="border-b border-gray-700 px-6 pb-2">
+          <h3 class="text-2xl">{{ t('classes') }}</h3>
+        </div>
+
+        <ul class="mt-4 px-6">
+          <li
+            v-for="classStats in topClasses"
+            :key="classStats.key"
+            class="mb-4 flex items-center justify-between space-x-12"
+          >
             <span class="flex items-center">
-              <img :src="`/images/classes/${classes[classStats.key].imageName}-alt.png`" class="mr-2 h-12 rounded" />
+              <img :src="`/images/classes/${classes[classStats.key].imageName}-alt.png`" class="mr-4 h-12" />
 
               <span>
                 <span class="block text-lg">{{ classes[classStats.key].name }}</span>
-                <span class="block">{{ t('totalKills', { total: classStats.kills.toLocaleString() }) }}</span>
+                <span class="block text-gray-400">
+                  {{ t('totalKills', { total: classStats.kills.toLocaleString() }) }}</span
+                >
               </span>
             </span>
 
-            <span class="text-right">
+            <span class="text-right text-gray-400">
               <span class="block">{{ t('totalHours', { total: classStats.timePlayedHours.toLocaleString() }) }}</span>
               <span class="block">{{ t('totalXp', { total: classStats.xp.toLocaleString() }) }}</span>
             </span>
