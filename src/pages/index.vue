@@ -26,7 +26,7 @@ const { t } = useI18n()
 
     <div class="mt-4">
       <h2 class="relative z-20 text-2xl font-medium">{{ t('nextPublicPlayTest') }}</h2>
-      <p class="text-gray-400">This site is not affiliated with OkiStudio</p>
+      <p class="text-gray-400">{{ t('siteNotAffiliatedWith') }}</p>
 
       <div
         class="container-padding-x relative mt-4 rounded bg-gray-700 bg-cover bg-no-repeat py-4 sm:max-w-lg"

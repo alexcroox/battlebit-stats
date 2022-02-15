@@ -76,87 +76,121 @@ const xp = {
 
 <template>
   <div class="">
-    <img src="/images/ranks/10.png" class="mx-auto block h-24" />
+    <div class="relative z-10 flex justify-center space-x-24 py-8">
+      <div>
+        <h1 class="text-5xl">
+          <span>Titan</span>
 
-    <img src="/images/classes/medic-body.png" class="mx-auto block w-48" />
+          <a
+            href="https://steamcommunity.com/id/alexcroox/"
+            target="_blank"
+            rel="nofollow noopener"
+            class="group mt-2 block text-base text-gray-400 hover:text-yellow-100"
+          >
+            <FontAwesomeIcon :icon="faSteamSymbol" class="mr-1" />
 
-    <h1 class="text-4xl">
-      <span>Titan</span>
+            <span class="group-hover:underline">{{ t('addFriend') }}</span>
+          </a>
+        </h1>
 
-      <a
-        href="https://steamcommunity.com/id/alexcroox/"
-        target="_blank"
-        rel="nofollow noopener"
-        class="ml-4 inline-block text-base"
-      >
-        <FontAwesomeIcon :icon="faSteamSymbol" class="mr-1" />
+        <div class="mt-8 flex items-center space-x-6 text-center">
+          <div>
+            <div
+              class="relative h-24 w-24 rounded-full border-4 border-[#FACD10] bg-[auto_80%] bg-[center_top_5px] bg-no-repeat"
+              :style="{ backgroundImage: `url(/images/ranks/10.png)` }"
+            >
+              <span class="position-center rank-text absolute text-3xl font-bold">10</span>
+            </div>
 
-        {{ t('addFriend') }}
-      </a>
-    </h1>
-    <h2 class="text-2xl">RANK 35</h2>
+            <p class="mt-2 text-xl text-gray-400">{{ t('rank') }}</p>
+          </div>
 
-    <ProgressBar :total="xp.totalForRank" :current="xp.current" class="max-w-xs">
-      <template #prefix>
-        {{ t('totalUntilRankUp', { total: (xp.totalForRank - xp.current).toLocaleString() }) }}
-      </template>
-    </ProgressBar>
+          <div>
+            <div class="relative h-24 w-24 rounded-full border-4 border-gray-400">
+              <span class="position-center rank-text absolute text-3xl font-bold">1</span>
+            </div>
 
-    <div>
-      <h4>Accuracy</h4>
-      <p>10%</p>
-      <p>1,463 shots hit</p>
+            <p class="mt-2 text-xl text-gray-400">{{ t('prestige') }}</p>
+          </div>
+        </div>
+
+        <ProgressBar :total="xp.totalForRank" :current="xp.current" class="mt-8 text-xs">
+          <template #prefix>
+            {{ t('totalUntilRankUp', { total: (xp.totalForRank - xp.current).toLocaleString() }) }}
+          </template>
+        </ProgressBar>
+      </div>
+
+      <img src="/images/classes/medic-body.png" class="-mb-32 block w-48" />
+
+      <div>
+        <h4>K/D ratio</h4>
+      </div>
     </div>
 
-    <div>
-      <h4>Longest kill</h4>
-      <p>200m</p>
-    </div>
+    <div class="relative z-20 border-t border-gray-500 bg-gray-700">
+      <div>
+        <h4>Accuracy</h4>
+        <p>10%</p>
+        <p>1,463 shots hit</p>
+      </div>
 
-    <div>
-      <h4>Headshots</h4>
-      <p>156</p>
-    </div>
+      <div>
+        <h4>Longest kill</h4>
+        <p>200m</p>
+      </div>
 
-    <div>
-      <h3 class="text-2xl">{{ t('topWeapons') }}</h3>
-      <ul>
-        <li v-for="(weapon, index) in favouriteWeapons" :key="weapon.key" class="mb-4 flex items-center">
-          <span class="mr-8 text-3xl text-gray-500">{{ index + 1 }}</span>
+      <div>
+        <h4>Headshots</h4>
+        <p>156</p>
+      </div>
 
-          <router-link :to="`/weapons/weapon.key`" class="group flex flex-auto items-center space-x-4">
-            <img :src="`/images/weapons/${weapons[weapon.key].imageName}.png`" class="h-8" />
+      <div>
+        <h3 class="text-2xl">{{ t('topWeapons') }}</h3>
+        <ul>
+          <li v-for="(weapon, index) in favouriteWeapons" :key="weapon.key" class="mb-4 flex items-center">
+            <span class="mr-8 text-3xl text-gray-500">{{ index + 1 }}</span>
 
-            <span>
-              <span class="block text-yellow-100 group-hover:underline">
-                {{ weapons[weapon.key].name }}
+            <router-link :to="`/weapons/medic/${weapon.key}`" class="group flex flex-auto items-center space-x-4">
+              <img :src="`/images/weapons/${weapons[weapon.key].imageName}.png`" class="h-8" />
+
+              <span>
+                <span class="block text-yellow-100 group-hover:underline">
+                  {{ weapons[weapon.key].name }}
+                </span>
+                <span>{{ t('totalKills', { total: weapon.kills }) }}</span>
               </span>
-              <span>{{ t('totalKills', { total: weapon.kills }) }}</span>
+            </router-link>
+          </li>
+        </ul>
+      </div>
+
+      <div class="max-w-xs">
+        <h3 class="text-2xl">{{ t('classes') }}</h3>
+        <ul>
+          <li v-for="classStats in topClasses" :key="classStats.key" class="mb-4 flex items-center justify-between">
+            <span class="flex items-center">
+              <img :src="`/images/classes/${classes[classStats.key].imageName}-alt.png`" class="mr-2 h-12 rounded" />
+
+              <span>
+                <span class="block text-lg">{{ classes[classStats.key].name }}</span>
+                <span class="block">{{ t('totalKills', { total: classStats.kills.toLocaleString() }) }}</span>
+              </span>
             </span>
-          </router-link>
-        </li>
-      </ul>
-    </div>
 
-    <div class="max-w-xs">
-      <h3 class="text-2xl">{{ t('classes') }}</h3>
-      <ul>
-        <li v-for="classStats in topClasses" :key="classStats.key" class="mb-4 flex items-center justify-between">
-          <span class="flex items-center">
-            <img :src="`/images/classes/${classes[classStats.key].imageName}-alt.png`" class="mr-2 h-12 rounded" />
-
-            <span>
-              <span class="block text-lg">{{ classes[classStats.key].name }}</span>
-              <span class="block">{{ t('totalKills', { total: classStats.kills.toLocaleString() }) }}</span>
+            <span class="text-right">
+              <span class="block">{{ t('totalHours', { total: classStats.timePlayedHours.toLocaleString() }) }}</span>
+              <span class="block">{{ t('totalXp', { total: classStats.xp.toLocaleString() }) }}</span>
             </span>
-          </span>
-
-          <span class="text-right">
-            <span class="block">{{ t('totalHours', { total: classStats.timePlayedHours.toLocaleString() }) }}</span>
-            <span class="block">{{ t('totalXp', { total: classStats.xp.toLocaleString() }) }}</span>
-          </span>
-        </li>
-      </ul>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
+
+<style lang="scss" scoped>
+.rank-text {
+  text-shadow: 0px 0px 6px #000;
+}
+</style>
