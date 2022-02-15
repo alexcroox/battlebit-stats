@@ -23,8 +23,8 @@ const { t } = useI18n()
 
         <NavItem to="/weapons/assault/M4A1" :label="t('weapons')" />
 
-        <NavItem to="/stats" :label="t('playerStats')" class="hidden md:block" />
-        <NavItem to="/stats" :label="t('stats')" class="md:hidden" />
+        <NavItem to="/stats/titan" :label="t('playerStats')" class="hidden md:block" />
+        <NavItem to="/stats/titan" :label="t('stats')" class="md:hidden" />
       </div>
 
       <Button

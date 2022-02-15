@@ -11,6 +11,7 @@ declare module 'vue' {
     Map: typeof import('./components/mapping/map/Map.vue')['default']
     ModelViewer: typeof import('./components/model-viewer/ModelViewer.vue')['default']
     NavItem: typeof import('./components/navigation/nav-item/NavItem.vue')['default']
+    ProgressBar: typeof import('./components/base/progress-bar/ProgressBar.vue')['default']
     README: typeof import('./components/README.md')['default']
   }
 }

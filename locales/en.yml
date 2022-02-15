@@ -1,12 +1,15 @@
+addFriend: Add friend
 awaitingAnnouncement: Awaiting announcement
 awaitingDescription: Awaiting description
 back: Back
 battleBitStats: BattleBit Stats
 becomeAPatron: Become a Patron
 checkBackSoon: Check back soon
+classes: Classes
 comingSoonIfStats: Coming soon if/when BattleBit exposes stats API
 dataMinedSources: Data is mined from various sources, so likely to be inaccurate in areas
 exploreCurrentWeapons: Explore current weapons, stats and attachments
+favouriteWeapons: Favourite weapons
 followOnTwitter: Follow on Twitter
 goBack: Go back
 home: Home
@@ -29,5 +32,10 @@ siteCreatedBy: 'Site created by '
 siteNotAffiliatedWith: This site is not affiliated with OkiStudio
 starts: starts {startTime}
 stats: Stats
+topWeapons: Top weapons
+totalHours: '{total} hours'
+totalKills: '{total} kills'
+totalUntilRankUp: '{total} until rank up'
+totalXp: '{total} xp'
 weapons: Weapons
 zoomAndPan: Zoom and pan your way through the upcoming battle fields
