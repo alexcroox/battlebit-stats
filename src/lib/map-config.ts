@@ -16,6 +16,11 @@ export const maps: Record<string, MapConfig> = {
     name: 'District',
     description: 'Awaiting description'
   },
+  valley: {
+    bgColor: '#000',
+    name: 'Valley',
+    description: 'Awaiting description'
+  },
   eduardovo: {
     bgColor: '#3B4633',
     name: 'Eduardovo',
