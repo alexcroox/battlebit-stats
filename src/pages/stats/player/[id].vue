@@ -2,11 +2,11 @@
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 import { faSteamSymbol } from '@fortawesome/free-brands-svg-icons'
 import { classes, weapons } from '~/lib/weapon-config'
+import { vehicles } from '~/lib/vehicle-config'
 
-const router = useRouter()
 const { t } = useI18n()
 
-const favouriteWeapons = [
+const topWeapons = [
   {
     key: 'M4A1',
     kills: 516
@@ -26,47 +26,92 @@ const favouriteWeapons = [
   {
     key: 'GLOCK18',
     kills: 12
+  },
+  {
+    key: 'Sledgehammer',
+    kills: 5
   }
 ]
+
+const topWeaponsListData = topWeapons.map((weapon) => ({
+  key: weapon.key,
+  name: weapons[weapon.key].name,
+  imagePath: `/images/weapons/${weapons[weapon.key].imageName}.png`,
+  kills: weapon.kills
+}))
 
 const topClasses = [
   {
     key: 'medic',
-    kills: 1415,
-    timePlayedHours: 54,
+    kills: 675,
+    timePlayedHours: 113,
     xp: 11000
   },
   {
     key: 'assault',
-    kills: 1415,
-    timePlayedHours: 54,
-    xp: 11000
+    kills: 864,
+    timePlayedHours: 115,
+    xp: 9251
   },
   {
     key: 'engineer',
-    kills: 1415,
-    timePlayedHours: 54,
-    xp: 11000
+    kills: 735,
+    timePlayedHours: 12,
+    xp: 908
   },
   {
     key: 'recon',
-    kills: 1415,
-    timePlayedHours: 54,
-    xp: 11000
+    kills: 312,
+    timePlayedHours: 11,
+    xp: 504
   },
   {
     key: 'leader',
-    kills: 1415,
-    timePlayedHours: 54,
-    xp: 11000
+    kills: 78,
+    timePlayedHours: 10,
+    xp: 379
   },
   {
     key: 'support',
-    kills: 1415,
-    timePlayedHours: 54,
-    xp: 11000
+    kills: 5,
+    timePlayedHours: 0.5,
+    xp: 207
   }
 ]
+
+const topVehicles = [
+  {
+    key: 'M1Abrams',
+    kills: 56
+  },
+  {
+    key: 'LAV_25',
+    kills: 32
+  },
+  {
+    key: 'BTR_82',
+    kills: 22
+  },
+  {
+    key: 'T90',
+    kills: 19
+  },
+  {
+    key: 'humvee',
+    kills: 5
+  },
+  {
+    key: 'quad',
+    kills: 3
+  }
+]
+
+const topVehiclesListData = topVehicles.map((vehicle) => ({
+  key: vehicle.key,
+  name: vehicles[vehicle.key].name,
+  imagePath: `/images/vehicles/${vehicles[vehicle.key].imageName}.png`,
+  kills: vehicle.kills
+}))
 
 const xp = {
   totalForRank: 20000,
@@ -124,72 +169,27 @@ const xp = {
       <img src="/images/classes/medic-body.png" class="-mb-32 block w-48 flex-shrink-0" />
 
       <div class="grid grid-cols-2 gap-8">
-        <div class="rounded-md bg-gray-800 px-4 py-2 text-center">
-          <h4 class="text-2xl text-gray-300">K/D ratio</h4>
-          <p class="mt-3 mb-2 text-4xl font-semibold">1.4</p>
-          <p class="text-gray-400">{{ t('totalKills', { total: (847).toLocaleString() }) }}</p>
-        </div>
+        <StatCard :title="t('kdRatio')" stat="1.4" :suffix="t('totalKills', { total: (847).toLocaleString() })" />
 
-        <div class="rounded-md bg-gray-800 px-4 py-2 text-center">
-          <h4 class="text-2xl text-gray-300">W/L ratio</h4>
-          <p class="mt-3 mb-2 text-4xl font-semibold">2.8</p>
-          <p class="text-gray-400">{{ t('totalWins', { total: (57).toLocaleString() }) }}</p>
-        </div>
+        <StatCard :title="t('wlRatio')" stat="2.8" :suffix="t('totalWins', { total: (57).toLocaleString() })" />
 
-        <div class="rounded-md bg-gray-800 px-4 py-2 text-center">
-          <h4 class="text-2xl text-gray-300">Accuracy</h4>
-          <p class="mt-3 mb-2 text-4xl font-semibold">65%</p>
-          <p class="text-gray-400">220m longest</p>
-        </div>
+        <StatCard
+          :title="t('accuracy')"
+          stat="65%"
+          :suffix="t('longestDistance', { meters: (220).toLocaleString() })"
+        />
 
-        <div class="rounded-md bg-gray-800 px-4 py-2 text-center">
-          <h4 class="text-2xl text-gray-300">Time played</h4>
-          <p class="mt-3 mb-2 text-4xl font-semibold">8 H</p>
-          <p class="text-gray-400">Enlisted Jan 2022</p>
-        </div>
+        <StatCard :title="t('timePlayed')" stat="8 H" :suffix="t('enlistedDate', { date: 'Jan 2022' })" />
       </div>
     </div>
 
-    <div class="relative z-20 flex flex-auto justify-center space-x-24 border-t border-gray-700 bg-gray-800 py-8">
-      <!-- <div>
-        <h4>Longest kill</h4>
-        <p>200m</p>
-      </div>
+    <div class="relative z-20 flex flex-auto justify-center space-x-12 border-t border-gray-700 bg-gray-800 py-8">
+      <StatList class="self-baseline" :title="t('topWeapons')" :listData="topWeaponsListData" />
 
-      <div>
-        <h4>Headshots</h4>
-        <p>156</p>
-      </div> -->
+      <StatList class="self-baseline" :title="t('topVehicles')" :listData="topVehiclesListData" />
 
-      <div class="rounded-md bg-gray-900 py-2">
-        <div class="border-b border-gray-700 px-6 pb-2">
-          <h3 class="text-2xl">{{ t('topWeapons') }}</h3>
-        </div>
-
-        <ul class="mt-4 px-6">
-          <li v-for="(weapon, index) in favouriteWeapons" :key="weapon.key" class="mb-4 flex items-center">
-            <span class="mr-8 text-3xl text-gray-500">{{ index + 1 }}</span>
-
-            <router-link :to="`/weapons/medic/${weapon.key}`" class="group flex flex-auto items-center space-x-6">
-              <img :src="`/images/weapons/${weapons[weapon.key].imageName}.png`" class="h-12" />
-
-              <span>
-                <span class="block text-yellow-100 group-hover:underline">
-                  {{ weapons[weapon.key].name }}
-                </span>
-                <span>{{ t('totalKills', { total: weapon.kills }) }}</span>
-              </span>
-            </router-link>
-          </li>
-        </ul>
-      </div>
-
-      <div class="rounded-md bg-gray-900 py-2">
-        <div class="border-b border-gray-700 px-6 pb-2">
-          <h3 class="text-2xl">{{ t('topClasses') }}</h3>
-        </div>
-
-        <ul class="mt-4 px-6">
+      <StatList class="self-baseline" :title="t('topClasses')">
+        <template #body>
           <li
             v-for="classStats in topClasses"
             :key="classStats.key"
@@ -211,8 +211,8 @@ const xp = {
               <span class="block">{{ t('totalXp', { total: classStats.xp.toLocaleString() }) }}</span>
             </span>
           </li>
-        </ul>
-      </div>
+        </template>
+      </StatList>
     </div>
   </div>
 </template>

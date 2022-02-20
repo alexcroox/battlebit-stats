@@ -12,6 +12,11 @@ dayjs.extend(utc)
 
 const { t } = useI18n()
 
+const playTestTimings = {
+  start: dayjs.utc('2022-02-20 15:00:00'),
+  end: dayjs.utc('2022-02-20 18:00:00')
+}
+
 // const allWeapons = $computed(() => {
 //   return Object.keys(weapons).map((weaponKey) => weapons[weaponKey])
 // })
@@ -34,7 +39,7 @@ const { t } = useI18n()
       >
         <div class="absolute left-0 right-0 top-0 bottom-0 z-10 bg-gray-900 bg-opacity-60" />
 
-        <template v-if="dayjs().isAfter(dayjs.utc('2022-02-23 23:59:59'))">
+        <template v-if="dayjs().isAfter(playTestTimings.end)">
           <p class="relative z-20 text-2xl font-medium text-yellow-50">{{ t('awaitingAnnouncement') }}</p>
 
           <p class="relative z-20 mt-1 text-lg text-gray-300">
@@ -46,14 +51,14 @@ const { t } = useI18n()
           <p class="relative z-20 text-2xl font-medium text-yellow-50">20-23 February</p>
 
           <p
-            v-if="dayjs().isAfter(dayjs.utc('2022-02-20 15:00:00'))"
+            v-if="dayjs().isAfter(playTestTimings.start)"
             class="relative z-20 mt-1 animate-pulse text-lg text-yellow-100"
           >
             {{ t('liveNow') }}
           </p>
 
           <p v-else class="relative z-20 mt-1 text-lg text-gray-300">
-            {{ dayjs().to(dayjs.utc('2022-02-20 15:00:00')) }}, {{ t('starts', { startTime: '15:00 UTC' }) }}
+            {{ dayjs().to(dayjs.utc(playTestTimings.start)) }}, {{ t('starts', { startTime: '15:00 UTC' }) }}
           </p>
         </template>
 

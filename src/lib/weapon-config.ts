@@ -244,6 +244,18 @@ export const weapons: Record<string, WeaponConfig> = {
     imageName: 'DESERT-EAGLE',
     unlockLevel: 60,
     weaponType: 'pistols'
+  },
+  Pickaxe: {
+    name: 'Pickaxe',
+    imageName: 'Pickaxe',
+    unlockLevel: 0,
+    weaponType: 'misc'
+  },
+  Sledgehammer: {
+    name: 'Sledgehammer',
+    imageName: 'Sledgehammer',
+    unlockLevel: 0,
+    weaponType: 'misc'
   }
 }
 

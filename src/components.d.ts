@@ -13,6 +13,8 @@ declare module 'vue' {
     NavItem: typeof import('./components/navigation/nav-item/NavItem.vue')['default']
     ProgressBar: typeof import('./components/base/progress-bar/ProgressBar.vue')['default']
     README: typeof import('./components/README.md')['default']
+    StatCard: typeof import('./components/stats/stat-card/StatCard.vue')['default']
+    StatList: typeof import('./components/stats/stat-list/StatList.vue')['default']
   }
 }
 
