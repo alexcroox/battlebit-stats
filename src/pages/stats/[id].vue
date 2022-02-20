@@ -145,7 +145,7 @@ const xp = {
         <div class="rounded-md bg-gray-800 px-4 py-2 text-center">
           <h4 class="text-2xl text-gray-300">Time played</h4>
           <p class="mt-3 mb-2 text-4xl font-semibold">8 H</p>
-          <p class="text-gray-400">Recruited Jan 2022</p>
+          <p class="text-gray-400">Enlisted Jan 2022</p>
         </div>
       </div>
     </div>
@@ -171,7 +171,7 @@ const xp = {
             <span class="mr-8 text-3xl text-gray-500">{{ index + 1 }}</span>
 
             <router-link :to="`/weapons/medic/${weapon.key}`" class="group flex flex-auto items-center space-x-6">
-              <img :src="`/images/weapons/${weapons[weapon.key].imageName}.png`" class="h-8" />
+              <img :src="`/images/weapons/${weapons[weapon.key].imageName}.png`" class="h-12" />
 
               <span>
                 <span class="block text-yellow-100 group-hover:underline">
@@ -186,7 +186,7 @@ const xp = {
 
       <div class="rounded-md bg-gray-900 py-2">
         <div class="border-b border-gray-700 px-6 pb-2">
-          <h3 class="text-2xl">{{ t('classes') }}</h3>
+          <h3 class="text-2xl">{{ t('topClasses') }}</h3>
         </div>
 
         <ul class="mt-4 px-6">

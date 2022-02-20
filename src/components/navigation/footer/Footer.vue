@@ -11,7 +11,9 @@ const toggleLocales = () => {
 </script>
 
 <template>
-  <nav class="container-padding-x flex w-full items-center justify-between bg-gray-800 py-2 text-sm">
+  <nav
+    class="container-padding-x flex w-full items-center justify-between border-t border-gray-700 bg-gray-800 py-2 text-sm"
+  >
     <div class="flex items-stretch space-x-6 lg:space-x-12">
       <a
         href="https://discord.com/invite/battlebit"
