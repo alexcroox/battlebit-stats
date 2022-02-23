@@ -14,7 +14,7 @@ const { t } = useI18n()
 
 const playTestTimings = {
   start: dayjs.utc('2022-02-20 15:00:00'),
-  end: dayjs.utc('2022-02-20 18:00:00')
+  end: dayjs.utc('2022-02-23 15:00:00')
 }
 
 // const allWeapons = $computed(() => {
@@ -42,15 +42,14 @@ const playTestTimings = {
         <template v-if="dayjs().isAfter(playTestTimings.end)">
           <p class="relative z-20 text-2xl font-medium text-yellow-50">{{ t('awaitingAnnouncement') }}</p>
 
-          <!-- <p class="relative z-20 mt-1 text-lg text-gray-300">
+          <p class="relative z-20 mt-1 text-lg text-gray-300">
             {{ t('checkBackSoon') }}
-          </p> -->
+          </p>
 
-          <p class="relative z-20 mt-1 text-base text-gray-300">
-            <!-- {{ t('checkBackSoon') }} -->
+          <!-- <p class="relative z-20 mt-1 text-base text-gray-300">
             Due to bugs with the anti cheat system, the current play test is on hold. Check back soon for more
             information.
-          </p>
+          </p> -->
         </template>
 
         <template v-else>
