@@ -13,8 +13,8 @@ dayjs.extend(utc)
 const { t } = useI18n()
 
 const playTestTimings = {
-  start: dayjs.utc('2022-02-20 15:00:00'),
-  end: dayjs.utc('2022-02-23 15:00:00')
+  start: dayjs.utc('2022-04-08 15:00:00'),
+  end: dayjs.utc('2022-04-10 15:00:00')
 }
 
 // const allWeapons = $computed(() => {
@@ -53,7 +53,7 @@ const playTestTimings = {
         </template>
 
         <template v-else>
-          <p class="relative z-20 text-2xl font-medium text-yellow-50">20-23 February</p>
+          <p class="relative z-20 text-2xl font-medium text-yellow-50">8-10 April</p>
 
           <p
             v-if="dayjs().isAfter(playTestTimings.start)"
