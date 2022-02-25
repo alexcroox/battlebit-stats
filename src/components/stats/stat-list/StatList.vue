@@ -13,7 +13,7 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <div class="rounded-md bg-gray-900 py-2">
+  <div class="bg-gray-900 py-2 md:rounded-md">
     <div class="border-b border-gray-700 px-6 pb-2">
       <h3 class="text-2xl">{{ title }}</h3>
     </div>

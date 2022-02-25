@@ -38,6 +38,7 @@ siteCreatedBy: 'Site created by '
 siteNotAffiliatedWith: This site is not affiliated with OkiStudio
 starts: starts {startTime}
 stats: Stats
+theseStatsFake: These stats are fake placeholders until Battlebit provide a stats API
 timePlayed: Time played
 topClasses: Top classes
 topVehicles: Top vehicles

@@ -121,8 +121,11 @@ const xp = {
 
 <template>
   <div class="flex h-full flex-col">
-    <div class="relative z-10 flex justify-center space-x-16 py-8">
-      <div>
+    <div class="relative z-10 flex-wrap justify-center px-4 py-8 md:flex md:space-x-16">
+      <div
+        class="bg-[auto_90%] bg-right-top bg-no-repeat md:bg-[auto_0%]"
+        :style="{ backgroundImage: 'url(/images/classes/medic-body.png)' }"
+      >
         <h1 class="text-5xl">
           <span>Titan</span>
 
@@ -166,9 +169,9 @@ const xp = {
         </ProgressBar>
       </div>
 
-      <img src="/images/classes/medic-body.png" class="-mb-32 block w-48 flex-shrink-0" />
+      <img src="/images/classes/medic-body.png" class="-mb-32 block hidden w-48 flex-shrink-0 md:block" />
 
-      <div class="grid grid-cols-2 gap-8">
+      <div class="mt-8 grid grid-cols-2 gap-8 lg:mt-0">
         <StatCard :title="t('kdRatio')" stat="1.4" :suffix="t('totalKills', { total: (847).toLocaleString() })" />
 
         <StatCard :title="t('wlRatio')" stat="2.8" :suffix="t('totalWins', { total: (57).toLocaleString() })" />
@@ -183,36 +186,48 @@ const xp = {
       </div>
     </div>
 
-    <div class="relative z-20 flex flex-auto justify-center space-x-12 border-t border-gray-700 bg-gray-800 py-8">
-      <StatList class="self-baseline" :title="t('topWeapons')" :listData="topWeaponsListData" />
+    <div class="relative z-20 border-t border-gray-700 bg-gray-800 py-8">
+      <div class="flex flex-auto flex-wrap justify-between md:space-x-4 md:px-4 lg:justify-center lg:space-x-12">
+        <StatList
+          class="mb-6 flex-auto self-baseline lg:flex-initial"
+          :title="t('topWeapons')"
+          :listData="topWeaponsListData"
+        />
 
-      <StatList class="self-baseline" :title="t('topVehicles')" :listData="topVehiclesListData" />
+        <StatList
+          class="mb-6 flex-auto self-baseline lg:flex-initial"
+          :title="t('topVehicles')"
+          :listData="topVehiclesListData"
+        />
 
-      <StatList class="self-baseline" :title="t('topClasses')">
-        <template #body>
-          <li
-            v-for="classStats in topClasses"
-            :key="classStats.key"
-            class="mb-4 flex items-center justify-between space-x-12"
-          >
-            <span class="flex items-center">
-              <img :src="`/images/classes/${classes[classStats.key].imageName}-alt.png`" class="mr-4 h-12" />
+        <StatList class="mb-6 flex-auto self-baseline lg:flex-initial" :title="t('topClasses')">
+          <template #body>
+            <li
+              v-for="classStats in topClasses"
+              :key="classStats.key"
+              class="mb-4 flex items-center justify-between space-x-12"
+            >
+              <span class="flex items-center">
+                <img :src="`/images/classes/${classes[classStats.key].imageName}-alt.png`" class="mr-4 h-12" />
 
-              <span>
-                <span class="block text-lg">{{ classes[classStats.key].name }}</span>
-                <span class="block text-gray-400">
-                  {{ t('totalKills', { total: classStats.kills.toLocaleString() }) }}</span
-                >
+                <span>
+                  <span class="block text-lg">{{ classes[classStats.key].name }}</span>
+                  <span class="block text-gray-400">
+                    {{ t('totalKills', { total: classStats.kills.toLocaleString() }) }}</span
+                  >
+                </span>
               </span>
-            </span>
 
-            <span class="text-right text-gray-400">
-              <span class="block">{{ t('totalHours', { total: classStats.timePlayedHours.toLocaleString() }) }}</span>
-              <span class="block">{{ t('totalXp', { total: classStats.xp.toLocaleString() }) }}</span>
-            </span>
-          </li>
-        </template>
-      </StatList>
+              <span class="text-right text-gray-400">
+                <span class="block">{{ t('totalHours', { total: classStats.timePlayedHours.toLocaleString() }) }}</span>
+                <span class="block">{{ t('totalXp', { total: classStats.xp.toLocaleString() }) }}</span>
+              </span>
+            </li>
+          </template>
+        </StatList>
+      </div>
+
+      <div class="mt-4 px-4 text-center text-gray-500">{{ t('theseStatsFake') }}</div>
     </div>
   </div>
 </template>
