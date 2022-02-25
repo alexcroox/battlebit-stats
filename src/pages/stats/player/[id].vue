@@ -186,8 +186,8 @@ const xp = {
       </div>
     </div>
 
-    <div class="relative z-20 border-t border-gray-700 bg-gray-800 py-8">
-      <div class="flex flex-auto flex-wrap justify-between md:space-x-4 md:px-4 lg:justify-center lg:space-x-12">
+    <div class="relative z-20 flex-auto border-t border-gray-700 bg-gray-800 py-8">
+      <div class="flex flex-wrap justify-between md:space-x-4 md:px-4 lg:justify-center lg:space-x-12">
         <StatList
           class="mb-6 flex-auto self-baseline lg:flex-initial"
           :title="t('topWeapons')"
