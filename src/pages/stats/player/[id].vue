@@ -144,7 +144,7 @@ const xp = {
         <div class="mt-8 flex items-center space-x-6 text-center">
           <div>
             <div
-              class="relative h-24 w-24 rounded-full border-4 border-[#FACD10] bg-[auto_80%] bg-[center_top_5px] bg-no-repeat"
+              class="relative h-20 w-20 rounded-full border-4 border-[#FACD10] bg-[auto_80%] bg-[center_top_5px] bg-no-repeat md:h-24 md:w-24"
               :style="{ backgroundImage: `url(/images/ranks/10.png)` }"
             >
               <span class="position-center rank-text absolute text-3xl font-bold">10</span>
@@ -154,7 +154,7 @@ const xp = {
           </div>
 
           <div>
-            <div class="relative h-24 w-24 rounded-full border-4 border-gray-400">
+            <div class="relative h-20 w-20 rounded-full border-4 border-gray-400 md:h-24 md:w-24">
               <span class="position-center rank-text absolute text-3xl font-bold">1</span>
             </div>
 
