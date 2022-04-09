@@ -14,7 +14,7 @@ const { t } = useI18n()
 
 const playTestTimings = {
   start: dayjs.utc('2022-04-08 15:00:00'),
-  end: dayjs.utc('2022-04-10 15:00:00')
+  end: dayjs.utc('2022-04-07 15:00:00')
 }
 
 // const allWeapons = $computed(() => {
