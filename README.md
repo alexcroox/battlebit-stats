@@ -1,3 +1,9 @@
+<p align="left">
+  <a href="https://battlebitstats.com" target="_blank" rel="noopener noreferrer">
+    <img width="64" src="https://raw.githubusercontent.com/alexcroox/battlebit-stats/main/public/safari-pinned-tab.png" />
+  </a>
+</p>
+
 # BattleBit Stats
 
 https://battlebitstats.com
