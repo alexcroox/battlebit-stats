@@ -30,51 +30,7 @@ const playTestTimings = {
     </h1>
 
     <div class="mt-4">
-      <h2 class="relative z-20 text-2xl font-medium">{{ t('nextPublicPlayTest') }}</h2>
       <p class="text-gray-400">{{ t('siteNotAffiliatedWith') }}</p>
-
-      <div
-        class="container-padding-x relative mt-4 rounded bg-gray-700 bg-cover bg-no-repeat py-4 sm:max-w-lg"
-        :style="{ backgroundImage: 'url(/images/banner.jpg)', backgroundPosition: 'center left' }"
-      >
-        <div class="absolute left-0 right-0 top-0 bottom-0 z-10 bg-gray-900 bg-opacity-60" />
-
-        <template v-if="dayjs().isAfter(playTestTimings.end)">
-          <p class="relative z-20 text-2xl font-medium text-yellow-50">{{ t('awaitingAnnouncement') }}</p>
-
-          <p class="relative z-20 mt-1 text-lg text-gray-300">
-            {{ t('checkBackSoon') }}
-          </p>
-
-          <!-- <p class="relative z-20 mt-1 text-base text-gray-300">
-            Due to bugs with the anti cheat system, the current play test is on hold. Check back soon for more
-            information.
-          </p> -->
-        </template>
-
-        <template v-else>
-          <p class="relative z-20 text-2xl font-medium text-yellow-50">8-10 April</p>
-
-          <p
-            v-if="dayjs().isAfter(playTestTimings.start)"
-            class="relative z-20 mt-1 animate-pulse text-lg text-yellow-100"
-          >
-            {{ t('liveNow') }}
-          </p>
-
-          <p v-else class="relative z-20 mt-1 text-lg text-gray-300">
-            {{ dayjs().to(dayjs.utc(playTestTimings.start)) }}, {{ t('starts', { startTime: '15:00 UTC' }) }}
-          </p>
-        </template>
-
-        <Button
-          to="https://store.steampowered.com/app/671860/BattleBit_Remastered/"
-          class="relative z-20 mt-4"
-          :prefix-icon="faSteamSymbol"
-        >
-          {{ t('requestAccess') }}
-        </Button>
-      </div>
     </div>
 
     <div class="mt-12">
