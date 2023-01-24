@@ -24,7 +24,7 @@ If you are unfamiliar with git workflows then feel free to [submit it with a new
 
 [Browse the current list of weapons](https://github.com/alexcroox/battlebit-stats/blob/main/src/lib/weapon-config.ts)
 
-For each weapon we need a static image and an .obj file in order to animate a 3D model. I had trouble finding 3D models for many weapons in the source so just a .png is also fine.
+For each weapon we need a static `.png` image and an `.obj` file in order to animate a 3D model. I had trouble finding 3D models for many weapons in the source so just a .png is also fine.
 
 ### Vehicles
 
