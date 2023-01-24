@@ -8,7 +8,7 @@
 
 https://battlebitstats.com
 
-Interactive maps, weapons and (hopefully in the future) player stats for the [Battle Bit game](https://store.steampowered.com/app/671860/BattleBit_Remastered/)
+Interactive maps, weapons and (hopefully in the future) player stats for the [BattleBit game](https://store.steampowered.com/app/671860/BattleBit_Remastered/)
 
 ## Contributing
 
