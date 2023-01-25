@@ -43,10 +43,18 @@ export const weapons: Record<string, WeaponConfig> = {
     unlockLevel: 0
   },
   AUGA3: {
-    name: 'AUG A3',
+    name: 'AUG-A3',
     imageName: 'AUGA3',
     hasModel: true,
     modelFov: 4,
+    weaponType: 'automatic-rifles',
+    unlockLevel: 19
+  },
+  SG550: {
+    name: 'SG 550',
+    imageName: 'SG550',
+    hasModel: true,
+    modelFov: 3.5,
     weaponType: 'automatic-rifles',
     unlockLevel: 19
   },
@@ -73,6 +81,14 @@ export const weapons: Record<string, WeaponConfig> = {
     modelFov: 4,
     unlockLevel: 28,
     weaponType: 'automatic-rifles'
+  },
+  HK419: {
+    name: 'HK-419',
+    imageName: 'HK419',
+    hasModel: true,
+    modelFov: 4,
+    weaponType: 'automatic-rifles',
+    unlockLevel: 37
   },
   M4A1: {
     name: 'M4A1',
@@ -114,6 +130,14 @@ export const weapons: Record<string, WeaponConfig> = {
     weaponType: 'submachine-guns',
     unlockLevel: 13
   },
+  PP19: {
+    name: 'PP-19',
+    imageName: 'PP19',
+    hasModel: true,
+    modelFov: 3.5,
+    weaponType: 'submachine-guns',
+    unlockLevel: 22
+  },
   KrissVector: {
     name: 'Kriss Vector',
     imageName: 'KrissVector',
@@ -126,7 +150,7 @@ export const weapons: Record<string, WeaponConfig> = {
     name: 'MP5',
     imageName: 'MP5',
     hasModel: true,
-    modelFov: 4,
+    modelFov: 4.5,
     weaponType: 'submachine-guns',
     unlockLevel: 43
   },
@@ -146,6 +170,14 @@ export const weapons: Record<string, WeaponConfig> = {
     weaponType: 'marksman-rifles',
     unlockLevel: 20
   },
+  SVD: {
+    name: 'SVD',
+    imageName: 'SVD',
+    hasModel: true,
+    modelFov: 4,
+    weaponType: 'marksman-rifles',
+    unlockLevel: 38
+  },
   MK14: {
     name: 'MK-14 EBR',
     imageName: 'MK14',
@@ -161,6 +193,22 @@ export const weapons: Record<string, WeaponConfig> = {
     modelFov: 3.5,
     weaponType: 'personal-defence',
     unlockLevel: 40
+  },
+  P90: {
+    name: 'P90',
+    imageName: 'P90',
+    hasModel: true,
+    modelFov: 3,
+    weaponType: 'personal-defence',
+    unlockLevel: 52
+  },
+  GROZA: {
+    name: 'GROZA',
+    imageName: 'GROZA',
+    hasModel: true,
+    modelFov: 4,
+    weaponType: 'personal-defence',
+    unlockLevel: 94
   },
   ASVAL: {
     name: 'AS VAL',
@@ -217,6 +265,22 @@ export const weapons: Record<string, WeaponConfig> = {
     modelFov: 6,
     weaponType: 'sniper-rifles',
     unlockLevel: 32
+  },
+  MSR: {
+    name: 'MSR',
+    imageName: 'MSR',
+    hasModel: true,
+    modelFov: 6,
+    weaponType: 'sniper-rifles',
+    unlockLevel: 56
+  },
+  REM700: {
+    name: 'REM-700',
+    imageName: 'REM700',
+    hasModel: true,
+    modelFov: 6,
+    weaponType: 'sniper-rifles',
+    unlockLevel: 72
   },
   M9: {
     name: 'M9',
@@ -287,8 +351,8 @@ export const classes: Record<string, ClassConfig> = {
     imageName: 'leader',
     demoWeapon: 'Scar-H',
     weapons: {
-      'automatic-rifles': ['M4A1', 'AK74', 'Scar-H', 'AK15', 'ACR', 'AUGA3', 'FAL', 'G36C', 'FAMAS'],
-      'marksman-rifles': ['MK20', 'M110', 'MK14'],
+      'automatic-rifles': ['M4A1', 'AK74', 'Scar-H', 'AK15', 'ACR', 'AUGA3', 'FAL', 'G36C', 'FAMAS', 'SG550', 'HK419'],
+      'marksman-rifles': ['MK20', 'M110', 'MK14', 'SVD'],
       pistols: ['M9', 'MP443', 'USP', 'UNICA', 'GLOCK18', 'DESERT-EAGLE']
     }
   },
@@ -298,7 +362,7 @@ export const classes: Record<string, ClassConfig> = {
     imageName: 'assault',
     demoWeapon: 'M4A1',
     weapons: {
-      'automatic-rifles': ['M4A1', 'AK74', 'Scar-H', 'AK15', 'ACR', 'AUGA3', 'FAL', 'G36C', 'FAMAS'],
+      'automatic-rifles': ['M4A1', 'AK74', 'Scar-H', 'AK15', 'ACR', 'AUGA3', 'FAL', 'G36C', 'FAMAS', 'SG550', 'HK419'],
       'submachine-guns': ['MP7', 'UMP45', 'PP2000', 'KrissVector', 'MP5'],
       pistols: ['M9', 'MP443', 'USP', 'UNICA', 'GLOCK18', 'DESERT-EAGLE']
     }
@@ -309,10 +373,10 @@ export const classes: Record<string, ClassConfig> = {
     imageName: 'medic',
     demoWeapon: 'HoneyBadger',
     weapons: {
-      'personal-defence': ['HoneyBadger'],
+      'personal-defence': ['HoneyBadger', 'P90', 'GROZA'],
       carbines: ['ASVAL'],
-      'submachine-guns': ['MP7', 'UMP45', 'PP2000', 'KrissVector', 'MP5'],
-      'automatic-rifles': ['M4A1', 'AK74', 'Scar-H', 'AK15', 'ACR', 'AUGA3', 'FAL', 'G36C', 'FAMAS'],
+      'submachine-guns': ['MP7', 'UMP45', 'PP2000', 'KrissVector', 'MP5', 'PP19'],
+      'automatic-rifles': ['M4A1', 'AK74', 'Scar-H', 'AK15', 'ACR', 'AUGA3', 'FAL', 'G36C', 'FAMAS', 'SG550', 'HK419'],
       pistols: ['M9', 'MP443', 'USP', 'UNICA', 'GLOCK18', 'DESERT-EAGLE']
     }
   },
@@ -322,10 +386,10 @@ export const classes: Record<string, ClassConfig> = {
     imageName: 'engineer',
     demoWeapon: 'UMP45',
     weapons: {
-      'submachine-guns': ['MP7', 'UMP45', 'PP2000', 'KrissVector', 'MP5'],
-      'automatic-rifles': ['M4A1', 'AK74', 'Scar-H', 'AK15', 'ACR', 'AUGA3', 'FAL', 'G36C', 'FAMAS'],
-      'marksman-rifles': ['MK20', 'M110', 'MK14'],
-      'personal-defence': ['HoneyBadger'],
+      'submachine-guns': ['MP7', 'UMP45', 'PP2000', 'KrissVector', 'MP5', 'PP19'],
+      'automatic-rifles': ['M4A1', 'AK74', 'Scar-H', 'AK15', 'ACR', 'AUGA3', 'FAL', 'G36C', 'FAMAS', 'SG550', 'HK419'],
+      'marksman-rifles': ['MK20', 'M110', 'MK14', 'SVD'],
+      'personal-defence': ['HoneyBadger', 'P90', 'GROZA'],
       carbines: ['ASVAL'],
       pistols: ['M9', 'MP443', 'USP', 'UNICA', 'GLOCK18', 'DESERT-EAGLE']
     }
@@ -346,9 +410,9 @@ export const classes: Record<string, ClassConfig> = {
     imageName: 'recon',
     demoWeapon: 'L96',
     weapons: {
-      'sniper-rifles': ['SSG69', 'SV98', 'L96', 'M200'],
-      'marksman-rifles': ['MK20', 'M110', 'MK14'],
-      'automatic-rifles': ['M4A1', 'AK74', 'Scar-H', 'AK15', 'ACR', 'AUGA3', 'FAL', 'G36C', 'FAMAS'],
+      'sniper-rifles': ['SSG69', 'SV98', 'L96', 'M200', 'MSR', 'REM700'],
+      'marksman-rifles': ['MK20', 'M110', 'MK14', 'SVD'],
+      'automatic-rifles': ['M4A1', 'AK74', 'Scar-H', 'AK15', 'ACR', 'AUGA3', 'FAL', 'G36C', 'FAMAS', 'SG550', 'HK419'],
       pistols: ['M9', 'MP443', 'USP', 'UNICA', 'GLOCK18', 'DESERT-EAGLE']
     }
   }
