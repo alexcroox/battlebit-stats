@@ -22,14 +22,15 @@ export const weapons: Record<string, WeaponConfig> = {
     name: 'ACR',
     imageName: 'ACR',
     hasModel: true,
-    modelFov: 2,
+    modelFov: 4,
     weaponType: 'automatic-rifles',
     unlockLevel: 18
   },
   AK15: {
     name: 'AK-15',
     imageName: 'AK15',
-    modelFov: 0.25,
+    hasModel: true,
+    modelFov: 4,
     weaponType: 'automatic-rifles',
     unlockLevel: 10
   },
@@ -37,7 +38,7 @@ export const weapons: Record<string, WeaponConfig> = {
     name: 'AK-74',
     imageName: 'AK74',
     hasModel: true,
-    modelFov: 40,
+    modelFov: 4,
     weaponType: 'automatic-rifles',
     unlockLevel: 0
   },
@@ -45,13 +46,15 @@ export const weapons: Record<string, WeaponConfig> = {
     name: 'AUG A3',
     imageName: 'AUGA3',
     hasModel: true,
-    modelFov: 0.3,
+    modelFov: 4,
     weaponType: 'automatic-rifles',
     unlockLevel: 19
   },
   FAL: {
     name: 'FAL',
     imageName: 'FAL',
+    hasModel: true,
+    modelFov: 4,
     weaponType: 'automatic-rifles',
     unlockLevel: 22
   },
@@ -59,13 +62,15 @@ export const weapons: Record<string, WeaponConfig> = {
     name: 'G36C',
     imageName: 'G36C',
     hasModel: true,
-    modelFov: 2,
+    modelFov: 4,
     weaponType: 'automatic-rifles',
     unlockLevel: 25
   },
   FAMAS: {
     name: 'FAMAS',
     imageName: 'FAMAS',
+    hasModel: true,
+    modelFov: 4,
     unlockLevel: 28,
     weaponType: 'automatic-rifles'
   },
@@ -73,7 +78,7 @@ export const weapons: Record<string, WeaponConfig> = {
     name: 'M4A1',
     imageName: 'M4A1',
     hasModel: true,
-    modelFov: 0.4,
+    modelFov: 4,
     weaponType: 'automatic-rifles',
     unlockLevel: 0
   },
@@ -81,15 +86,15 @@ export const weapons: Record<string, WeaponConfig> = {
     name: 'SCAR-H',
     imageName: 'Scar-H',
     hasModel: true,
-    modelFov: 0.45,
+    modelFov: 4,
     weaponType: 'automatic-rifles',
     unlockLevel: 10
   },
-  Mp7: {
+  MP7: {
     name: 'MP7',
-    imageName: 'Mp7',
+    imageName: 'MP7',
     hasModel: true,
-    modelFov: 0.8,
+    modelFov: 4,
     weaponType: 'submachine-guns',
     unlockLevel: 0
   },
@@ -97,7 +102,7 @@ export const weapons: Record<string, WeaponConfig> = {
     name: 'UMP-45',
     imageName: 'UMP45',
     hasModel: true,
-    modelFov: 0.4,
+    modelFov: 4,
     weaponType: 'submachine-guns',
     unlockLevel: 0
   },
@@ -105,7 +110,7 @@ export const weapons: Record<string, WeaponConfig> = {
     name: 'PP-2000',
     imageName: 'PP2000',
     hasModel: true,
-    modelFov: 3,
+    modelFov: 3.5,
     weaponType: 'submachine-guns',
     unlockLevel: 13
   },
@@ -113,13 +118,15 @@ export const weapons: Record<string, WeaponConfig> = {
     name: 'Kriss Vector',
     imageName: 'KrissVector',
     hasModel: true,
-    modelFov: 0.8,
+    modelFov: 4,
     weaponType: 'submachine-guns',
     unlockLevel: 35
   },
   MP5: {
     name: 'MP5',
     imageName: 'MP5',
+    hasModel: true,
+    modelFov: 4,
     weaponType: 'submachine-guns',
     unlockLevel: 43
   },
@@ -143,7 +150,7 @@ export const weapons: Record<string, WeaponConfig> = {
     name: 'MK-14 EBR',
     imageName: 'MK14',
     hasModel: true,
-    modelFov: 5,
+    modelFov: 4,
     weaponType: 'marksman-rifles',
     unlockLevel: 50
   },
@@ -151,7 +158,7 @@ export const weapons: Record<string, WeaponConfig> = {
     name: 'Honey Badger',
     imageName: 'HoneyBadger',
     hasModel: true,
-    modelFov: 1,
+    modelFov: 3.5,
     weaponType: 'personal-defence',
     unlockLevel: 40
   },
@@ -159,7 +166,7 @@ export const weapons: Record<string, WeaponConfig> = {
     name: 'AS VAL',
     imageName: 'ASVAL',
     hasModel: true,
-    modelFov: 0.2,
+    modelFov: 3.5,
     weaponType: 'carbines',
     unlockLevel: 40
   },
@@ -167,7 +174,7 @@ export const weapons: Record<string, WeaponConfig> = {
     name: 'L86A1',
     imageName: 'L86A1',
     hasModel: true,
-    modelFov: 0.45,
+    modelFov: 6,
     weaponType: 'light-support-guns',
     unlockLevel: 0
   },
@@ -175,7 +182,7 @@ export const weapons: Record<string, WeaponConfig> = {
     name: 'M249',
     imageName: 'M249',
     hasModel: true,
-    modelFov: 2,
+    modelFov: 6,
     weaponType: 'light-support-guns',
     unlockLevel: 0
   },
@@ -183,13 +190,15 @@ export const weapons: Record<string, WeaponConfig> = {
     name: 'SSG 69',
     imageName: 'SSG69',
     hasModel: true,
-    modelFov: 0.4,
+    modelFov: 6,
     weaponType: 'sniper-rifles',
     unlockLevel: 0
   },
   SV98: {
     name: 'SV-98',
     imageName: 'SV98',
+    hasModel: true,
+    modelFov: 6,
     weaponType: 'sniper-rifles',
     unlockLevel: 8
   },
@@ -197,31 +206,39 @@ export const weapons: Record<string, WeaponConfig> = {
     name: 'L96',
     imageName: 'L96',
     hasModel: true,
-    modelFov: 0.4,
+    modelFov: 6,
     weaponType: 'sniper-rifles',
     unlockLevel: 27
   },
   M200: {
     name: 'M200',
     imageName: 'M200',
+    hasModel: true,
+    modelFov: 6,
     weaponType: 'sniper-rifles',
     unlockLevel: 32
   },
   M9: {
     name: 'M9',
     imageName: 'M9',
+    hasModel: true,
+    modelFov: 2.5,
     unlockLevel: 0,
     weaponType: 'pistols'
   },
   MP443: {
     name: 'MP443',
     imageName: 'M9',
+    hasModel: true,
+    modelFov: 2.5,
     unlockLevel: 0,
     weaponType: 'pistols'
   },
   USP: {
     name: 'USP',
     imageName: 'USP',
+    hasModel: true,
+    modelFov: 2.5,
     unlockLevel: 7,
     weaponType: 'pistols'
   },
@@ -229,19 +246,23 @@ export const weapons: Record<string, WeaponConfig> = {
     name: 'UNICA',
     imageName: 'UNICA',
     hasModel: true,
-    modelFov: 1,
+    modelFov: 2.5,
     unlockLevel: 12,
     weaponType: 'pistols'
   },
   GLOCK18: {
     name: 'GLOCK 18',
     imageName: 'GLOCK18',
+    hasModel: true,
+    modelFov: 2.5,
     unlockLevel: 13,
     weaponType: 'pistols'
   },
   'DESERT-EAGLE': {
     name: 'Desert Eagle',
     imageName: 'DESERT-EAGLE',
+    hasModel: true,
+    modelFov: 2.5,
     unlockLevel: 60,
     weaponType: 'pistols'
   },
@@ -278,7 +299,7 @@ export const classes: Record<string, ClassConfig> = {
     demoWeapon: 'M4A1',
     weapons: {
       'automatic-rifles': ['M4A1', 'AK74', 'Scar-H', 'AK15', 'ACR', 'AUGA3', 'FAL', 'G36C', 'FAMAS'],
-      'submachine-guns': ['Mp7', 'UMP45', 'PP2000', 'KrissVector', 'MP5'],
+      'submachine-guns': ['MP7', 'UMP45', 'PP2000', 'KrissVector', 'MP5'],
       pistols: ['M9', 'MP443', 'USP', 'UNICA', 'GLOCK18', 'DESERT-EAGLE']
     }
   },
@@ -290,7 +311,7 @@ export const classes: Record<string, ClassConfig> = {
     weapons: {
       'personal-defence': ['HoneyBadger'],
       carbines: ['ASVAL'],
-      'submachine-guns': ['Mp7', 'UMP45', 'PP2000', 'KrissVector', 'MP5'],
+      'submachine-guns': ['MP7', 'UMP45', 'PP2000', 'KrissVector', 'MP5'],
       'automatic-rifles': ['M4A1', 'AK74', 'Scar-H', 'AK15', 'ACR', 'AUGA3', 'FAL', 'G36C', 'FAMAS'],
       pistols: ['M9', 'MP443', 'USP', 'UNICA', 'GLOCK18', 'DESERT-EAGLE']
     }
@@ -301,7 +322,7 @@ export const classes: Record<string, ClassConfig> = {
     imageName: 'engineer',
     demoWeapon: 'UMP45',
     weapons: {
-      'submachine-guns': ['Mp7', 'UMP45', 'PP2000', 'KrissVector', 'MP5'],
+      'submachine-guns': ['MP7', 'UMP45', 'PP2000', 'KrissVector', 'MP5'],
       'automatic-rifles': ['M4A1', 'AK74', 'Scar-H', 'AK15', 'ACR', 'AUGA3', 'FAL', 'G36C', 'FAMAS'],
       'marksman-rifles': ['MK20', 'M110', 'MK14'],
       'personal-defence': ['HoneyBadger'],

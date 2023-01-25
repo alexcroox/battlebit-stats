@@ -37,12 +37,12 @@ onMounted(async () => {
 
   // Set the camera back from the model and lower the scene distance as our models are up close
   const camera = new THREE.PerspectiveCamera(35, containerWidth / containerHeight, 1, 500)
-  camera.position.y = 30
-  camera.position.x = 10
+  camera.position.y = 10
+  camera.position.x = 30
   camera.position.z = 10
 
   // Our game models are exported on the wrong axis, let's flip
-  camera.up = new THREE.Vector3(0, 0, 1)
+  camera.up = new THREE.Vector3(0, 1, 0)
   camera.lookAt(new THREE.Vector3(0, 0, 0))
 
   const scene = new THREE.Scene()
@@ -50,7 +50,7 @@ onMounted(async () => {
 
   // Add spotlight pointing at the model
   const light = new THREE.SpotLight(0xf9fafb, 0.6)
-  light.position.set(10, 20, 50)
+  light.position.set(50, 20, 10)
   scene.add(light)
 
   // Make scene background transparent
@@ -84,14 +84,19 @@ onMounted(async () => {
         objectStatus.hasError = false
 
         fov = props.objectModel.fov
-
         object = newObject
+
+        // Calculate the center of the actual model, rather than using the object's geometric center
+        const boxCenter = new THREE.Box3().setFromObject(object).getCenter(new THREE.Vector3())
+        boxCenter.multiplyScalar(-1)
 
         object.traverse(function (child) {
           if (child.isMesh) {
             child.material.map = texture
 
+            // Apply our model center offset
             child.geometry.computeVertexNormals()
+            child.geometry.translate(boxCenter.x, boxCenter.y, boxCenter.z)
           }
         })
 
@@ -248,7 +253,7 @@ onMounted(async () => {
   function render() {
     // Auto rotate our model until the user starts interacting with it
     if (object && !isAutoRotationLocked) {
-      object.rotation.z += 0.01
+      object.rotation.y += 0.01
     }
 
     renderer.render(scene, camera)
