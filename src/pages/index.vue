@@ -106,16 +106,15 @@ const playTestTimings = {
         on discord if you have a correction
       </p>
 
-      <ul class="ml-4 mt-4 list-disc font-normal">
-        <li><span>Azagor map</span> is missing as no raw map file available</li>
-        <li><span>Namak map</span> is missing as no raw map file available</li>
+      <ul class="mt-4 ml-4 list-disc font-normal">
+        <li><span>Basra map</span> is missing as no raw map file available</li>
+        <li><span>Frugis map</span> is missing as no raw map file available</li>
         <li><span>Oil Dunes map</span> is missing as no raw map file available</li>
+        <li><span>Namak map</span> is missing as no raw map file available</li>
+        <li><span>River map</span> is missing as no raw map file available</li>
         <li><span>Wakistan map</span> file not as high res as others</li>
         <li><span>Hot Land map</span> file not as high res as others</li>
-        <li><span>AK15, FAL</span> model missing</li>
-        <li><span>M200, SV98</span> sniper models missing</li>
-        <li><span>M110</span> model upside down</li>
-        <li><span>M9, Glock 18, MP443, USP, Desert Eagle</span> pistol models missing</li>
+        <li>ACR, UNICA, M249, and SV-98 models are blacked out</li>
       </ul>
     </div>
   </div>

@@ -69,6 +69,21 @@ export const maps: Record<string, MapConfig> = {
     bgColor: '#86542D',
     name: 'Hot Land',
     description: 'Awaiting description'
+  },
+  isle: {
+    bgColor: '#7b8c91',
+    name: 'Isle',
+    description: 'Awaiting description'
+  },
+  azagor: {
+    bgColor: '#7e5a35',
+    name: 'Azagor',
+    description: 'Awaiting description'
+  },
+  lonovo: {
+    bgColor: '#4c4e44',
+    name: 'Lonovo',
+    description: 'Awaiting description'
   }
 }
 
