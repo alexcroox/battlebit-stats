@@ -107,11 +107,10 @@ const playTestTimings = {
       </p>
 
       <ul class="mt-4 ml-4 list-disc font-normal">
-        <li><span>Basra, Frugis, Oil Dunes, Namak, and River maps</span> are missing as no raw map file available</li>
         <li><span>Wakistan map</span> file not as high res as others</li>
         <li><span>Hot Land map</span> file not as high res as others</li>
         <li>ACR, UNICA, M249, and SV-98 models are blacked out</li>
-        <li>MP5 model has funny magazine</li>
+        <li>MP5 model has an extraneous magazine in its model</li>
       </ul>
     </div>
   </div>

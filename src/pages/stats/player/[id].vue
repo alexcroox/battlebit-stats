@@ -115,7 +115,8 @@ const topVehiclesListData = topVehicles.map((vehicle) => ({
 
 const xp = {
   totalForRank: 20000,
-  current: 12254
+  current: 12254,
+  prestige: 1
 }
 </script>
 
@@ -154,9 +155,10 @@ const xp = {
           </div>
 
           <div>
-            <div class="relative h-20 w-20 rounded-full border-4 border-gray-400 md:h-24 md:w-24">
-              <span class="position-center rank-text absolute text-3xl font-bold">1</span>
-            </div>
+            <img
+              :src="`/images/ranks/prestige-${xp.prestige}.png`"
+              class="pointer-events-none h-20 w-20 md:h-24 md:w-24"
+            />
 
             <p class="mt-2 text-xl text-gray-400">{{ t('prestige') }}</p>
           </div>
