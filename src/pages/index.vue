@@ -99,11 +99,10 @@ const playTestTimings = {
       <h2 class="relative z-20 text-2xl font-medium">{{ t('knownIssues') }}</h2>
       <p class="text-gray-400">{{ t('dataMinedSources') }}</p>
       <p class="text-gray-400">
-        Please contact
-        <a href="https://discordapp.com/users/Titan#7652" target="_blank" class="underline hover:text-yellow-100">
-          <span>Titan#7652</span>
+        This website is open source so if you have corrections or new data please
+        <a href="https://github.com/alexcroox/battlebit-stats/blob/main/README.md" target="_blank" class="underline hover:text-yellow-100">
+          <span>checkout our GitHub</span>
         </a>
-        on discord if you have a correction
       </p>
 
       <ul class="mt-4 ml-4 list-disc font-normal">
