@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { faDiscord, faPatreon, faTwitter } from '@fortawesome/free-brands-svg-icons'
+import { faDiscord, faGithub, faPatreon, faTwitter } from '@fortawesome/free-brands-svg-icons'
 
 const { t, availableLocales, locale } = useI18n()
 
@@ -12,9 +12,20 @@ const toggleLocales = () => {
 
 <template>
   <nav
-    class="container-padding-x flex w-full items-center justify-between border-t border-gray-700 bg-gray-800 py-2 text-sm"
+    class="flex items-center justify-between w-full py-2 text-sm bg-gray-800 border-t border-gray-700 container-padding-x"
   >
     <div class="flex items-stretch space-x-6 lg:space-x-12">
+      <a
+        href="https://github.com/alexcroox/battlebit-stats/blob/main/README.md"
+        target="_blank"
+        title="View GitHub repository"
+        rel="noopener noreferrer"
+        class="flex items-center space-x-2 hover:text-yellow-100"
+      >
+        <FontAwesomeIcon :icon="faGithub" />
+        <span class="hidden lg:block">{{ t('openSource') }}</span>
+      </a>
+
       <a
         href="https://discord.com/invite/battlebit"
         target="_blank"
@@ -56,7 +67,7 @@ const toggleLocales = () => {
           <span>Titan#7652</span>
         </a>
       </span>
-      <span class="ml-1 hidden md:inline-block">{{ t('siteNotAffiliatedWith') }}</span>
+      <span class="hidden ml-1 xl:inline-block">{{ t('siteNotAffiliatedWith') }}</span>
     </p>
   </nav>
 </template>

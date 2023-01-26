@@ -5,21 +5,21 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <nav class="flex items-center justify-between bg-gray-800 px-2 py-2 text-white sm:px-4">
+  <nav class="flex items-center justify-between px-2 py-2 text-white bg-gray-800 sm:px-4">
     <router-link
       to="/"
       :title="t('home')"
-      class="hidden items-center text-xl font-extrabold uppercase tracking-wide text-yellow-50 sm:flex"
+      class="items-center hidden text-xl font-extrabold tracking-wide uppercase text-yellow-50 sm:flex"
     >
       <img src="/logo-white.png" class="mr-2 h-[20px]" />
       {{ t('battleBitStats') }}
     </router-link>
 
-    <div class="flex flex-1 items-center space-x-8 sm:flex-initial">
-      <div class="flex w-full justify-between sm:w-auto sm:max-w-none sm:space-x-4 md:space-x-8">
+    <div class="flex items-center flex-1 space-x-8 sm:flex-initial">
+      <div class="flex justify-between w-full sm:w-auto sm:max-w-none sm:space-x-4 md:space-x-8">
         <NavItem to="/" :label="t('home')" />
 
-        <NavItem to="/maps/multu-islands" :exact-path="false" :label="t('maps')" />
+        <NavItem to="/maps/isle" :exact-path="false" :label="t('maps')" />
 
         <NavItem to="/weapons/assault/M4A1" :label="t('weapons')" />
 

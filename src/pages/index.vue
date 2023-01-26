@@ -11,20 +11,11 @@ dayjs.extend(relativeTime)
 dayjs.extend(utc)
 
 const { t } = useI18n()
-
-const playTestTimings = {
-  start: dayjs.utc('2022-04-08 15:00:00'),
-  end: dayjs.utc('2022-04-07 15:00:00')
-}
-
-// const allWeapons = $computed(() => {
-//   return Object.keys(weapons).map((weaponKey) => weapons[weaponKey])
-// })
 </script>
 
 <template>
-  <div class="container-padding-x pb-8">
-    <h1 class="mt-2 flex items-center text-xl font-extrabold uppercase tracking-wide text-yellow-50 sm:hidden">
+  <div class="pb-8 container-padding-x">
+    <h1 class="flex items-center mt-2 text-xl font-extrabold tracking-wide uppercase text-yellow-50 sm:hidden">
       <img src="/logo-white.png" class="mr-2 h-[20px]" />
       {{ t('battleBitStats') }}
     </h1>
@@ -33,16 +24,16 @@ const playTestTimings = {
       <p class="text-gray-400">{{ t('siteNotAffiliatedWith') }}</p>
     </div>
 
-    <div class="mt-12">
+    <div class="mt-8">
       <h2 class="relative z-20 text-2xl font-medium">{{ t('interactiveMaps') }}</h2>
       <p class="text-gray-400">{{ t('zoomAndPan') }}</p>
 
-      <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
+      <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
         <router-link
           v-for="[mapSlug, mapConfig] of Object.entries(maps)"
           :key="mapSlug"
           :to="`/maps/${mapSlug}`"
-          class="group flex items-center rounded border-2 border-transparent bg-gray-700 px-2 py-2 transition-all hover:border-yellow-100"
+          class="flex items-center px-2 py-2 transition-all bg-gray-700 border-2 border-transparent rounded group hover:border-yellow-100"
         >
           <img :src="`https://assets.battlebitstats.com/maps/${mapSlug}/thumbnail.jpg`" class="h-20 rounded" />
 
@@ -63,7 +54,7 @@ const playTestTimings = {
       <p class="text-gray-400">{{ t('exploreCurrentWeapons') }}</p>
     </div>
 
-    <!-- <div class="mt-4 flex items-center space-x-2">
+    <!-- <div class="flex items-center mt-4 space-x-2">
       <img
         v-for="weapon in allWeapons"
         :key="weapon.name"
@@ -72,7 +63,7 @@ const playTestTimings = {
       />
     </div> -->
 
-    <div class="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:flex">
+    <div class="grid grid-cols-2 gap-4 mt-4 sm:grid-cols-3 md:grid-cols-4 xl:flex">
       <router-link
         v-for="[soldierClass, classConfig] of Object.entries(classes)"
         :key="soldierClass"
@@ -89,7 +80,7 @@ const playTestTimings = {
 
     <div class="mt-12">
       <h2 class="relative z-20 text-2xl font-medium">{{ t('playerStats') }}</h2>
-      <div class="mt-4 inline-flex items-center space-x-4 rounded bg-gray-800 px-4 py-2 sm:space-x-2">
+      <div class="inline-flex items-center px-4 py-2 mt-4 space-x-4 bg-gray-800 rounded sm:space-x-2">
         <FontAwesomeIcon :icon="faInfoCircle" />
         <span>{{ t('comingSoonIfStats') }}</span>
       </div>
@@ -100,12 +91,16 @@ const playTestTimings = {
       <p class="text-gray-400">{{ t('dataMinedSources') }}</p>
       <p class="text-gray-400">
         This website is open source so if you have corrections or new data please
-        <a href="https://github.com/alexcroox/battlebit-stats/blob/main/README.md" target="_blank" class="underline hover:text-yellow-100">
+        <a
+          href="https://github.com/alexcroox/battlebit-stats/blob/main/README.md"
+          target="_blank"
+          class="underline hover:text-yellow-100"
+        >
           <span>checkout our GitHub</span>
         </a>
       </p>
 
-      <ul class="mt-4 ml-4 list-disc font-normal">
+      <ul class="mt-4 ml-4 font-normal list-disc">
         <li><span>Wakistan map</span> file not as high res as others</li>
         <li><span>Hot Land map</span> file not as high res as others</li>
         <li>ACR, UNICA, M249, and SV-98 models are blacked out</li>

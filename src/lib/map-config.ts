@@ -17,7 +17,7 @@ export const maps: Record<string, MapConfig> = {
     description: 'Awaiting description'
   },
   valley: {
-    bgColor: '#000',
+    bgColor: '#715d3a',
     name: 'Valley',
     description: 'Awaiting description'
   },
@@ -61,12 +61,12 @@ export const maps: Record<string, MapConfig> = {
     description: 'Awaiting description'
   },
   eduardovo: {
-    bgColor: '#3B4633',
+    bgColor: '#565948',
     name: 'Eduardovo',
     description: 'Awaiting description'
   },
   'dusty-dew': {
-    bgColor: '#3F3023',
+    bgColor: '#48321f',
     name: 'Dusty Dew',
     description: 'Awaiting description'
   },
@@ -91,7 +91,7 @@ export const maps: Record<string, MapConfig> = {
     description: 'Awaiting description'
   },
   'multu-islands': {
-    bgColor: '#535264',
+    bgColor: '#38312a',
     name: 'Multu Islands',
     description: 'Awaiting description'
   },
