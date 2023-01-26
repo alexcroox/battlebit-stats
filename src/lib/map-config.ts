@@ -11,6 +11,11 @@ export const maps: Record<string, MapConfig> = {
     name: 'Isle',
     description: 'Awaiting description'
   },
+  basra: {
+    bgColor: '#7292a6',
+    name: 'Basra',
+    description: 'Awaiting description'
+  },
   valley: {
     bgColor: '#000',
     name: 'Valley',
@@ -45,6 +50,11 @@ export const maps: Record<string, MapConfig> = {
     name: 'Lonovo',
     description: 'Awaiting description'
   },
+  'oil-dunes': {
+    bgColor: '#8b5930',
+    name: 'Oil Dunes',
+    description: 'Awaiting description'
+  },
   construction: {
     bgColor: '#653F3D',
     name: 'Construction',
@@ -60,9 +70,19 @@ export const maps: Record<string, MapConfig> = {
     name: 'Dusty Dew',
     description: 'Awaiting description'
   },
+  frugis: {
+    bgColor: '#58573b',
+    name: 'Frugis',
+    description: 'Awaiting description'
+  },
   azagor: {
     bgColor: '#83633C',
     name: 'Azagor',
+    description: 'Awaiting description'
+  },
+  river: {
+    bgColor: '#793922',
+    name: 'River',
     description: 'Awaiting description'
   },
   'wine-paradise': {
