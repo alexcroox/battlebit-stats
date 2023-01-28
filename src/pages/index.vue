@@ -101,8 +101,6 @@ const { t } = useI18n()
       </p>
 
       <ul class="mt-4 ml-4 font-normal list-disc">
-        <li><span>Wakistan map</span> file not as high res as others</li>
-        <li><span>Hot Land map</span> file not as high res as others</li>
         <li>ACR, UNICA, M249, and SV-98 models are blacked out</li>
         <li>MP5 model has an extraneous magazine in its model</li>
       </ul>
