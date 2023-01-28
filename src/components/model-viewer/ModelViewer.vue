@@ -50,7 +50,7 @@ onMounted(async () => {
 
   // Add spotlight pointing at the model
   const light = new THREE.SpotLight(0xf9fafb, 0.6)
-  light.position.set(50, 20, 10)
+  light.position.set(50, 50, 50)
   scene.add(light)
 
   // Make scene background transparent
