@@ -150,8 +150,8 @@ onMounted(async () => {
   }
 
   function rotateObject(deltaX: number, deltaY: number) {
-    object.rotation.z += deltaX / 100
-    object.rotation.y += deltaY / 100
+    object.rotation.y += deltaX / 100
+    object.rotation.z += deltaY / 100
   }
 
   // Mouse click or first touch
