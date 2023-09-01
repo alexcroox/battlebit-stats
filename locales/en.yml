@@ -31,10 +31,12 @@ openSource: Open source
 pageNotFound: Page not found
 pageWorkingInProgress: This page is a work in progress pending more data collection
 playerStats: Player stats
+playersOnline: 'players online'
 prestige: Prestige
 rank: Rank
 requestAccess: Request access
 returnToCombatArea: Return to the combat area
+serverCount: 'servers'
 siteCreatedBy: 'Site created by '
 siteNotAffiliatedWith: This site is not affiliated with OkiStudio
 starts: starts {startTime}
