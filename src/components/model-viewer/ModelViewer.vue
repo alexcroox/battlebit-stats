@@ -86,7 +86,6 @@ onMounted(async () => {
 
     objectStatus.isLoading = true
     objectStatus.downloadPercentage = 0
-    scene.children = []
     currentlyDisplayedFilePath = filePath
 
     objectLoader.load(
@@ -97,7 +96,12 @@ onMounted(async () => {
         if (currentlyDisplayedFilePath !== filePath) {
           return
         }
-        scene.children = []
+        for (let i = scene.children.length - 1; i >= 0; i--) {
+          const child = scene.children[i]
+          if (child.type === 'Mesh') {
+            scene.remove(child)
+          }
+        }
 
         objectStatus.isLoading = false
         objectStatus.hasError = false
