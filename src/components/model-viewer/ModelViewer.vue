@@ -16,6 +16,8 @@ const objectStatus = $ref({
   hasError: false
 })
 
+const showLoadingIndicator = $ref(false)
+
 onMounted(async () => {
   const container = document.getElementById('model-viewer')
 
@@ -76,8 +78,12 @@ onMounted(async () => {
     if (object) {
       scene.remove(object)
     }
+    const longLoadingIndicatorTimeout = setTimeout(() => {
+      showLoadingIndicator = true
+    }, 300)
 
     objectStatus.isLoading = true
+    objectStatus.downloadPercentage = 0
     scene.children = []
     currentlyDisplayedFilePath = filePath
 
@@ -93,6 +99,8 @@ onMounted(async () => {
 
         objectStatus.isLoading = false
         objectStatus.hasError = false
+        showLoadingIndicator = false
+        clearTimeout(longLoadingIndicatorTimeout)
 
         fov = props.objectModel.fov
         object = newObject
@@ -118,22 +126,21 @@ onMounted(async () => {
 
         adjustSceneSize()
       },
-      onModelDownloadProgress,
-      onModelDownloadError
+
+      // Update our loading progress for a loading indicator on poor networks
+      function (xhr: ProgressEvent) {
+        if (xhr.lengthComputable && currentlyDisplayedFilePath === filePath) {
+          const percentComplete = (xhr.loaded / xhr.total) * 100
+          objectStatus.downloadPercentage = Math.round(percentComplete)
+        }
+      },
+      function () {
+        objectStatus.isLoading = false
+        objectStatus.hasError = true
+        showLoadingIndicator = false
+        clearTimeout(longLoadingIndicatorTimeout)
+      }
     )
-  }
-
-  // Update our loading progress for a loading indicator on poor networks
-  function onModelDownloadProgress(xhr: ProgressEvent) {
-    if (xhr.lengthComputable) {
-      const percentComplete = (xhr.loaded / xhr.total) * 100
-      objectStatus.downloadPercentage = Math.round(percentComplete)
-    }
-  }
-
-  function onModelDownloadError() {
-    objectStatus.isLoading = false
-    objectStatus.hasError = true
   }
 
   // If our screen size or model has changed, update the camera and renderer
@@ -293,5 +300,21 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div id="model-viewer" />
+  <div class="absolute h-full w-full">
+    <!-- show progress-->
+    <div
+      v-if="objectStatus.isLoading && showLoadingIndicator"
+      class="absolute inset-0 flex items-center justify-center"
+    >
+      <!-- add fade in/out-->
+      <div class="flex flex-col items-center">
+        <div class="text-2xl font-bold text-white">Loading...</div>
+        <div class="text-xl font-bold text-white">{{ objectStatus.downloadPercentage }}%</div>
+        <div class="h-1 w-full bg-neutral-200 dark:bg-neutral-600">
+          <div class="h-1 bg-yellow-100" :style="{ width: objectStatus.downloadPercentage + '%' }"></div>
+        </div>
+      </div>
+    </div>
+    <div id="model-viewer" class="h-full w-full" />
+  </div>
 </template>
