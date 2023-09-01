@@ -70,6 +70,7 @@ onMounted(async () => {
   // Add a solid white texture to the model to brighten it under the lighting
   const texture = textureLoader.load(textureFilePath)
 
+  let currentlyDisplayedFilePath = ''
   function downloadModel(filePath: string) {
     // Remove our existing object from the scene before adding a new one
     if (object) {
@@ -77,10 +78,19 @@ onMounted(async () => {
     }
 
     objectStatus.isLoading = true
+    scene.children = []
+    currentlyDisplayedFilePath = filePath
 
     objectLoader.load(
       filePath,
       function (newObject: THREE.Object3D) {
+        // in case of concurrent loads, only add the model if it's the one we want
+        // and ignore the older requests
+        if (currentlyDisplayedFilePath !== filePath) {
+          return
+        }
+        scene.children = []
+
         objectStatus.isLoading = false
         objectStatus.hasError = false
 
