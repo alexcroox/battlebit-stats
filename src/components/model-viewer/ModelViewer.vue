@@ -55,6 +55,7 @@ onMounted(async () => {
 
   // Make scene background transparent
   const renderer = new THREE.WebGLRenderer({ alpha: true })
+  const clock = new THREE.Clock()
   renderer.shadowMap.enabled = true
   renderer.shadowMap.type = THREE.PCFSoftShadowMap
   renderer.setPixelRatio(window.devicePixelRatio)
@@ -173,6 +174,7 @@ onMounted(async () => {
 
     isUserMovingObject = true
     isAutoRotationLocked = true
+    clock.stop()
   }
 
   // Mouse or touch move after click/touch hold
@@ -220,6 +222,7 @@ onMounted(async () => {
 
     setTimeout(() => {
       isAutoRotationLocked = false
+      clock.start()
     }, 2000)
   }
 
@@ -253,7 +256,10 @@ onMounted(async () => {
   function render() {
     // Auto rotate our model until the user starts interacting with it
     if (object && !isAutoRotationLocked) {
-      object.rotation.y += 0.01
+      // adjust delta based on time since last frame
+      // to ensure smooth animation even if frame rate is not consistent
+      const delta = clock.getDelta()
+      object.rotation.y += 1 * delta
     }
 
     renderer.render(scene, camera)
