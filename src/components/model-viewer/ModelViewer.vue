@@ -2,6 +2,8 @@
 import * as THREE from 'three'
 import { OBJLoader } from '../../lib/obj-loader.js'
 
+const { t } = useI18n()
+
 const props = defineProps<{
   objectModel: {
     name: string
@@ -310,7 +312,7 @@ onMounted(async () => {
     >
       <!-- add fade in/out-->
       <div class="flex flex-col items-center">
-        <div class="text-2xl font-bold text-white">Loading...</div>
+        <div class="text-2xl font-bold text-white">{{ t('loading') }}</div>
         <div class="text-xl font-bold text-white">{{ objectStatus.downloadPercentage }}%</div>
         <div class="h-1 w-full bg-neutral-200 dark:bg-neutral-600">
           <div class="h-1 bg-yellow-100" :style="{ width: objectStatus.downloadPercentage + '%' }"></div>
