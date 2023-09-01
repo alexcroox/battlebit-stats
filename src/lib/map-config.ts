@@ -14,7 +14,8 @@ export const maps: Record<string, MapConfig> = {
   basra: {
     bgColor: '#7292a6',
     name: 'Basra',
-    description: 'An archipelago with a grounded container ship in the map's center. The northern island is a military base, while the southern island has a tourist resort and public airport'
+    description:
+      "An archipelago with a grounded container ship in the map's center. The northern island is a military base, while the southern island has a tourist resort and public airport"
   },
   valley: {
     bgColor: '#715d3a',
