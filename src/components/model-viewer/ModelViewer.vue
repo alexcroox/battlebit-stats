@@ -122,6 +122,8 @@ onMounted(async () => {
         objectStatus.isLoading = false
         objectStatus.downloadPercentage = 0
 
+        clock.stop()
+        clock.start()
         scene.add(object)
 
         adjustSceneSize()
