@@ -4,7 +4,10 @@ import { faServer, faUserFriends } from '@fortawesome/free-solid-svg-icons'
 import type { PopulationStats } from '~/lib/BattleBitApiWrapper'
 import { getCurrentPopulationStats } from '~/lib/BattleBitApiWrapper'
 
-const populationStats = $ref<PopulationStats>({})
+const populationStats = $ref<PopulationStats>({
+  playerCount: -1,
+  serverCount: -1
+})
 const refreshPopulationStats = async () => {
   try {
     const stats = await getCurrentPopulationStats()
@@ -56,20 +59,25 @@ const { t } = useI18n()
         </Button>
       </div>
       <div
-        v-if="populationStats.playerCount > 0"
         class="col-span-2 flex bg-gray-800 py-1 px-4 text-center sm:col-span-1 sm:col-start-2 sm:row-start-2 sm:justify-end lg:px-0"
       >
         <div class="flex-grow sm:flex-grow-0 sm:px-4">
           <div class="sm:inline-block">
             <FontAwesomeIcon :icon="faUserFriends" />
-            <span class="px-1 text-xl font-medium">{{ populationStats.playerCount }}</span>
+            <span v-if="populationStats.playerCount >= 0" class="px-1 text-xl font-medium">{{
+              populationStats.playerCount
+            }}</span>
+            <span v-else class="px-1 text-xl font-medium">...</span>
           </div>
           <span class="col-start-2 hidden px-1 text-gray-400 sm:inline-block">{{ t('playersOnline') }}</span>
         </div>
         <div class="grid flex-grow px-4 sm:inline-block sm:flex-grow-0 sm:px-0">
           <div class="sm:inline-block">
             <FontAwesomeIcon :icon="faServer" />
-            <span class="px-1 text-xl font-medium">{{ populationStats.serverCount }}</span>
+            <span v-if="populationStats.serverCount >= 0" class="px-1 text-xl font-medium">{{
+              populationStats.serverCount
+            }}</span>
+            <span v-else class="px-1 text-xl font-medium">...</span>
           </div>
           <span class="col-start-2 hidden px-1 text-gray-400 sm:inline-block">{{ t('serverCount') }}</span>
         </div>
