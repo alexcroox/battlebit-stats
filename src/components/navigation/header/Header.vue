@@ -23,7 +23,7 @@ const { t } = useI18n()
 </script>
 
 <template>
-  <nav class="flex auto-cols-min items-center justify-between bg-gray-800 px-2 py-2 text-white sm:px-4">
+  <nav class="flex flex-shrink-0 auto-cols-min items-center justify-between bg-gray-800 px-2 py-2 text-white sm:px-4">
     <div class="grid-auto-cols grid-cols-2-[repeat(2,auto)] grid flex-grow grid-rows-2">
       <router-link
         to="/"
@@ -57,19 +57,19 @@ const { t } = useI18n()
       </div>
       <div
         v-if="populationStats.playerCount > 0"
-        class="col-span-2 flex basis-full flex-wrap justify-center self-center bg-gray-800 px-4 py-2 text-center sm:col-span-1 sm:col-start-2 sm:row-start-2 sm:justify-end sm:text-left lg:px-0"
+        class="col-span-2 flex bg-gray-800 py-1 px-4 text-center sm:col-span-1 sm:col-start-2 sm:row-start-2 sm:justify-end lg:px-0"
       >
-        <div class="grid flex-grow px-4 sm:inline-block sm:flex-grow-0 sm:px-4">
-          <div class="col-start-1 sm:inline-block">
+        <div class="flex-grow sm:flex-grow-0 sm:px-4">
+          <div class="sm:inline-block">
             <FontAwesomeIcon :icon="faUserFriends" />
-            <span class="px-1 text-xl font-medium text-yellow-50">{{ populationStats.playerCount }}</span>
+            <span class="px-1 text-xl font-medium">{{ populationStats.playerCount }}</span>
           </div>
           <span class="col-start-2 hidden px-1 text-gray-400 sm:inline-block">{{ t('playersOnline') }}</span>
         </div>
         <div class="grid flex-grow px-4 sm:inline-block sm:flex-grow-0 sm:px-0">
-          <div class="col-start-1 sm:inline-block">
+          <div class="sm:inline-block">
             <FontAwesomeIcon :icon="faServer" />
-            <span class="px-1 text-xl font-medium text-yellow-50">{{ populationStats.serverCount }}</span>
+            <span class="px-1 text-xl font-medium">{{ populationStats.serverCount }}</span>
           </div>
           <span class="col-start-2 hidden px-1 text-gray-400 sm:inline-block">{{ t('serverCount') }}</span>
         </div>
