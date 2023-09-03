@@ -20,7 +20,7 @@ const objectModel = $computed(() => ({
 </script>
 
 <template>
-  <div class="arsenal h-[calc(100vh-90px)] overflow-hidden">
+  <div class="arsenal h-[calc(100vh-129px)] overflow-hidden">
     <div class="arsenal-grid relative flex h-full w-full flex-col md:flex-row">
       <div
         class="scrollbar-vertical relative z-20 order-2 h-full w-full overflow-y-auto px-4 pb-8 md:order-1 md:max-w-[320px]"
