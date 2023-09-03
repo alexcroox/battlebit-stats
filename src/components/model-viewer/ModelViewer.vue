@@ -2,6 +2,8 @@
 import * as THREE from 'three'
 import { OBJLoader } from '../../lib/obj-loader.js'
 
+const { t } = useI18n()
+
 const props = defineProps<{
   objectModel: {
     name: string
@@ -15,6 +17,8 @@ const objectStatus = $ref({
   downloadPercentage: 0,
   hasError: false
 })
+
+const showLoadingIndicator = $ref(false)
 
 onMounted(async () => {
   const container = document.getElementById('model-viewer')
@@ -55,6 +59,7 @@ onMounted(async () => {
 
   // Make scene background transparent
   const renderer = new THREE.WebGLRenderer({ alpha: true })
+  const clock = new THREE.Clock()
   renderer.shadowMap.enabled = true
   renderer.shadowMap.type = THREE.PCFSoftShadowMap
   renderer.setPixelRatio(window.devicePixelRatio)
@@ -69,19 +74,39 @@ onMounted(async () => {
   // Add a solid white texture to the model to brighten it under the lighting
   const texture = textureLoader.load(textureFilePath)
 
+  let currentlyDisplayedFilePath = ''
   function downloadModel(filePath: string) {
     // Remove our existing object from the scene before adding a new one
     if (object) {
       scene.remove(object)
     }
+    const longLoadingIndicatorTimeout = setTimeout(() => {
+      showLoadingIndicator = true
+    }, 300)
 
     objectStatus.isLoading = true
+    objectStatus.downloadPercentage = 0
+    currentlyDisplayedFilePath = filePath
 
     objectLoader.load(
       filePath,
       function (newObject: THREE.Object3D) {
+        // in case of concurrent loads, only add the model if it's the one we want
+        // and ignore the older requests
+        if (currentlyDisplayedFilePath !== filePath) {
+          return
+        }
+        for (let i = scene.children.length - 1; i >= 0; i--) {
+          const child = scene.children[i]
+          if (child.type === 'Mesh') {
+            scene.remove(child)
+          }
+        }
+
         objectStatus.isLoading = false
         objectStatus.hasError = false
+        showLoadingIndicator = false
+        clearTimeout(longLoadingIndicatorTimeout)
 
         fov = props.objectModel.fov
         object = newObject
@@ -103,26 +128,27 @@ onMounted(async () => {
         objectStatus.isLoading = false
         objectStatus.downloadPercentage = 0
 
+        clock.stop()
+        clock.start()
         scene.add(object)
 
         adjustSceneSize()
       },
-      onModelDownloadProgress,
-      onModelDownloadError
+
+      // Update our loading progress for a loading indicator on poor networks
+      function (xhr: ProgressEvent) {
+        if (xhr.lengthComputable && currentlyDisplayedFilePath === filePath) {
+          const percentComplete = (xhr.loaded / xhr.total) * 100
+          objectStatus.downloadPercentage = Math.round(percentComplete)
+        }
+      },
+      function () {
+        objectStatus.isLoading = false
+        objectStatus.hasError = true
+        showLoadingIndicator = false
+        clearTimeout(longLoadingIndicatorTimeout)
+      }
     )
-  }
-
-  // Update our loading progress for a loading indicator on poor networks
-  function onModelDownloadProgress(xhr: ProgressEvent) {
-    if (xhr.lengthComputable) {
-      const percentComplete = (xhr.loaded / xhr.total) * 100
-      objectStatus.downloadPercentage = Math.round(percentComplete)
-    }
-  }
-
-  function onModelDownloadError() {
-    objectStatus.isLoading = false
-    objectStatus.hasError = true
   }
 
   // If our screen size or model has changed, update the camera and renderer
@@ -173,6 +199,7 @@ onMounted(async () => {
 
     isUserMovingObject = true
     isAutoRotationLocked = true
+    clock.stop()
   }
 
   // Mouse or touch move after click/touch hold
@@ -220,6 +247,7 @@ onMounted(async () => {
 
     setTimeout(() => {
       isAutoRotationLocked = false
+      clock.start()
     }, 2000)
   }
 
@@ -253,7 +281,10 @@ onMounted(async () => {
   function render() {
     // Auto rotate our model until the user starts interacting with it
     if (object && !isAutoRotationLocked) {
-      object.rotation.y += 0.01
+      // adjust delta based on time since last frame
+      // to ensure smooth animation even if frame rate is not consistent
+      const delta = clock.getDelta()
+      object.rotation.y += 1 * delta
     }
 
     renderer.render(scene, camera)
@@ -277,5 +308,21 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div id="model-viewer" />
+  <div class="absolute h-full w-full">
+    <!-- show progress-->
+    <div
+      v-if="objectStatus.isLoading && showLoadingIndicator"
+      class="absolute inset-0 flex items-center justify-center"
+    >
+      <!-- add fade in/out-->
+      <div class="flex flex-col items-center">
+        <div class="text-2xl font-bold text-white">{{ t('loading') }}</div>
+        <div class="text-xl font-bold text-white">{{ objectStatus.downloadPercentage }}%</div>
+        <div class="h-1 w-full bg-neutral-200 dark:bg-neutral-600">
+          <div class="h-1 bg-yellow-100" :style="{ width: objectStatus.downloadPercentage + '%' }"></div>
+        </div>
+      </div>
+    </div>
+    <div id="model-viewer" class="h-full w-full" />
+  </div>
 </template>
