@@ -1,12 +1,29 @@
-.DS_Store
-.vite-ssg-dist
-.vite-ssg-temp
-*.local
+# Nuxt dev/build outputs
+.output
+.data
+.nuxt
+.nitro
+.cache
 dist
-dist-ssr
+
+# Node dependencies
 node_modules
-.idea/
+
+# Logs
+logs
 *.log
+
+# Misc
+.DS_Store
+.fleet
+.idea
+
+# Local env files
+.env
+.env.*
+!.env.example
+
+# BBStats specific
 map-tiler/maps/*/tiles/*
 map-tiler/models
 map-tiler/audio

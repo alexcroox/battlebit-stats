@@ -3,9 +3,8 @@
     "antfu.vite",
     "johnsoncodehk.volar",
     "lokalise.i18n-ally",
-    "antfu.iconify",
     "dbaeumer.vscode-eslint",
-    "voorjaar.windicss-intellisense",
-    "csstools.postcss"
+    "csstools.postcss",
+    "antfu.iconify"
   ]
 }

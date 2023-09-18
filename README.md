@@ -1,33 +1,63 @@
-<p align="left">
-  <a href="https://battlebitstats.com" target="_blank" rel="noopener noreferrer">
-    <img width="64" src="https://raw.githubusercontent.com/alexcroox/battlebit-stats/main/public/safari-pinned-tab.png" />
-  </a>
-</p>
+# Nuxt 3 Minimal Starter
 
-# BattleBit Stats
+Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
-https://battlebitstats.com
+## Setup
 
-Interactive maps, weapons and (hopefully in the future) player stats for the [BattleBit game](https://store.steampowered.com/app/671860/BattleBit_Remastered/)
+Make sure to install the dependencies:
 
-## Contributing
+```bash
+# npm
+npm install
 
-### Maps
+# pnpm
+pnpm install
 
-[Browse the current list of maps](https://github.com/alexcroox/battlebit-stats/blob/main/src/lib/map-config.ts)
+# yarn
+yarn install
+```
 
-If you find a high resolution version of a map (around 4000px wide) please submit a PR adding it to the [map-tiler/maps-raw](https://github.com/alexcroox/battlebit-stats/tree/main/map-tiler/maps-raw) folder 
+## Development Server
 
-If you are unfamiliar with git workflows then feel free to [submit it with a new Issue](https://github.com/alexcroox/battlebit-stats/issues/new) instead.
+Start the development server on `http://localhost:3000`:
 
-### Weapons
+```bash
+# npm
+npm run dev
 
-[Browse the current list of weapons](https://github.com/alexcroox/battlebit-stats/blob/main/src/lib/weapon-config.ts)
+# pnpm
+pnpm run dev
 
-For each weapon we need a static `.png` image and an `.obj` file in order to animate a 3D model. I had trouble finding 3D models for many weapons in the source so just a .png is also fine.
+# yarn
+yarn dev
+```
 
-### Vehicles
+## Production
 
-[Browse the current list of vehicles](https://github.com/alexcroox/battlebit-stats/blob/main/src/lib/vehicle-config.ts)
+Build the application for production:
 
-The main use for vehicles was in the future stats pages, there is no dedicated page like weapons. This can change if we find 3D models for each vehicle to display in an interesting way similar to weapons.
+```bash
+# npm
+npm run build
+
+# pnpm
+pnpm run build
+
+# yarn
+yarn build
+```
+
+Locally preview production build:
+
+```bash
+# npm
+npm run preview
+
+# pnpm
+pnpm run preview
+
+# yarn
+yarn preview
+```
+
+Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
