@@ -5,7 +5,7 @@
       :title="$t('home')"
       class="items-center hidden text-xl font-extrabold tracking-wide uppercase text-yellow-50 sm:flex"
     >
-      <img src="/images/brand/logo-white.png" class="mr-2 h-[20px]" />
+      <img src="~/assets/images/brand/logo-white.png" class="mr-2 h-[20px]" />
       {{ $t('battleBitStats') }}
     </NuxtLink>
 
@@ -13,9 +13,9 @@
       <div class="flex justify-between w-full sm:w-auto sm:max-w-none sm:space-x-4 md:space-x-8">
         <NavItem to="/" :label="$t('home')" />
 
-        <NavItem to="/maps/isle" :exact-path="false" :label="$t('maps')" />
+        <NavItem to="/maps" :label="$t('maps')" />
 
-        <NavItem to="/weapons/assault/M4A1" :label="$t('weapons')" />
+        <NavItem to="/weapons" :label="$t('weapons')" />
 
         <NavItem to="/stats/player/titan" :label="$t('playerStats')" class="hidden md:block" />
         <NavItem to="/stats/player/titan" :label="$t('stats')" class="md:hidden" />

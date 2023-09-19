@@ -1,31 +1,26 @@
 <script setup lang="ts">
 import 'leaflet/dist/leaflet.css'
-import { getMapConfig, MapConfig } from '~/lib/map-config'
+import { getMapConfig, MapConfig } from '~/lib/mapConfig'
 
-const props = defineProps<{ mapName: string }>()
-
-let currentMapConfig = ref<MapConfig>({
-  bgColor: '',
-  name: '',
-})
-
-watchEffect(() => {
-  currentMapConfig.value = getMapConfig(props.mapName)
-})
+const props = defineProps<{
+  mapBgColor: string
+  mapKey: string
+}>()
 
 let Leaflet
 let tileLayer: L.TileLayer
 let map: L.Map
 
 watch(
-  () => props.mapName,
-  newMapName => {
-    switchTileLayer(newMapName)
+  () => props.mapKey,
+  newMapKey => {
+    switchTileLayer(newMapKey)
   },
 )
 
-function switchTileLayer(mapName: string) {
-  tileLayer.setUrl(`https://assets.battlebitstats.com/maps/${mapName}/tiles/{z}/{x}/{y}.jpg`).redraw()
+function switchTileLayer(mapKey: string) {
+  tileLayer.setUrl(`https://assets.battlebitstats.com/maps/${mapKey}/tiles/{z}/{x}/{y}.jpg`).redraw()
+
   map.invalidateSize()
   map.setZoom(2)
 }
@@ -73,7 +68,7 @@ onMounted(async () => {
     })
     .addTo(map)
 
-  tileLayer = Leaflet.tileLayer(`https://assets.battlebitstats.com/maps/${props.mapName}/tiles/{z}/{x}/{y}.jpg`, {
+  tileLayer = Leaflet.tileLayer(`https://assets.battlebitstats.com/maps/${props.mapKey}/tiles/{z}/{x}/{y}.jpg`, {
     noWrap: true,
     tms: true,
     minZoom,
@@ -108,7 +103,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div id="map" :style="{ backgroundColor: currentMapConfig.bgColor }" />
+  <div id="map" :style="{ backgroundColor: props.mapBgColor }" />
 </template>
 
 <style lang="scss" scoped>

@@ -21,7 +21,7 @@
   "kdRatio": "K/D ratio",
   "knownIssues": "Known issues",
   "liveNow": "Live now, go go go!",
-  "loading": "Loading...",
+  "loadingModel": "Loading model...",
   "longestDistance": "{meters}m longest",
   "mapNotFound": "Map not found",
   "maps": "Maps",
@@ -54,5 +54,5 @@
   "totalXp": "{total} xp",
   "weapons": "Weapons",
   "wlRatio": "W/L ratio",
-  "zoomAndPan": "Zoom and pan your way through the upcoming battle fields"
+  "zoomAndPan": "Explore Battlebit's {total} battle fields"
 }

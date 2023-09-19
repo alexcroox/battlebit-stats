@@ -1,0 +1,39 @@
+name: deploy web
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy-web:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@master
+
+      - name: Setup node env
+        uses: actions/setup-node@v3.6.0
+        with:
+          node-version: 18
+
+      - name: Cache node_modules
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ubuntu-latest-node-v18-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/package-lock.json')) }}
+
+      - name: Install Dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          NITRO_PRESET: cloudflare
+
+      - name: Publish to Cloudflare
+        run: npx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CF_API_TOKEN }}

@@ -1,0 +1,9 @@
+name = "bbstats"
+main = "./.output/server/index.mjs"
+workers_dev = true
+compatibility_date = "2023-05-19"
+account_id = "051d97d60256c478cc7886f03f86908d"
+route = { pattern = "battlebitstats.com/*", zone_name = "battlebitstats.com" }
+
+[site]
+bucket = ".output/public"

@@ -20,11 +20,17 @@ body {
   }
 }
 
+div#__nuxt,
+#__layout,
+#app {
+  height: 100vh;
+}
+
 main {
-  background: #1F2A37;
-  background: -webkit-radial-gradient(center, #1F2A37, #111927);
-  background: -moz-radial-gradient(center, #1F2A37, #111927);
-  background: radial-gradient(ellipse at center, #1F2A37, #111927);
+  background: #1f2a37;
+  background: -webkit-radial-gradient(center, #1f2a37, #111927);
+  background: -moz-radial-gradient(center, #1f2a37, #111927);
+  background: radial-gradient(ellipse at center, #1f2a37, #111927);
 }
 
 body {
@@ -113,10 +119,12 @@ strong {
   height: 5px;
 }
 
-.scrollbar-vertical::-webkit-scrollbar-track, .scrollbar-horizontal::-webkit-scrollbar-track {
+.scrollbar-vertical::-webkit-scrollbar-track,
+.scrollbar-horizontal::-webkit-scrollbar-track {
   background-color: transparent;
 }
 
-.scrollbar-vertical::-webkit-scrollbar-thumb, .scrollbar-horizontal::-webkit-scrollbar-thumb {
+.scrollbar-vertical::-webkit-scrollbar-thumb,
+.scrollbar-horizontal::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.2);
 }

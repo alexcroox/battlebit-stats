@@ -10,9 +10,9 @@ import '~/assets/css/index.css'
 useHead({
   htmlAttrs: { lang: 'en' },
   link: [
-    { rel: 'icon', href: '/images/brand/favicon.png' },
-    { rel: 'apple-touch-icon', href: '/images/brand/pwa-192x192.png' },
-    { rel: 'mask-icon', href: '/images/brand/safari-pinned-tab.png', color: '#00aba9' },
+    { rel: 'icon', href: '~/assets/images/brand/favicon.png' },
+    { rel: 'apple-touch-icon', href: '~/assets/images/brand/pwa-192x192.png' },
+    { rel: 'mask-icon', href: '~/assets/images/brand/safari-pinned-tab.png', color: '#00aba9' },
   ],
   meta: {
     'msapplication-TileColor': '#00aba9',
@@ -24,6 +24,6 @@ useHead({
 useSeoMeta({
   title: 'BattleBit Stats',
   description: 'Stats, maps and information about the BattleBit Remastered game',
-  ogImage: '/images/brand/og.png',
+  ogImage: '~/assets/images/brand/og.png',
 })
 </script>

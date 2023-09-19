@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import * as THREE from 'three'
-import { OBJLoader } from '~/lib/obj-loader.js'
+import { OBJLoader } from '~/lib/objLoader.js'
 
 const props = defineProps<{
   objectModel: {
@@ -16,7 +16,7 @@ const objectStatus = ref({
   hasError: false,
 })
 
-const showLoadingIndicator = ref(false)
+let showLoadingIndicator = ref(false)
 
 onMounted(async () => {
   const container = document.getElementById('model-viewer')
@@ -27,7 +27,7 @@ onMounted(async () => {
 
   let object: THREE.Object3D
   const planeAspectRatio = 4 / 3
-  const textureFilePath = '/models/light.png'
+  const textureFilePath = 'https://asset.battlebitstats.com/weapons/light.png'
   let fov = 0.25
   let isUserMovingObject = false
   let isAutoRotationLocked = false
@@ -73,17 +73,18 @@ onMounted(async () => {
   const texture = textureLoader.load(textureFilePath)
 
   let currentlyDisplayedFilePath = ''
+
   function downloadModel(filePath: string) {
     // Remove our existing object from the scene before adding a new one
     if (object) {
       scene.remove(object)
     }
     const longLoadingIndicatorTimeout = setTimeout(() => {
-      showLoadingIndicator = true
+      showLoadingIndicator.value = true
     }, 300)
 
-    objectStatus.isLoading = true
-    objectStatus.downloadPercentage = 0
+    objectStatus.value.isLoading = true
+    objectStatus.value.downloadPercentage = 0
     currentlyDisplayedFilePath = filePath
 
     objectLoader.load(
@@ -94,6 +95,7 @@ onMounted(async () => {
         if (currentlyDisplayedFilePath !== filePath) {
           return
         }
+
         for (let i = scene.children.length - 1; i >= 0; i--) {
           const child = scene.children[i]
           if (child.type === 'Mesh') {
@@ -101,9 +103,12 @@ onMounted(async () => {
           }
         }
 
-        objectStatus.isLoading = false
-        objectStatus.hasError = false
-        showLoadingIndicator = false
+        objectStatus.value.isLoading = false
+        objectStatus.value.hasError = false
+        objectStatus.value.downloadPercentage = 0
+
+        showLoadingIndicator.value = false
+
         clearTimeout(longLoadingIndicatorTimeout)
 
         fov = props.objectModel.fov
@@ -123,9 +128,6 @@ onMounted(async () => {
           }
         })
 
-        objectStatus.isLoading = false
-        objectStatus.downloadPercentage = 0
-
         clock.stop()
         clock.start()
         scene.add(object)
@@ -137,13 +139,17 @@ onMounted(async () => {
       function (xhr: ProgressEvent) {
         if (xhr.lengthComputable && currentlyDisplayedFilePath === filePath) {
           const percentComplete = (xhr.loaded / xhr.total) * 100
-          objectStatus.downloadPercentage = Math.round(percentComplete)
+
+          objectStatus.value.downloadPercentage = Math.round(percentComplete)
         }
       },
+
       function () {
-        objectStatus.isLoading = false
-        objectStatus.hasError = true
-        showLoadingIndicator = false
+        objectStatus.value.isLoading = false
+        objectStatus.value.hasError = true
+
+        showLoadingIndicator.value = false
+
         clearTimeout(longLoadingIndicatorTimeout)
       },
     )
@@ -307,20 +313,22 @@ onMounted(async () => {
 
 <template>
   <div class="absolute w-full h-full">
-    <!-- show progress-->
     <div
       v-if="objectStatus.isLoading && showLoadingIndicator"
-      class="absolute inset-0 flex items-center justify-center"
+      class="absolute w-full position-center mt-44 md:mt-0"
     >
-      <!-- add fade in/out-->
-      <div class="flex flex-col items-center">
-        <div class="text-2xl font-bold text-white">{{ $t('loading') }}</div>
-        <div class="text-xl font-bold text-white">{{ objectStatus.downloadPercentage }}%</div>
-        <div class="w-full h-1 bg-neutral-200 dark:bg-neutral-600">
-          <div class="h-1 bg-yellow-100" :style="{ width: objectStatus.downloadPercentage + '%' }"></div>
-        </div>
+      <div class="text-center">
+        <div class="text-lg text-white">{{ $t('loadingModel') }}</div>
+      </div>
+
+      <div class="w-full h-1 max-w-sm mx-auto mt-3 bg-gray-900 rounded">
+        <div
+          class="h-1 bg-yellow-200 rounded"
+          :style="{ width: `${objectStatus.downloadPercentage || 10}%` }"
+        ></div>
       </div>
     </div>
+
     <div id="model-viewer" class="w-full h-full" />
   </div>
 </template>

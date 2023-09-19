@@ -1,18 +1,25 @@
 <script setup lang="ts">
-import { maps } from '~/lib/map-config'
-import { classes } from '~/lib/weapon-config'
+import { filename } from 'pathe/utils'
+import { maps } from '~/lib/mapConfig'
+import { classes } from '~/lib/weaponConfig'
+
+const numberOfMaps = Object.keys(maps).length
+
+const glob = import.meta.glob('/assets/images/classes/*.png', { eager: true })
+
+const classImages = Object.fromEntries(Object.entries(glob).map(([key, value]) => [filename(key), value.default]))
 </script>
 
 <template>
   <div class="pb-8 container-padding-x">
     <h1 class="flex items-center mt-2 text-xl font-extrabold tracking-wide uppercase text-yellow-50 sm:hidden">
-      <img src="/images/brand/logo-white.png" class="mr-2 h-[20px]" />
+      <img src="~/assets/images/brand/logo-white.png" class="mr-2 h-[20px]" />
       {{ $t('battleBitStats') }}
     </h1>
 
     <div class="mt-6">
       <h2 class="relative z-20 text-2xl font-medium">{{ $t('interactiveMaps') }}</h2>
-      <p class="text-gray-400">{{ $t('zoomAndPan') }}</p>
+      <p class="text-gray-400">{{ $t('zoomAndPan', { total: numberOfMaps }) }}</p>
 
       <div class="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
         <NuxtLink
@@ -44,7 +51,7 @@ import { classes } from '~/lib/weapon-config'
       <img
         v-for="weapon in allWeapons"
         :key="weapon.name"
-        :src="`/images/weapons/${weapon.weaponType}/${weapon.imageName}.png`"
+        :src="`~/assets/images/weapons/${weapon.weaponType}/${weapon.imageName}.png`"
         class="h-6 rounded opacity-50"
       />
     </div> -->
@@ -56,7 +63,7 @@ import { classes } from '~/lib/weapon-config'
         :to="`/weapons/${soldierClass}/${classes[soldierClass].demoWeapon}`"
         class="group flex flex-col items-center space-y-4 rounded border-2 border-transparent bg-gray-700 py-4 px-4 transition-all hover:border-yellow-100 sm:min-w-[180px]"
       >
-        <img :src="`/images/classes/${classConfig.imageName}.png`" class="h-20 rounded" />
+        <img :src="classImages[classConfig.imageName]" class="h-20 rounded" />
 
         <p class="text-xl font-medium group-hover:text-yellow-100">
           {{ classConfig.name }}

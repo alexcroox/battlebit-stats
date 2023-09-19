@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { classes, weapons } from '~/lib/weapon-config'
-import { vehicles } from '~/lib/vehicle-config'
+import { classes, weapons } from '~/lib/weaponConfig'
+import { vehicles } from '~/lib/vehicleConfig'
 
 const topWeapons = [
   {
@@ -32,7 +32,7 @@ const topWeapons = [
 const topWeaponsListData = topWeapons.map(weapon => ({
   key: weapon.key,
   name: weapons[weapon.key].name,
-  imagePath: `/images/weapons/${weapons[weapon.key].imageName}.png`,
+  imagePath: `~/assets/images/weapons/${weapons[weapon.key].imageName}.png`,
   kills: weapon.kills,
 }))
 
@@ -105,7 +105,7 @@ const topVehicles = [
 const topVehiclesListData = topVehicles.map(vehicle => ({
   key: vehicle.key,
   name: vehicles[vehicle.key].name,
-  imagePath: `/images/vehicles/${vehicles[vehicle.key].imageName}.png`,
+  imagePath: `~/assets/images/vehicles/${vehicles[vehicle.key].imageName}.png`,
   kills: vehicle.kills,
 }))
 
@@ -121,7 +121,7 @@ const xp = {
     <div class="relative z-10 flex-wrap justify-center px-4 py-8 md:flex md:space-x-16">
       <div
         class="bg-[auto_90%] bg-right-top bg-no-repeat md:bg-[auto_0%]"
-        :style="{ backgroundImage: 'url(/images/classes/medic-body.png)' }"
+        :style="{ backgroundImage: 'url(~/assets/images/classes/medic-body.png)' }"
       >
         <h1 class="text-5xl">
           <span>Titan</span>
@@ -142,7 +142,7 @@ const xp = {
           <div>
             <div
               class="relative h-20 w-20 rounded-full border-4 border-[#FACD10] bg-[auto_80%] bg-[center_top_5px] bg-no-repeat md:h-24 md:w-24"
-              :style="{ backgroundImage: `url(/images/ranks/10.png)` }"
+              :style="{ backgroundImage: `url(~/assets/images/ranks/10.png)` }"
             >
               <span class="absolute text-3xl font-bold position-center rank-text">10</span>
             </div>
@@ -152,7 +152,7 @@ const xp = {
 
           <div>
             <img
-              :src="`/images/ranks/prestige-${xp.prestige}.png`"
+              :src="`~/assets/images/ranks/prestige-${xp.prestige}.png`"
               class="w-20 h-20 pointer-events-none md:h-24 md:w-24"
             />
 
@@ -167,7 +167,7 @@ const xp = {
         </ProgressBar>
       </div>
 
-      <img src="/images/classes/medic-body.png" class="flex-shrink-0 hidden w-48 -mb-32 md:block" />
+      <img src="~/assets/images/classes/medic-body.png" class="flex-shrink-0 hidden w-48 -mb-32 md:block" />
 
       <div class="grid grid-cols-2 gap-8 mt-8 lg:mt-0">
         <StatCard
@@ -210,7 +210,10 @@ const xp = {
               class="flex items-center justify-between mb-4 space-x-12"
             >
               <span class="flex items-center">
-                <img :src="`/images/classes/${classes[classStats.key].imageName}-alt.png`" class="h-12 mr-4" />
+                <img
+                  :src="`~/assets/images/classes/${classes[classStats.key].imageName}-alt.png`"
+                  class="h-12 mr-4"
+                />
 
                 <span>
                   <span class="block text-lg">{{ classes[classStats.key].name }}</span>

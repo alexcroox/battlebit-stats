@@ -35,17 +35,6 @@
         <Icon name="fa6-brands:twitter" />
         <span class="hidden lg:block">{{ $t('followOnTwitter') }}</span>
       </a>
-
-      <a
-        href="https://www.patreon.com/battlebit/posts"
-        target="_blank"
-        title="Become a patron"
-        rel="noopener noreferrer"
-        class="flex items-center space-x-2 hover:text-yellow-100"
-      >
-        <Icon name="fa6-brands:patreon" />
-        <span class="hidden lg:block">{{ $t('becomeAPatron') }}</span>
-      </a>
     </div>
 
     <p class="text-xs text-gray-300">

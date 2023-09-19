@@ -7,12 +7,15 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "sync:maps": "aws s3 sync ./map-tiler/maps s3://assets.battlebitstats.com/maps --profile personal"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
     "@nuxtjs/eslint-config-typescript": "12.1.0",
     "@nuxtjs/i18n": "8.0.0-rc.4",
+    "@types/leaflet": "1.9.4",
+    "@types/three": "0.156.0",
     "@typescript-eslint/parser": "6.7.0",
     "autoprefixer": "10.4.15",
     "eslint": "8.49.0",
@@ -23,13 +26,13 @@
     "postcss": "8.4.29",
     "prettier": "3.0.3",
     "tailwindcss": "3.3.3",
-    "typescript": "5.2.2",
-    "@types/leaflet": "1.9.4",
-    "@types/three": "0.156.0"
+    "typescript": "5.2.2"
   },
   "dependencies": {
     "leaflet": "1.9.4",
+    "pathe": "1.1.1",
     "sass": "1.67.0",
-    "three": "0.156.1"
+    "three": "0.137.5",
+    "vue-dragscroll": "4.0.5"
   }
 }

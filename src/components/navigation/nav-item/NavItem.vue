@@ -14,14 +14,14 @@ const props = withDefaults(
   <NuxtLink
     :to="props.to"
     :title="props.label"
-    class="navigation-item rounded py-1 px-4 font-semibold hover:text-yellow-100"
+    class="px-4 py-1 font-semibold rounded navigation-item hover:text-yellow-100"
   >
     {{ props.label }}
   </NuxtLink>
 </template>
 
 <style lang="scss" scoped>
-.navigation-item.NuxtLink-active {
+.navigation-item.router-link-active {
   @apply bg-gray-600;
 }
 </style>
