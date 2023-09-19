@@ -1,18 +1,22 @@
 <script setup lang="ts">
-import { getMapConfig, maps } from '~/lib/map-config'
+import { getMapConfig, maps, MapConfig } from '~/lib/map-config'
 
 const props = defineProps<{ mapName: string }>()
 
-let currentMapConfig = ref({})
+let currentMapConfig = ref<MapConfig>({
+  name: '',
+  bgColor: '',
+})
+
 let hasMapError = ref(false)
 
 watchEffect(() => {
   try {
-    currentMapConfig = getMapConfig(props.mapName)
-    hasMapError = false
+    currentMapConfig.value = getMapConfig(props.mapName)
+    hasMapError.value = false
   } catch (e) {
     console.error(e)
-    hasMapError = true
+    hasMapError.value = true
   }
 })
 </script>
