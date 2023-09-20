@@ -5,5 +5,6 @@
   "i18n-ally.displayLanguage": "en",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
-  }
+  },
+  "i18n-ally.keystyle": "nested"
 }

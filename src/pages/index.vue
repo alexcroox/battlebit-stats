@@ -80,6 +80,30 @@ const classImages = Object.fromEntries(Object.entries(glob).map(([key, value]) =
     </div>
 
     <div class="mt-12">
+      <h2 class="relative text-2xl font-medium">{{ $t('otherResources') }}</h2>
+
+      <NuxtLink
+        to="https://battlebit.fandom.com/wiki/BattleBit_Wiki"
+        target="_blank"
+        rel="noopener"
+        class="flex items-center justify-between px-4 py-2 mt-4 space-x-6 transition-all bg-gray-700 border-2 border-transparent rounded hover:border-yellow-100 w-fit"
+      >
+        <span>Official Wiki</span>
+        <Icon name="fa-solid:external-link-alt" />
+      </NuxtLink>
+
+      <NuxtLink
+        to="https://1drv.ms/x/s!Asv3oZ5_zYmxczGsx71wEfnKlRU"
+        target="_blank"
+        rel="noopener"
+        class="flex items-center justify-between px-4 py-2 mt-4 space-x-6 transition-all bg-gray-700 border-2 border-transparent rounded hover:border-yellow-100 w-fit"
+      >
+        <span>Detailed weapon stats by @Ox1gen</span>
+        <Icon name="fa-solid:external-link-alt" />
+      </NuxtLink>
+    </div>
+
+    <div class="mt-12">
       <h2 class="relative z-20 text-2xl font-medium">{{ $t('knownIssues') }}</h2>
       <p class="text-gray-400">{{ $t('dataMinedSources') }}</p>
       <p class="text-gray-400">
