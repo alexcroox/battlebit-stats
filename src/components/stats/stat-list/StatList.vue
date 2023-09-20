@@ -16,26 +16,28 @@ const props = defineProps<{
       <h3 class="text-2xl">{{ title }}</h3>
     </div>
 
-    <ul class="px-6 mt-4">
-      <slot name="body">
-        <template v-if="listData && listData.length > 0">
-          <li v-for="(item, index) in listData" :key="item.key" class="flex items-center mb-5">
-            <span class="mr-8 text-3xl text-gray-500">{{ index + 1 }}</span>
+    <slot name="body">
+      <ul class="px-6 mt-4">
+        <slot name="list">
+          <template v-if="listData && listData.length > 0">
+            <li v-for="(item, index) in listData" :key="item.key" class="flex items-center mb-5">
+              <span class="mr-8 text-3xl text-gray-500">{{ index + 1 }}</span>
 
-            <span class="flex items-center flex-auto space-x-6">
-              <img :src="item.imagePath" class="h-12" />
+              <span class="flex items-center flex-auto space-x-6">
+                <img :src="item.imagePath" class="h-12" />
 
-              <span>
-                <span class="block">
-                  {{ item.name }}
+                <span>
+                  <span class="block">
+                    {{ item.name }}
+                  </span>
+
+                  <span>{{ $t('totalKills', { total: item.kills }) }}</span>
                 </span>
-
-                <span>{{ $t('totalKills', { total: item.kills }) }}</span>
               </span>
-            </span>
-          </li>
-        </template>
-      </slot>
-    </ul>
+            </li>
+          </template>
+        </slot>
+      </ul>
+    </slot>
   </div>
 </template>

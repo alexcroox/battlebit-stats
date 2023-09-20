@@ -17,8 +17,8 @@
 
         <NavItem to="/weapons" :label="$t('weapons')" />
 
-        <NavItem to="/stats/player/titan" :label="$t('playerStats')" class="hidden md:block" />
-        <NavItem to="/stats/player/titan" :label="$t('stats')" class="md:hidden" />
+        <NavItem to="/stats" :label="$t('playerStats')" class="hidden md:block" />
+        <NavItem to="/stats" :label="$t('stats')" class="md:hidden" />
       </div>
     </div>
   </nav>
