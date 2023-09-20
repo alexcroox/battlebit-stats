@@ -130,9 +130,9 @@ const xp = {
             href="https://steamcommunity.com/id/alexcroox/"
             target="_blank"
             rel="nofollow noopener"
-            class="block mt-2 text-base text-gray-400 group hover:text-yellow-100"
+            class="flex items-center mt-2 text-base text-gray-400 group hover:text-yellow-100"
           >
-            <Icon name="fa6-brands:steam" class="mr-1" />
+            <Icon name="fa6-brands:steam" class="mr-2" />
 
             <span class="group-hover:underline">{{ $t('addFriend') }}</span>
           </a>

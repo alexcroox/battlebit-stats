@@ -40,8 +40,8 @@
     <p class="text-xs text-gray-300">
       <span class="text-gray-50">
         {{ $t('siteCreatedBy') }}
-        <a href="https://discordapp.com/users/Titan#7652" target="_blank" class="underline hover:text-yellow-100">
-          <span>Titan#7652</span>
+        <a href="https://discordapp.com/users/alexcroox" target="_blank" class="underline hover:text-yellow-100">
+          <span>Titan</span>
         </a>
       </span>
       <span class="hidden ml-1 xl:inline-block">{{ $t('siteNotAffiliatedWith') }}</span>
