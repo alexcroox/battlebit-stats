@@ -83,7 +83,7 @@ const classImages = Object.fromEntries(
               <img :src="classImages[classConfig.imageName]" class="h-8 rounded" />
 
               <p class="mt-1 font-medium group-hover:text-yellow-100">
-                {{ currentClassConfig?.name }}
+                {{ classConfig.name }}
               </p>
             </NuxtLink>
           </div>
