@@ -1,6 +1,6 @@
 <p align="left">
   <a href="https://battlebitstats.com" target="_blank" rel="noopener noreferrer">
-    <img width="64" src="https://raw.githubusercontent.com/alexcroox/battlebit-stats/main/public/safari-pinned-tab.png" />
+    <img width="64" src="https://raw.githubusercontent.com/alexcroox/battlebit-stats/main/src/assets/images/brand/safari-pinned-tab.png" />
   </a>
 </p>
 
