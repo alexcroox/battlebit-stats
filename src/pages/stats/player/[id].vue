@@ -32,7 +32,7 @@ const topWeapons = [
 const topWeaponsListData = topWeapons.map(weapon => ({
   key: weapon.key,
   name: weapons[weapon.key].name,
-  imagePath: `~/assets/images/weapons/${weapons[weapon.key].imageName}.png`,
+  imagePath: `https://asset.battlebitstats.com/weapons/${weapons[weapon.key].imageName}.png`,
   kills: weapon.kills,
 }))
 
@@ -105,7 +105,7 @@ const topVehicles = [
 const topVehiclesListData = topVehicles.map(vehicle => ({
   key: vehicle.key,
   name: vehicles[vehicle.key].name,
-  imagePath: `~/assets/images/vehicles/${vehicles[vehicle.key].imageName}.png`,
+  imagePath: `https://asset.battlebitstats.com/vehicles/${vehicles[vehicle.key].imageName}.png`,
   kills: vehicle.kills,
 }))
 
@@ -121,7 +121,7 @@ const xp = {
     <div class="relative z-10 flex-wrap justify-center px-4 py-8 md:flex md:space-x-16">
       <div
         class="bg-[auto_90%] bg-right-top bg-no-repeat md:bg-[auto_0%]"
-        :style="{ backgroundImage: 'url(~/assets/images/classes/medic-body.png)' }"
+        :style="{ backgroundImage: 'url(https://asset.battlebitstats.com/classes/medic-body.png)' }"
       >
         <h1 class="text-5xl">
           <span>Titan</span>
@@ -211,7 +211,7 @@ const xp = {
             >
               <span class="flex items-center">
                 <img
-                  :src="`~/assets/images/classes/${classes[classStats.key].imageName}-alt.png`"
+                  :src="`https://asset.battlebitstats.com/classes/${classes[classStats.key].imageName}-alt.png`"
                   class="h-12 mr-4"
                 />
 
