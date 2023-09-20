@@ -1,7 +1,9 @@
 {
-  "i18n-ally.localesPaths": "locales",
+  "i18n-ally.localesPaths": "src/locales",
   "i18n-ally.sortKeys": true,
+  "i18n-ally.sourceLanguage": "en",
+  "i18n-ally.displayLanguage": "en",
   "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-  },
+    "source.fixAll.eslint": true
+  }
 }
