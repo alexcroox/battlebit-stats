@@ -152,7 +152,7 @@ const xp = {
 
           <div>
             <img
-              :src="`~/assets/images/ranks/prestige-${xp.prestige}.png`"
+              :src="`https://asset.battlebitstats.com/ranks/prestige-${xp.prestige}.png`"
               class="w-20 h-20 pointer-events-none md:h-24 md:w-24"
             />
 

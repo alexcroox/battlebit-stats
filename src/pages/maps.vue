@@ -33,7 +33,10 @@ watchEffect(() => {
 
 <template>
   <div class="flex flex-col h-full overflow-hidden">
-    <div vue-dragscroll class="flex items-center py-2 space-x-4 overflow-hidden container-padding-x">
+    <div
+      vue-dragscroll
+      class="flex items-center py-2 space-x-4 overflow-x-auto overflow-y-hidden container-padding-x"
+    >
       <NuxtLink
         v-for="[mapSlug, mapConfig] of Object.entries(maps)"
         :key="mapSlug"
