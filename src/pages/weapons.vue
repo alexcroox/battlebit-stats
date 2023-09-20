@@ -63,7 +63,7 @@ const weaponsUnlockedAtLevels = Object.keys(weapons)
 
     <div class="relative flex flex-col w-full h-full arsenal-grid md:flex-row">
       <div
-        class="scrollbar-vertical relative z-20 order-2 h-full w-full overflow-y-auto px-4 pb-8 md:order-1 md:max-w-[320px]"
+        class="scrollbar-vertical relative z-20 order-2 h-full w-full overflow-y-auto px-4 pb-28 md:order-1 md:max-w-[320px]"
       >
         <div
           v-if="currentClassConfig?.weapons"
