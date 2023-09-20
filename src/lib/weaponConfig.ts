@@ -14,7 +14,7 @@ export interface WeaponConfig {
   imageName: string
   hasModel?: boolean
   modelFov?: number
-  unlockLevel?: number
+  unlockLevel: number
 }
 
 export const weapons: Record<string, WeaponConfig> = {

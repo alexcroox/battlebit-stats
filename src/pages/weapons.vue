@@ -1,13 +1,15 @@
 <script setup lang="ts">
 import { filename } from 'pathe/utils'
-import { classes, weapons } from '~/lib/weaponConfig'
+import { classes, weapons, WeaponConfig } from '~/lib/weaponConfig'
 
 const route = useRoute()
 const router = useRouter()
 
-if (!route.params.classSlug || !route.params.weaponSlug) {
-  router.replace('/weapons/assault/M4A1')
-}
+watchEffect(() => {
+  if (!route.params.classSlug || !route.params.weaponSlug) {
+    router.replace('/weapons/assault/M4A1')
+  }
+})
 
 const classSlug = computed(() => route.params.classSlug as string)
 const weaponSlug = computed(() => route.params.weaponSlug as string)
@@ -28,10 +30,37 @@ const classGlob = import.meta.glob('/assets/images/classes/*.png', { eager: true
 const classImages = Object.fromEntries(
   Object.entries(classGlob).map(([key, value]) => [filename(key), value.default]),
 )
+
+const weaponsUnlockedAtLevels = Object.keys(weapons)
+  .filter(weaponKey => weapons[weaponKey].unlockLevel)
+  .sort((a, b) => weapons[a].unlockLevel - weapons[b].unlockLevel)
+  .map(weaponKey => weapons[weaponKey])
 </script>
 
 <template>
-  <div class="arsenal h-[calc(100vh-90px)] overflow-hidden">
+  <div class="arsenal h-[calc(100vh-86px)] overflow-hidden">
+    <div class="flex items-center py-2 overflow-hidden" v-dragscroll>
+      <div
+        v-for="weapon in weaponsUnlockedAtLevels"
+        :key="weapon.name"
+        class="relative flex flex-col items-center flex-shrink-0 px-4 pt-6 space-y-1 overflow-visible"
+      >
+        <div class="absolute left-0 right-0 top-2">
+          <div class="h-1.5 bg-gray-700 relative z-1" />
+
+          <div class="bg-gray-700 text-white rounded-full w-[25px] h-[25px] absolute z-2 position-center">
+            <span class="absolute text-xs font-medium position-center">{{ weapon.unlockLevel }}</span>
+          </div>
+        </div>
+
+        <img
+          :src="`https://asset.battlebitstats.com/weapons/${weapon.imageName}.png`"
+          class="h-[30px] object-fit opacity-70"
+        />
+        <span class="flex-shrink-0 text-xs opacity-70">{{ weapon.name }}</span>
+      </div>
+    </div>
+
     <div class="relative flex flex-col w-full h-full arsenal-grid md:flex-row">
       <div
         class="scrollbar-vertical relative z-20 order-2 h-full w-full overflow-y-auto px-4 pb-8 md:order-1 md:max-w-[320px]"
