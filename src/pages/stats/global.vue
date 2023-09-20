@@ -21,42 +21,42 @@ let leaderboards = [
     title: 'Top XP',
     list: keyedData['MostXP'],
   },
-  // {
-  //   title: 'Objectives completed',
-  //   list: keyedData['MostObjectivesComplete'],
-  // },
-  // {
-  //   title: 'Kills',
-  //   list: keyedData['MostKills'],
-  // },
-  // {
-  //   title: 'Heals',
-  //   list: keyedData['MostHeals'],
-  // },
-  // {
-  //   title: 'Revives',
-  //   list: keyedData['MostRevives'],
-  // },
-  // {
-  //   title: 'Vehicles destroyed',
-  //   list: keyedData['MostVehiclesDestroyed'],
-  // },
-  // {
-  //   title: 'Vehicle repairs',
-  //   list: keyedData['MostVehicleRepairs'],
-  // },
-  // {
-  //   title: 'Vehicle repairs',
-  //   list: keyedData['MostVehicleRepairs'],
-  // },
-  // {
-  //   title: 'Road kills',
-  //   list: keyedData['MostRoadkills'],
-  // },
-  // {
-  //   title: 'Longest kill',
-  //   list: keyedData['MostLongestKill'],
-  // },
+  {
+    title: 'Objectives completed',
+    list: keyedData['MostObjectivesComplete'],
+  },
+  {
+    title: 'Kills',
+    list: keyedData['MostKills'],
+  },
+  {
+    title: 'Heals',
+    list: keyedData['MostHeals'],
+  },
+  {
+    title: 'Revives',
+    list: keyedData['MostRevives'],
+  },
+  {
+    title: 'Vehicles destroyed',
+    list: keyedData['MostVehiclesDestroyed'],
+  },
+  {
+    title: 'Vehicle repairs',
+    list: keyedData['MostVehicleRepairs'],
+  },
+  {
+    title: 'Vehicle repairs',
+    list: keyedData['MostVehicleRepairs'],
+  },
+  {
+    title: 'Road kills',
+    list: keyedData['MostRoadkills'],
+  },
+  {
+    title: 'Longest kill',
+    list: keyedData['MostLongestKill'],
+  },
 ]
 </script>
 
@@ -76,13 +76,13 @@ let leaderboards = [
       :title="leaderboard.title"
     >
       <template #body>
-        <ul class="overflow-y-auto max-h-[50vh]">
+        <ul class="overflow-y-auto scrollbar-vertical max-h-[50vh]">
           <li
             v-for="(item, index) in leaderboard.list"
             :key="`${leaderboard.title}-${item.Name}`"
             class="flex items-center justify-between px-6 py-1 space-x-4 even:bg-gray-900 odd:bg-gray-800"
           >
-            <span class="flex items-center space-x-2">
+            <span class="flex items-center space-x-3">
               <span class="font-mono text-gray-500">
                 <span class="inline-block mr-1">#</span>
                 <span>{{ index + 1 }}</span>

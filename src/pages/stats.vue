@@ -1,3 +1,14 @@
+<script setup lang="ts">
+const route = useRoute()
+const router = useRouter()
+
+watchEffect(() => {
+  if (route.path === '/stats') {
+    router.replace('/stats/global')
+  }
+})
+</script>
+
 <template>
   <div class="flex flex-col h-full">
     <div class="flex items-center mx-auto mt-2 space-x-4">
