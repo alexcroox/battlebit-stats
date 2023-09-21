@@ -29,6 +29,7 @@
   "missingModel": "We were unable to find this weapon model in the game files :(",
   "nextPublicPlayTest": "Next public play test",
   "notFound": "Not found",
+  "notInTop": "Not in top {total}",
   "nothingHereSoldier": "There's nothing here solider, turn back while you can",
   "openSource": "Open source",
   "otherResources": "Other resources",

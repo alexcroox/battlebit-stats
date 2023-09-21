@@ -12,6 +12,7 @@ let leaderboards: Leaderboard[] = []
 let uniquePlayerNames: string[] = []
 let keyedData = {}
 let selectedPlayerName = ref('')
+let selectedPlayerLeaderboardPositions = ref({})
 let searchTerm = ref('')
 
 onMounted(() => {
@@ -20,6 +21,7 @@ onMounted(() => {
 
 interface Leaderboard {
   title: string
+  key: string
   list: {
     Name: string
     Value: string
@@ -35,6 +37,10 @@ watchEffect(() => {
   data.value.forEach(leaderboard => {
     const key = Object.keys(leaderboard)[0]
 
+    if (key === 'TopClans') {
+      return false
+    }
+
     keyedData[key] = leaderboard[key]
 
     leaderboard[key].forEach(item => {
@@ -47,38 +53,47 @@ watchEffect(() => {
   leaderboards = [
     {
       title: 'Top XP',
+      key: 'MostXP',
       list: keyedData['MostXP'].slice(0, 20),
     },
     {
       title: 'Objectives completed',
+      key: 'MostObjectivesComplete',
       list: keyedData['MostObjectivesComplete'].slice(0, 20),
     },
     {
       title: 'Kills',
+      key: 'MostKills',
       list: keyedData['MostKills'].slice(0, 20),
     },
     {
       title: 'Heals',
+      key: 'MostHeals',
       list: keyedData['MostHeals'].slice(0, 20),
     },
     {
       title: 'Revives',
+      key: 'MostRevives',
       list: keyedData['MostRevives'].slice(0, 20),
     },
     {
       title: 'Vehicles destroyed',
+      key: 'MostVehiclesDestroyed',
       list: keyedData['MostVehiclesDestroyed'].slice(0, 20),
     },
     {
       title: 'Vehicle repairs',
+      key: 'MostVehicleRepairs',
       list: keyedData['MostVehicleRepairs'].slice(0, 20),
     },
     {
       title: 'Road kills',
+      key: 'MostRoadkills',
       list: keyedData['MostRoadkills'].slice(0, 20),
     },
     {
       title: 'Longest kill',
+      key: 'MostLongestKill',
       list: keyedData['MostLongestKill'].slice(0, 20),
     },
   ]
@@ -101,11 +116,24 @@ const filteredPlayerResults = computed(() => {
 
 function selectPlayer(playerName: string) {
   selectedPlayerName.value = playerName
+
+  // Loop through each leaderboard and find what position this player is in
+  Object.entries(keyedData).forEach((key, value) => {
+    const leaderboard = key[1]
+    const leaderboardTitle = key[0]
+
+    leaderboard.forEach((item, index) => {
+      if (item.Name === playerName) {
+        selectedPlayerLeaderboardPositions.value[leaderboardTitle] = index + 1
+      }
+    })
+  })
 }
 
 function resetPlayer() {
   selectedPlayerName.value = ''
   searchTerm.value = ''
+  selectedPlayerLeaderboardPositions.value = {}
 }
 </script>
 
@@ -128,8 +156,20 @@ function resetPlayer() {
 
         <div class="w-full mt-6">
           <div v-for="leaderboard in leaderboards" :key="leaderboard.title" class="flex items-center space-x-4">
-            <p class="w-1/2 text-lg text-right whitespace-nowrap">{{ leaderboard.title }}</p>
-            <p class="flex-auto">#1</p>
+            <p class="w-1/2 text-lg text-right text-gray-300 whitespace-nowrap">{{ leaderboard.title }}</p>
+            <p class="flex-auto text-lg">
+              <span
+                v-if="selectedPlayerLeaderboardPositions[leaderboard.key]"
+                class="flex items-center space-x-0.5 text-yellow-100"
+              >
+                <span>#</span>
+                <span>{{ selectedPlayerLeaderboardPositions[leaderboard.key] }}</span>
+              </span>
+
+              <span v-else class="text-sm italic text-gray-400">
+                {{ $t('notInTop', { total: Number(5000).toLocaleString() }) }}
+              </span>
+            </p>
           </div>
         </div>
 
