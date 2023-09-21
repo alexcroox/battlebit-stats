@@ -1,63 +1,112 @@
 <script setup lang="ts">
-// import { classes, weapons } from '~/lib/weaponConfig'
-// import { vehicles } from '~/lib/vehicleConfig'
+const {
+  data,
+  pending: isLoading,
+  refresh: fetchLeaderboard,
+} = await useFetch('https://publicapi.battlebit.cloud/Leaderboard/Get', {
+  immediate: false,
+  key: 'leaderboard',
+})
 
-const { data, pending: isLoading } = await useFetch('https://publicapi.battlebit.cloud/Leaderboard/Get')
+let leaderboards: Leaderboard[] = []
+let uniquePlayerNames: string[] = []
+let keyedData = {}
+let selectedPlayerName = ref('')
+let searchTerm = ref('')
+
+onMounted(() => {
+  fetchLeaderboard()
+})
+
+interface Leaderboard {
+  title: string
+  list: {
+    Name: string
+    Value: string
+  }[]
+}
 
 // Flatten collection by key
-const keyedData = data.value.reduce((acc, item) => {
-  const key = Object.keys(item)[0]
-
-  return {
-    ...acc,
-    [key]: item[key],
+watchEffect(() => {
+  if (!data?.value) {
+    return false
   }
-}, {})
 
-console.log(keyedData)
+  data.value.forEach(leaderboard => {
+    const key = Object.keys(leaderboard)[0]
 
-let leaderboards = [
-  {
-    title: 'Top XP',
-    list: keyedData['MostXP'],
-  },
-  {
-    title: 'Objectives completed',
-    list: keyedData['MostObjectivesComplete'],
-  },
-  {
-    title: 'Kills',
-    list: keyedData['MostKills'],
-  },
-  {
-    title: 'Heals',
-    list: keyedData['MostHeals'],
-  },
-  {
-    title: 'Revives',
-    list: keyedData['MostRevives'],
-  },
-  {
-    title: 'Vehicles destroyed',
-    list: keyedData['MostVehiclesDestroyed'],
-  },
-  {
-    title: 'Vehicle repairs',
-    list: keyedData['MostVehicleRepairs'],
-  },
-  {
-    title: 'Vehicle repairs',
-    list: keyedData['MostVehicleRepairs'],
-  },
-  {
-    title: 'Road kills',
-    list: keyedData['MostRoadkills'],
-  },
-  {
-    title: 'Longest kill',
-    list: keyedData['MostLongestKill'],
-  },
-]
+    keyedData[key] = leaderboard[key]
+
+    leaderboard[key].forEach(item => {
+      if (item.Name && !uniquePlayerNames.includes(item.Name)) {
+        uniquePlayerNames.push(item.Name)
+      }
+    })
+  })
+
+  leaderboards = [
+    {
+      title: 'Top XP',
+      list: keyedData['MostXP'].slice(0, 20),
+    },
+    {
+      title: 'Objectives completed',
+      list: keyedData['MostObjectivesComplete'].slice(0, 20),
+    },
+    {
+      title: 'Kills',
+      list: keyedData['MostKills'].slice(0, 20),
+    },
+    {
+      title: 'Heals',
+      list: keyedData['MostHeals'].slice(0, 20),
+    },
+    {
+      title: 'Revives',
+      list: keyedData['MostRevives'].slice(0, 20),
+    },
+    {
+      title: 'Vehicles destroyed',
+      list: keyedData['MostVehiclesDestroyed'].slice(0, 20),
+    },
+    {
+      title: 'Vehicle repairs',
+      list: keyedData['MostVehicleRepairs'].slice(0, 20),
+    },
+    {
+      title: 'Road kills',
+      list: keyedData['MostRoadkills'].slice(0, 20),
+    },
+    {
+      title: 'Longest kill',
+      list: keyedData['MostLongestKill'].slice(0, 20),
+    },
+  ]
+})
+
+const filteredPlayerResults = computed(() => {
+  if (searchTerm.value === '') {
+    return []
+  }
+
+  let matches = 0
+
+  return uniquePlayerNames.filter(playerName => {
+    if (playerName.toLowerCase().includes(searchTerm.value.toLowerCase()) && matches < 20) {
+      matches++
+      return playerName
+    }
+  })
+})
+
+function selectPlayer(playerName: string) {
+  selectedPlayerName.value = playerName
+}
+
+function resetPlayer() {
+  selectedPlayerName.value = ''
+  searchTerm.value = ''
+}
 </script>
 
 <template>
@@ -69,6 +118,78 @@ let leaderboards = [
     v-else
     class="grid grid-cols-1 gap-4 p-4 bg-gray-800 border-t border-gray-700 md:grid-cols-2 lg:grid-cols-3"
   >
+    <div
+      class="flex flex-col items-center justify-center flex-auto px-6 pt-4 pb-6 mb-6 bg-gray-900 border border-gray-700 md:rounded-md lg:flex-initial"
+    >
+      <template v-if="selectedPlayerName">
+        <h3 class="text-xl md:text-2xl">
+          <span>{{ selectedPlayerName }}</span>
+        </h3>
+
+        <div class="w-full mt-6">
+          <div v-for="leaderboard in leaderboards" :key="leaderboard.title" class="flex items-center space-x-4">
+            <p class="w-1/2 text-lg text-right whitespace-nowrap">{{ leaderboard.title }}</p>
+            <p class="flex-auto">#1</p>
+          </div>
+        </div>
+
+        <a @click="resetPlayer()" class="mt-6 text-sm text-gray-400 cursor-pointer">
+          <Icon name="bi:arrow-left" class="inline-block mr-1" />
+          <span>Reset</span>
+        </a>
+      </template>
+
+      <template v-else>
+        <h3 class="flex items-center space-x-4 text-xl md:text-2xl">
+          <Icon name="bi:search" />
+          <span>{{ $t('findYourself') }}</span>
+        </h3>
+
+        <p class="mt-4 text-gray-400">Are you in the top 5,000 players?</p>
+
+        <div class="relative mt-6">
+          <div class="relative">
+            <input
+              v-model="searchTerm"
+              type="text"
+              class="px-4 py-1.5 relative z-1 bg-gray-700 border border-gray-500 rounded focus:outline-none focus:border-gray-400"
+              placeholder="Player name"
+              autofocus
+            />
+
+            <Icon
+              v-if="searchTerm"
+              @click="searchTerm = ''"
+              name="bi:x"
+              class="absolute text-xl text-white cursor-pointer right-2 position-center-y z-2"
+            />
+          </div>
+
+          <div
+            v-if="searchTerm"
+            class="absolute left-0 right-0 border border-gray-500 top-[43px] bg-gray-700 max-h-[30vh] overflow-auto scrollbar-vertical"
+          >
+            <p v-if="filteredPlayerResults.length === 0" class="px-4 py-2 text-sm text-gray-400">
+              Chin up, maybe one day...
+            </p>
+
+            <ul v-else>
+              <li
+                v-for="playerName in filteredPlayerResults"
+                @click="selectPlayer(playerName)"
+                :key="playerName"
+                class="flex items-center justify-between px-4 py-1 space-x-2 cursor-pointer group hover:bg-gray-500"
+              >
+                <span>{{ playerName }}</span>
+
+                <Icon name="bi:search" class="flex-shrink-0 invisible group-hover:visible" />
+              </li>
+            </ul>
+          </div>
+        </div>
+      </template>
+    </div>
+
     <StatList
       v-for="leaderboard in leaderboards"
       :key="leaderboard.title"

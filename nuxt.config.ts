@@ -6,7 +6,7 @@ console.log(fileURLToPath(new URL('./src', import.meta.url)))
 export default defineNuxtConfig({
   srcDir: 'src/',
 
-  devtools: { enabled: true },
+  devtools: { enabled: false },
 
   typescript: {
     shim: false,
