@@ -244,14 +244,14 @@ function resetPlayer() {
             class="flex items-center justify-between px-6 py-1 space-x-4 even:bg-gray-900 odd:bg-gray-800"
           >
             <span class="flex items-center space-x-3">
-              <span class="font-mono text-gray-500">
+              <span class="flex-shrink-0 font-mono text-gray-500">
                 <span class="inline-block mr-1">#</span>
                 <span>{{ index + 1 }}</span>
               </span>
               <span>{{ item.Name }}</span>
             </span>
 
-            <span class="font-mono text-sm">{{ Number(item.Value).toLocaleString() }}</span>
+            <span class="flex-shrink-0 font-mono text-sm">{{ Number(item.Value).toLocaleString() }}</span>
           </li>
         </ul>
       </template>
