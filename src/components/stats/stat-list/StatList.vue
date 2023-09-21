@@ -12,8 +12,9 @@ const props = defineProps<{
 
 <template>
   <div class="py-2 bg-gray-900 md:rounded-md">
-    <div class="px-6 pb-2 border-b border-gray-700">
+    <div class="flex items-center justify-between w-full px-6 pb-2 border-b border-gray-700">
       <h3 class="text-2xl">{{ title }}</h3>
+      <slot name="actions" />
     </div>
 
     <slot name="body">

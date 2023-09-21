@@ -19,6 +19,7 @@ let keyedData = {}
 let selectedPlayerName = ref('')
 let selectedPlayerLeaderboardPositions = ref({})
 let searchTerm = ref('')
+let clanSearchTerm = ref('')
 
 onMounted(() => {
   fetchLeaderboard()
@@ -43,12 +44,13 @@ watchEffect(() => {
     const key = Object.keys(leaderboard)[0]
 
     if (key === 'TopClans') {
-      topClans = leaderboard[key].slice(0, 100).map(clan => {
+      topClans = leaderboard[key].map((clan, index) => {
         return {
           name: clan.Clan,
           tag: clan.Tag,
           members: clan.MaxPlayers,
           xp: clan.XP,
+          position: index + 1,
         }
       })
 
@@ -160,6 +162,25 @@ function resetPlayer() {
   searchTerm.value = ''
   selectedPlayerLeaderboardPositions.value = {}
 }
+
+const filteredClans = computed(() => {
+  if (clanSearchTerm.value === '') {
+    return topClans.slice(0, 100)
+  }
+
+  let matches = 0
+
+  return topClans.filter(clan => {
+    if (
+      (clan.name.toLowerCase().includes(clanSearchTerm.value.toLowerCase()) ||
+        `[${clan.tag.toLowerCase()}]`.includes(clanSearchTerm.value.toLowerCase())) &&
+      matches < 20
+    ) {
+      matches++
+      return clan
+    }
+  })
+})
 </script>
 
 <template>
@@ -280,12 +301,12 @@ function resetPlayer() {
             @click="selectPlayer(item.Name)"
             class="flex items-center justify-between px-6 py-1 space-x-4 cursor-pointer even:bg-gray-900 hover:text-yellow-100 odd:bg-gray-800"
           >
-            <span class="flex items-center space-x-3">
+            <span class="flex items-center space-x-3 truncate">
               <span class="flex-shrink-0 font-mono text-gray-500">
                 <span class="inline-block mr-1">#</span>
                 <span>{{ index + 1 }}</span>
               </span>
-              <span>{{ item.Name }}</span>
+              <span class="truncate">{{ item.Name }}</span>
             </span>
 
             <span class="flex-shrink-0 font-mono text-sm">{{ Number(item.Value).toLocaleString() }}</span>
@@ -295,19 +316,46 @@ function resetPlayer() {
     </StatList>
 
     <StatList class="flex-auto mb-6 border border-gray-700 self-baseline lg:flex-initial" title="Top 100 clans">
+      <template #actions>
+        <div>
+          <div class="relative max-w-[190px]">
+            <input
+              v-model="clanSearchTerm"
+              type="text"
+              class="pr-6 pl-10 py-1.5 w-full relative z-1 bg-gray-700 border border-gray-500 rounded focus:outline-none focus:border-gray-400"
+              placeholder="Search all clans"
+              autofocus
+            />
+
+            <Icon
+              @click="clanSearchTerm = ''"
+              name="bi:search"
+              class="absolute text-xl text-white cursor-pointer left-2 position-center-y z-2"
+            />
+
+            <Icon
+              v-if="clanSearchTerm"
+              @click="clanSearchTerm = ''"
+              name="bi:x"
+              class="absolute text-xl text-white cursor-pointer right-2 position-center-y z-2"
+            />
+          </div>
+        </div>
+      </template>
+
       <template #body>
         <ul class="overflow-y-auto overflow-x-hidden scrollbar-vertical max-h-[50vh]">
           <li
-            v-for="(item, index) in topClans"
+            v-for="(item, index) in filteredClans"
             :key="`top-clans-${item.name}`"
             class="flex items-center justify-between px-6 py-1 space-x-4 even:bg-gray-900 odd:bg-gray-800"
           >
-            <span class="flex items-center space-x-3">
+            <span class="flex items-center space-x-3 truncate">
               <span class="flex-shrink-0 font-mono text-gray-500">
                 <span class="inline-block mr-1">#</span>
-                <span>{{ index + 1 }}</span>
+                <span>{{ item.position }}</span>
               </span>
-              <span>{{ item.name }} [{{ item.tag }}]</span>
+              <span class="truncate">{{ item.name }} [{{ item.tag }}]</span>
             </span>
 
             <span class="flex-shrink-0 font-mono text-sm">
