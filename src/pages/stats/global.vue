@@ -124,7 +124,11 @@ function selectPlayer(playerName: string) {
 
     leaderboard.forEach((item, index) => {
       if (item.Name === playerName) {
-        selectedPlayerLeaderboardPositions.value[leaderboardTitle] = (index + 1).toLocaleString()
+        selectedPlayerLeaderboardPositions.value[leaderboardTitle] = {
+          position: (index + 1).toLocaleString(),
+          nextPosition: index.toLocaleString(),
+          valueFromNextPlayer: index === 0 ? 0 : Number(leaderboard[index - 1].Value) - Number(item.Value),
+        }
       }
     })
   })
@@ -160,10 +164,21 @@ function resetPlayer() {
             <p class="flex-auto text-lg">
               <span
                 v-if="selectedPlayerLeaderboardPositions[leaderboard.key]"
-                class="flex items-center space-x-0.5 text-yellow-100"
+                class="flex items-center space-x-2 text-yellow-100"
               >
-                <span>#</span>
-                <span>{{ selectedPlayerLeaderboardPositions[leaderboard.key] }}</span>
+                <span class="flex items-center space-x-0.5">
+                  <span>#</span>
+                  <span>{{ selectedPlayerLeaderboardPositions[leaderboard.key].position }}</span>
+                </span>
+
+                <span
+                  v-if="selectedPlayerLeaderboardPositions[leaderboard.key].valueFromNextPlayer"
+                  class="ml-2 text-sm text-gray-400"
+                >
+                  +{{ selectedPlayerLeaderboardPositions[leaderboard.key].valueFromNextPlayer }} to #{{
+                    selectedPlayerLeaderboardPositions[leaderboard.key].nextPosition
+                  }}
+                </span>
               </span>
 
               <span v-else class="text-sm italic text-gray-400">
