@@ -129,6 +129,8 @@ const filteredPlayerResults = computed(() => {
 })
 
 function selectPlayer(playerName: string) {
+  resetPlayer()
+
   selectedPlayerName.value = playerName
 
   // Loop through each leaderboard and find what position this player is in
@@ -145,6 +147,11 @@ function selectPlayer(playerName: string) {
         }
       }
     })
+  })
+
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
   })
 }
 
@@ -270,7 +277,8 @@ function resetPlayer() {
           <li
             v-for="(item, index) in leaderboard.list"
             :key="`${leaderboard.title}-${item.Name}`"
-            class="flex items-center justify-between px-6 py-1 space-x-4 even:bg-gray-900 odd:bg-gray-800"
+            @click="selectPlayer(item.Name)"
+            class="flex items-center justify-between px-6 py-1 space-x-4 cursor-pointer even:bg-gray-900 hover:text-yellow-100 odd:bg-gray-800"
           >
             <span class="flex items-center space-x-3">
               <span class="flex-shrink-0 font-mono text-gray-500">
