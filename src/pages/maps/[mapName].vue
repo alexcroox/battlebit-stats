@@ -4,6 +4,10 @@ const props = defineProps<{
   mapName: string
   mapBgColor: string
 }>()
+
+useHead({
+  title: `${props.mapName} Map`,
+})
 </script>
 
 <template>

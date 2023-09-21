@@ -4,7 +4,12 @@ const props = defineProps<{
   hasModel: boolean
   imageName: string
   weaponSlug: string
+  classSlug: string
 }>()
+
+useHead({
+  title: `${props.objectModel.name} | ${props.classSlug.charAt(0).toUpperCase() + props.classSlug.slice(1)} Class`,
+})
 </script>
 
 <template>

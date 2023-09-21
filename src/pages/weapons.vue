@@ -39,7 +39,7 @@ const weaponsUnlockedAtLevels = Object.keys(weapons)
 
 <template>
   <div class="arsenal h-[calc(100vh-86px)] overflow-hidden">
-    <div class="flex items-center py-2 overflow-hidden" v-dragscroll>
+    <div class="flex items-center py-2 overflow-hidden momentum-scroll" v-dragscroll>
       <div
         v-for="weapon in weaponsUnlockedAtLevels"
         :key="weapon.name"
@@ -124,6 +124,7 @@ const weaponsUnlockedAtLevels = Object.keys(weapons)
           :hasModel="activeWeapon.hasModel"
           :imageName="activeWeapon.imageName"
           :weaponSlug="weaponSlug"
+          :classSlug="classSlug"
         />
       </div>
     </div>

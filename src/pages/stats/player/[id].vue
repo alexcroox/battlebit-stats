@@ -114,6 +114,10 @@ const xp = {
   current: 12254,
   prestige: 1,
 }
+
+useHead({
+  title: 'Titan',
+})
 </script>
 
 <template>

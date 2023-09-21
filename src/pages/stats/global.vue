@@ -1,4 +1,8 @@
 <script setup lang="ts">
+useHead({
+  title: 'Global Leaderboards',
+})
+
 const {
   data,
   pending: isLoading,

@@ -128,3 +128,7 @@ strong {
 .scrollbar-horizontal::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.2);
 }
+
+.momentum-scroll {
+  -webkit-overflow-scrolling: touch;
+}
