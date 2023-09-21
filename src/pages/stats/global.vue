@@ -13,6 +13,7 @@ const {
 })
 
 let leaderboards: Leaderboard[] = []
+let topClans = []
 let uniquePlayerNames: string[] = []
 let keyedData = {}
 let selectedPlayerName = ref('')
@@ -42,7 +43,16 @@ watchEffect(() => {
     const key = Object.keys(leaderboard)[0]
 
     if (key === 'TopClans') {
-      return false
+      topClans = leaderboard[key].slice(0, 100).map(clan => {
+        return {
+          name: clan.Clan,
+          tag: clan.Tag,
+          members: clan.MaxPlayers,
+          xp: clan.XP,
+        }
+      })
+
+      return
     }
 
     keyedData[key] = leaderboard[key]
@@ -58,47 +68,47 @@ watchEffect(() => {
     {
       title: 'Top XP',
       key: 'MostXP',
-      list: keyedData['MostXP'].slice(0, 20),
+      list: keyedData['MostXP'].slice(0, 50),
     },
     {
       title: 'Objectives completed',
       key: 'MostObjectivesComplete',
-      list: keyedData['MostObjectivesComplete'].slice(0, 20),
+      list: keyedData['MostObjectivesComplete'].slice(0, 50),
     },
     {
       title: 'Kills',
       key: 'MostKills',
-      list: keyedData['MostKills'].slice(0, 20),
+      list: keyedData['MostKills'].slice(0, 50),
     },
     {
       title: 'Heals',
       key: 'MostHeals',
-      list: keyedData['MostHeals'].slice(0, 20),
+      list: keyedData['MostHeals'].slice(0, 50),
     },
     {
       title: 'Revives',
       key: 'MostRevives',
-      list: keyedData['MostRevives'].slice(0, 20),
+      list: keyedData['MostRevives'].slice(0, 50),
     },
     {
       title: 'Vehicles destroyed',
       key: 'MostVehiclesDestroyed',
-      list: keyedData['MostVehiclesDestroyed'].slice(0, 20),
+      list: keyedData['MostVehiclesDestroyed'].slice(0, 50),
     },
     {
       title: 'Vehicle repairs',
       key: 'MostVehicleRepairs',
-      list: keyedData['MostVehicleRepairs'].slice(0, 20),
+      list: keyedData['MostVehicleRepairs'].slice(0, 50),
     },
     {
       title: 'Road kills',
       key: 'MostRoadkills',
-      list: keyedData['MostRoadkills'].slice(0, 20),
+      list: keyedData['MostRoadkills'].slice(0, 50),
     },
     {
       title: 'Longest kill',
       key: 'MostLongestKill',
-      list: keyedData['MostLongestKill'].slice(0, 20),
+      list: keyedData['MostLongestKill'].slice(0, 50),
     },
   ]
 })
@@ -271,6 +281,32 @@ function resetPlayer() {
             </span>
 
             <span class="flex-shrink-0 font-mono text-sm">{{ Number(item.Value).toLocaleString() }}</span>
+          </li>
+        </ul>
+      </template>
+    </StatList>
+
+    <StatList class="flex-auto mb-6 border border-gray-700 self-baseline lg:flex-initial" title="Top 100 clans">
+      <template #body>
+        <ul class="overflow-y-auto overflow-x-hidden scrollbar-vertical max-h-[50vh]">
+          <li
+            v-for="(item, index) in topClans"
+            :key="`top-clans-${item.name}`"
+            class="flex items-center justify-between px-6 py-1 space-x-4 even:bg-gray-900 odd:bg-gray-800"
+          >
+            <span class="flex items-center space-x-3">
+              <span class="flex-shrink-0 font-mono text-gray-500">
+                <span class="inline-block mr-1">#</span>
+                <span>{{ index + 1 }}</span>
+              </span>
+              <span>{{ item.name }} [{{ item.tag }}]</span>
+            </span>
+
+            <span class="flex-shrink-0 font-mono text-sm">
+              {{ item.members }}
+              <Icon name="fa6-solid:people-group" />
+              {{ Number(item.xp).toLocaleString() }} XP
+            </span>
           </li>
         </ul>
       </template>

@@ -110,7 +110,7 @@ export const maps: Record<string, MapConfig> = {
   // },
   'zalif-bay': {
     bgColor: '#8a97b0',
-    name: 'Zalif Bay',
+    name: 'ZalifBay',
     description: 'A main city in area surrounded by big desert hills and canyons',
   },
 }
