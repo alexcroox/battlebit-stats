@@ -124,7 +124,7 @@ function selectPlayer(playerName: string) {
 
     leaderboard.forEach((item, index) => {
       if (item.Name === playerName) {
-        selectedPlayerLeaderboardPositions.value[leaderboardTitle] = index + 1
+        selectedPlayerLeaderboardPositions.value[leaderboardTitle] = (index + 1).toLocaleString()
       }
     })
   })
