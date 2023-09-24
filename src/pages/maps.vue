@@ -47,6 +47,7 @@ watchEffect(() => {
       >
         <img
           :src="`https://assets.battlebitstats.com/maps/${mapSlug}/thumbnail.jpg`"
+          :alt="mapSlug"
           class="z-10 rounded image-cover"
         />
 

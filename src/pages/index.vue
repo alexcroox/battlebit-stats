@@ -13,7 +13,7 @@ const classImages = Object.fromEntries(Object.entries(glob).map(([key, value]) =
 <template>
   <div class="pb-8 container-padding-x">
     <h1 class="flex items-center mt-2 text-xl font-extrabold tracking-wide uppercase text-yellow-50 sm:hidden">
-      <img src="~/assets/images/brand/logo-white.png" class="mr-2 h-[20px]" />
+      <img src="~/assets/images/brand/logo-white.png" alt="logo" class="mr-2 h-[20px]" />
       {{ $t('battleBitStats') }}
     </h1>
 
@@ -28,7 +28,11 @@ const classImages = Object.fromEntries(Object.entries(glob).map(([key, value]) =
           :to="`/maps/${mapSlug}`"
           class="flex items-center px-2 py-2 transition-all bg-gray-700 border-2 border-transparent rounded group hover:border-yellow-100"
         >
-          <img :src="`https://assets.battlebitstats.com/maps/${mapSlug}/thumbnail.jpg`" class="h-20 rounded" />
+          <img
+            :src="`https://assets.battlebitstats.com/maps/${mapSlug}/thumbnail.jpg`"
+            :alt="mapSlug"
+            class="h-20 rounded"
+          />
 
           <div class="ml-4">
             <span class="block text-xl font-medium group-hover:text-yellow-100">
@@ -63,7 +67,7 @@ const classImages = Object.fromEntries(Object.entries(glob).map(([key, value]) =
         :to="`/weapons/${soldierClass}/${classes[soldierClass].demoWeapon}`"
         class="group flex flex-col items-center space-y-4 rounded border-2 border-transparent bg-gray-700 py-4 px-4 transition-all hover:border-yellow-100 sm:min-w-[180px]"
       >
-        <img :src="classImages[classConfig.imageName]" class="h-20 rounded" />
+        <img :src="classImages[classConfig.imageName]" :alt="classConfig.imageName" class="h-20 rounded" />
 
         <p class="text-xl font-medium group-hover:text-yellow-100">
           {{ classConfig.name }}
