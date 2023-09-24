@@ -13,7 +13,6 @@ const {
 })
 
 let leaderboards: Leaderboard[] = []
-let topClans = []
 let uniquePlayerNames: string[] = []
 let keyedData = {}
 let selectedPlayerName = ref('')
@@ -27,6 +26,7 @@ onMounted(() => {
 
 interface Leaderboard {
   title: string
+  shortTitle?: string
   key: string
   list: {
     Name: string
@@ -44,16 +44,6 @@ watchEffect(() => {
     const key = Object.keys(leaderboard)[0]
 
     if (key === 'TopClans') {
-      topClans = leaderboard[key].map((clan, index) => {
-        return {
-          name: clan.Clan,
-          tag: clan.Tag,
-          members: clan.MaxPlayers,
-          xp: clan.XP,
-          position: index + 1,
-        }
-      })
-
       return
     }
 
@@ -74,6 +64,7 @@ watchEffect(() => {
     },
     {
       title: 'Objectives completed',
+      shortTitle: 'Objectives',
       key: 'MostObjectivesComplete',
       list: keyedData['MostObjectivesComplete'].slice(0, 50),
     },
@@ -162,29 +153,10 @@ function resetPlayer() {
   searchTerm.value = ''
   selectedPlayerLeaderboardPositions.value = {}
 }
-
-const filteredClans = computed(() => {
-  if (clanSearchTerm.value === '') {
-    return topClans.slice(0, 100)
-  }
-
-  let matches = 0
-
-  return topClans.filter(clan => {
-    if (
-      (clan.name.toLowerCase().includes(clanSearchTerm.value.toLowerCase()) ||
-        `[${clan.tag.toLowerCase()}]`.includes(clanSearchTerm.value.toLowerCase())) &&
-      matches < 20
-    ) {
-      matches++
-      return clan
-    }
-  })
-})
 </script>
 
 <template>
-  <div v-if="isLoading" class="flex items-center justify-center h-full">
+  <div v-if="isLoading" class="flex items-center justify-center flex-auto">
     <Loader />
   </div>
 
@@ -193,7 +165,7 @@ const filteredClans = computed(() => {
     class="grid grid-cols-1 gap-4 p-4 bg-gray-800 border-t border-gray-700 md:grid-cols-2 lg:grid-cols-3"
   >
     <div
-      class="flex flex-col items-center justify-center flex-auto px-6 pt-4 pb-6 mb-6 bg-gray-900 border border-gray-700 md:rounded-md lg:flex-initial"
+      class="flex flex-col items-center justify-center flex-auto px-2 pt-4 pb-6 mb-6 bg-gray-900 border border-gray-700 rounded md:px-6 lg:flex-initial"
     >
       <template v-if="selectedPlayerName">
         <h3 class="text-xl md:text-2xl">
@@ -202,7 +174,10 @@ const filteredClans = computed(() => {
 
         <div class="w-full mt-6">
           <div v-for="leaderboard in leaderboards" :key="leaderboard.title" class="flex items-center space-x-4">
-            <p class="w-1/2 text-lg text-right text-gray-300 whitespace-nowrap">{{ leaderboard.title }}</p>
+            <p class="w-1/2 text-lg text-right text-gray-300 whitespace-nowrap">
+              {{ leaderboard.shortTitle || leaderboard.title }}
+            </p>
+
             <p class="flex-auto text-lg">
               <span
                 v-if="selectedPlayerLeaderboardPositions[leaderboard.key]"
@@ -299,70 +274,17 @@ const filteredClans = computed(() => {
             v-for="(item, index) in leaderboard.list"
             :key="`${leaderboard.title}-${item.Name}`"
             @click="selectPlayer(item.Name)"
-            class="flex items-center justify-between px-6 py-1 space-x-4 cursor-pointer even:bg-gray-900 hover:text-yellow-100 odd:bg-gray-800"
+            class="flex items-center justify-between px-2 py-1 space-x-4 cursor-pointer md:px-6 even:bg-gray-900 hover:text-yellow-100 odd:bg-gray-800"
           >
             <span class="flex items-center space-x-3 truncate">
               <span class="flex-shrink-0 font-mono text-gray-500">
-                <span class="inline-block mr-1">#</span>
+                <span class="inline-block mr-0.5">#</span>
                 <span>{{ index + 1 }}</span>
               </span>
               <span class="truncate">{{ item.Name }}</span>
             </span>
 
             <span class="flex-shrink-0 font-mono text-sm">{{ Number(item.Value).toLocaleString() }}</span>
-          </li>
-        </ul>
-      </template>
-    </StatList>
-
-    <StatList class="flex-auto mb-6 border border-gray-700 self-baseline lg:flex-initial" title="Top 100 clans">
-      <template #actions>
-        <div>
-          <div class="relative max-w-[190px]">
-            <input
-              v-model="clanSearchTerm"
-              type="text"
-              class="pr-6 pl-10 py-1.5 w-full relative z-1 bg-gray-700 border border-gray-500 rounded focus:outline-none focus:border-gray-400"
-              placeholder="Search all clans"
-              autofocus
-            />
-
-            <Icon
-              @click="clanSearchTerm = ''"
-              name="bi:search"
-              class="absolute text-xl text-white cursor-pointer left-2 position-center-y z-2"
-            />
-
-            <Icon
-              v-if="clanSearchTerm"
-              @click="clanSearchTerm = ''"
-              name="bi:x"
-              class="absolute text-xl text-white cursor-pointer right-2 position-center-y z-2"
-            />
-          </div>
-        </div>
-      </template>
-
-      <template #body>
-        <ul class="overflow-y-auto overflow-x-hidden scrollbar-vertical max-h-[50vh]">
-          <li
-            v-for="(item, index) in filteredClans"
-            :key="`top-clans-${item.name}`"
-            class="flex items-center justify-between px-6 py-1 space-x-4 even:bg-gray-900 odd:bg-gray-800"
-          >
-            <span class="flex items-center space-x-3 truncate">
-              <span class="flex-shrink-0 font-mono text-gray-500">
-                <span class="inline-block mr-1">#</span>
-                <span>{{ item.position }}</span>
-              </span>
-              <span class="truncate">{{ item.name }} [{{ item.tag }}]</span>
-            </span>
-
-            <span class="flex-shrink-0 font-mono text-sm">
-              {{ item.members }}
-              <Icon name="fa6-solid:people-group" />
-              {{ Number(item.xp).toLocaleString() }} XP
-            </span>
           </li>
         </ul>
       </template>

@@ -11,14 +11,14 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="py-2 bg-gray-900 md:rounded-md">
-    <div class="flex items-center justify-between w-full px-6 pb-2 border-b border-gray-700">
+  <div class="py-2 bg-gray-900 rounded">
+    <div class="flex items-center justify-between w-full px-2 pb-2 border-b border-gray-700 md:px-6">
       <h3 class="text-2xl">{{ title }}</h3>
       <slot name="actions" />
     </div>
 
     <slot name="body">
-      <ul class="px-6 mt-4">
+      <ul class="px-2 mt-4 md:px-6">
         <slot name="list">
           <template v-if="listData && listData.length > 0">
             <li v-for="(item, index) in listData" :key="item.key" class="flex items-center mb-5">
