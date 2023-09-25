@@ -8,7 +8,6 @@
 import '~/assets/css/index.css'
 
 useHead({
-  title: 'BattleBit Stats',
   titleTemplate: '%s | BattleBit Stats',
   htmlAttrs: { lang: 'en' },
   link: [

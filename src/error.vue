@@ -1,5 +1,7 @@
 <script setup lang="ts">
-const router = useRouter()
+useHead({
+  title: 'Page Not Found | BattleBit Stats',
+})
 </script>
 
 <template>

@@ -3,6 +3,10 @@ import { filename } from 'pathe/utils'
 import { maps } from '~/lib/mapConfig'
 import { classes } from '~/lib/weaponConfig'
 
+useHead({
+  titleTemplate: 'BattleBit Stats',
+})
+
 const numberOfMaps = Object.keys(maps).length
 
 const glob = import.meta.glob('/assets/images/classes/*.png', { eager: true })
