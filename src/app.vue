@@ -8,24 +8,22 @@
 import '~/assets/css/index.css'
 
 useHead({
-  titleTemplate: '%s | BattleBit Stats',
-  htmlAttrs: { lang: 'en' },
   link: [
-    { rel: 'icon', href: '~/assets/images/brand/favicon.png' },
-    { rel: 'apple-touch-icon', href: '~/assets/images/brand/pwa-192x192.png' },
-    { rel: 'mask-icon', href: '~/assets/images/brand/safari-pinned-tab.png', color: '#00aba9' },
+    { rel: 'icon', href: 'https://asset.battlebitstats.com/brand/favicon.png', type: 'image/png' },
+    { rel: 'apple-touch-icon', href: 'https://asset.battlebitstats.com/brand/pwa-192x192.png' },
+    { rel: 'mask-icon', href: 'https://asset.battlebitstats.com/brand/safari-pinned-tab.png', color: '#00aba9' },
   ],
-  meta: {
-    'msapplication-TileColor': '#00aba9',
-    'theme-color': '#1E2A38',
-    viewport: 'width=device-width, initial-scale=1',
-  },
+  htmlAttrs: { lang: 'en' },
 })
 
 useSeoMeta({
   title: 'BattleBit Stats',
+  titleTemplate: '%s | BattleBit Stats',
+  msapplicationTileColor: '#00aba9',
+  themeColor: '#1E2A38',
+  viewport: 'width=device-width, initial-scale=1',
   description: 'Stats, maps and information about the BattleBit Remastered game',
-  ogImage: '~/assets/images/brand/og.png',
+  ogImage: 'https://asset.battlebitstats.com/brand/og.png',
 })
 
 if (process.client && window.navigator && navigator.serviceWorker) {

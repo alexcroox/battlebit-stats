@@ -3,7 +3,7 @@ import { filename } from 'pathe/utils'
 import { maps } from '~/lib/mapConfig'
 import { classes } from '~/lib/weaponConfig'
 
-useHead({
+useSeoMeta({
   titleTemplate: 'BattleBit Stats',
 })
 

@@ -7,7 +7,7 @@ const props = defineProps<{
   classSlug: string
 }>()
 
-useHead({
+useSeoMeta({
   title: `${props.objectModel.name} | ${props.classSlug.charAt(0).toUpperCase() + props.classSlug.slice(1)} Class`,
 })
 </script>

@@ -5,7 +5,7 @@ const props = defineProps<{
   mapBgColor: string
 }>()
 
-useHead({
+useSeoMeta({
   title: `${props.mapName} Map`,
 })
 </script>

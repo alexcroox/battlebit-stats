@@ -115,7 +115,7 @@ const xp = {
   prestige: 1,
 }
 
-useHead({
+useSeoMeta({
   title: 'Titan',
 })
 </script>
