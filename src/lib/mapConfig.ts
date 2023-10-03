@@ -46,6 +46,11 @@ export const maps: Record<string, MapConfig> = {
     name: 'Isle',
     description: 'An island with an early-warning radar system used to detect nuclear missile launches',
   },
+  kodiak: {
+    bgColor: '#5c5a77',
+    name: 'Kodiak',
+    description: 'Invasion on Alaskan town',
+  },
   lonovo: {
     bgColor: '#484D37',
     name: 'Lonovo',

@@ -73,6 +73,7 @@ onMounted(async () => {
     tms: true,
     minZoom,
     maxZoom,
+    maxNativeZoom: 4,
   }).addTo(map)
 
   map.fitBounds([
@@ -84,21 +85,21 @@ onMounted(async () => {
 
   map.setView([mapWidth / 2, mapWidth / 2])
 
-  map.on('dragend', function () {
-    debugMap()
-  })
+  // map.on('dragend', function () {
+  //   debugMap()
+  // })
 
-  map.on('zoomend', function () {
-    debugMap()
-  })
+  // map.on('zoomend', function () {
+  //   debugMap()
+  // })
 
-  function debugMap() {
-    const currentCenter = map.getCenter()
-    const currentZoom = map.getZoom()
+  // function debugMap() {
+  //   const currentCenter = map.getCenter()
+  //   const currentZoom = map.getZoom()
 
-    /* eslint-disable no-console */
-    console.log(currentCenter, currentZoom)
-  }
+  //   /* eslint-disable no-console */
+  //   console.log(currentCenter, currentZoom)
+  // }
 })
 </script>
 
