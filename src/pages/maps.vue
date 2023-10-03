@@ -70,7 +70,7 @@ watchEffect(() => {
 </template>
 
 <style lang="scss" scoped>
-.map-link.NuxtLink-exact-active {
+.map-link.router-link-exact-active {
   @apply border-yellow-100;
   & .map-link-name {
     @apply text-yellow-100;
