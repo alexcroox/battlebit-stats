@@ -14,6 +14,7 @@ let mapKey = computed(() => route.params.mapName as string)
 let currentMapConfig = ref<MapConfig>({
   name: '',
   bgColor: '',
+  description: '',
 })
 
 let hasMapError = ref(false)
@@ -64,7 +65,13 @@ watchEffect(() => {
         <h1 class="text-2xl">{{ $t('mapNotFound') }}</h1>
       </div>
 
-      <NuxtPage v-else :mapKey="mapKey" :mapName="currentMapConfig.name" :mapBgColor="currentMapConfig.bgColor" />
+      <NuxtPage
+        v-else
+        :mapKey="mapKey"
+        :mapName="currentMapConfig.name"
+        :mapBgColor="currentMapConfig.bgColor"
+        :mapDescription="currentMapConfig.description"
+      />
     </div>
   </div>
 </template>

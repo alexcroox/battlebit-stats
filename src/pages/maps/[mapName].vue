@@ -2,11 +2,13 @@
 const props = defineProps<{
   mapKey: string
   mapName: string
+  mapDescription: string
   mapBgColor: string
 }>()
 
 useSeoMeta({
   title: `${props.mapName} Map`,
+  description: props.mapDescription,
 })
 </script>
 
