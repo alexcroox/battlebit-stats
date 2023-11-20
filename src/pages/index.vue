@@ -91,7 +91,7 @@ const classImages = Object.fromEntries(Object.entries(glob).map(([key, value]) =
       <h2 class="relative text-2xl font-medium">{{ $t('otherResources') }}</h2>
 
       <NuxtLink
-        to="https://battlebit.fandom.com/wiki/BattleBit_Wiki"
+        to="https://battlebit.wiki.gg/wiki"
         target="_blank"
         rel="noopener nofollow"
         class="flex items-center justify-between px-4 py-2 mt-4 space-x-6 transition-all bg-gray-700 border-2 border-transparent rounded hover:border-yellow-100 w-fit"

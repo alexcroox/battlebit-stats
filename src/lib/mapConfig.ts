@@ -71,6 +71,11 @@ export const maps: Record<string, MapConfig> = {
     name: 'Oil Dunes',
     description: 'A sprawling oil extraction operation in flat, desert region',
   },
+  outskirts: {
+    bgColor: '#9b9484',
+    name: 'Outskirts',
+    description: 'Battle the outskirts of Lonovo near the military factory',
+  },
   river: {
     bgColor: '#793922',
     name: 'River',
