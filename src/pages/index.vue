@@ -101,16 +101,6 @@ const classImages = Object.fromEntries(Object.entries(glob).map(([key, value]) =
       </NuxtLink>
 
       <NuxtLink
-        to="https://1drv.ms/x/s!Asv3oZ5_zYmxczGsx71wEfnKlRU"
-        target="_blank"
-        rel="noopener nofollow"
-        class="flex items-center justify-between px-4 py-2 mt-4 space-x-6 transition-all bg-gray-700 border-2 border-transparent rounded hover:border-yellow-100 w-fit"
-      >
-        <span>Detailed weapon stats by @Ox1gen</span>
-        <Icon name="fa-solid:external-link-alt" />
-      </NuxtLink>
-
-      <NuxtLink
         to="https://battlebit.community/"
         target="_blank"
         rel="noopener nofollow"
